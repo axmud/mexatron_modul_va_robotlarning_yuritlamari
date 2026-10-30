@@ -8,7 +8,7 @@
 
 #let headingblue = rgb(20, 50, 120)
 
-#set document(title: "Elektr yuritmaning yuklama quvvatini hisoblash")
+#set document(title: "Elektr yuritmaning yuklama quvvatini hisoblaş")
 #set page(
   paper: "a4",
   margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 2cm),
@@ -28,7 +28,7 @@
   line(length: 100%, stroke: 0.4pt + luma(170))
 })
 // ===================
-#set text(size: 12pt, lang: "uz")
+#set text(size: 12pt, lang: "uz", font: info.font)
 #set par(justify: true, leading: 0.65em)
 #set heading(numbering: "1.1")
 #set math.equation(numbering: "(1)", supplement: none)
@@ -41,9 +41,9 @@
 
 // ---------------- Sarlavha ----------------
 #align(center)[
-  #text(size: 20pt, weight: "bold", fill: headingblue)[AMALIYOT MASHGʻULOTI №7]
+  #text(size: 20pt, weight: "bold", fill: headingblue)[AMALIYOT MAŞĞULOTI №7]
   #v(0.4cm)
-  #text(size: 14pt, weight: "bold")[Mavzu: Elektr yuritmaning yuklama quvvatini hisoblash]
+  #text(size: 14pt, weight: "bold")[Mavzu: Elektr yuritmaning yuklama quvvatini hisoblaş]
   #v(0.2cm)
   #text(size: 10pt)[(Mexatronik tizimlar va sanoat robotlari elektr yuritmalarida)]
   #v(0.6cm)
@@ -51,24 +51,24 @@
 ]
 #v(0.3cm)
 
-= Ishning maqsadi va tizimli yondashuv
+= Işning maqsadi va tizimli yondaşuv
 
-Mexatron modullar va sanoat robotlarining samarali hamda ishonchli ishlashini taʼminlashda elektr yuritmaning yuklama quvvatini aniq hisoblash hal qiluvchi ahamiyatga ega. Richard Crowder oʻzining _Electric Drives and Electromechanical Systems_ asarida taʼkidlaganidek, elektromexanik tizimlarni loyihalashda *tizimli yondashuv (Systems Approach)* asosiy tamoyil hisoblanadi. Murakkab raqamli boshqaruv algoritmlari yoki sunʼiy intellekt dasturlari notoʻgʻri va yetarsiz quvvatli qilib tanlangan dvigatelning kamchiliklarini oʻrnini bosa olmaydi.
+Mexatron modullar va sanoat robotlarining samarali hamda işonçli işlaşini taʼminlaşda elektr yuritmaning yuklama quvvatini aniq hisoblaş hal qiluvçi ahamiyatga ega. Richard Crowder özining _Electric Drives and Electromechanical Systems_ asarida taʼkidlaganidek, elektromexanik tizimlarni loyihalaşda *tizimli yondaşuv (Systems Approach)* asosiy tamoyil hisoblanadi. Murakkab raqamli boşqaruv algoritmlari yoki sunʼiy intellekt dasturlari notöğri va yetarsiz quvvatli qilib tanlangan dvigatelning kamçiliklarini örnini bosa olmaydi.
 
-Dvigatel quvvatini notoʻgʻri hisoblash ikkita jiddiy salbiy oqibatga olib keladi:
+Dvigatel quvvatini notöğri hisoblaş ikkita jiddiy salbiy oqibatga olib keladi:
 
-+ *Quvvatning yetarsizligi (_Undersizing_):* dvigatel va quvvat drayveri (invertor) amaliyotdagi yuklama momentini va tezlanish ehtiyojlarini qondira olmaydi. Natijada chulgʻamlar haddan tashqari qizib ketadi (_overheating_), issiqlik himoyasi tizimni oʻchiradi yoki dvigatelning xizmat muddati keskin qisqaradi.
-+ *Haddan ortiqcha quvvat tanlash (_Oversizing_):* dvigatel va invertorning gabarit oʻlchamlari, massasi hamda narxi asossiz ravishda oshib ketadi. Bu holat, ayniqsa, mobil robotlar hamda manipulyatorlarning harakatlanuvchi boʻgʻinlarida xususiy inersiya momentining ortishiga va tizim dinamikasining yomonlashishiga olib keladi.
++ *Quvvatning yetarsizligi (_Undersizing_):* dvigatel va quvvat drayveri (invertor) amaliyotdagi yuklama momentini va tezlaniş ehtiyojlarini qondira olmaydi. Natijada çulğamlar haddan taşqari qizib ketadi (_overheating_), issiqlik himoyasi tizimni öçiradi yoki dvigatelning xizmat muddati keskin qisqaradi.
++ *Haddan ortiqça quvvat tanlaş (_Oversizing_):* dvigatel va invertorning gabarit ölçamlari, massasi hamda narxi asossiz ravişda oşib ketadi. Bu holat, ayniqsa, mobil robotlar hamda manipulyatorlarning harakatlanuvçi böğinlarida xususiy inersiya momentining ortişiga va tizim dinamikasining yomonlaşişiga olib keladi.
 
 == Energetik balans va quvvat oqimi
 
-Elektr yuritma tizimida manbadan olinadigan elektr quvvati ($P_"in"$) va ijro organiga uzatiladigan mexanik quvvat ($P_"mech"$) oʻrtasidagi energetik balans quyidagi tenglama bilan ifodalanadi:
+Elektr yuritma tizimida manbadan olinadigan elektr quvvati ($P_"in"$) va ijro organiga uzatiladigan mexanik quvvat ($P_"mech"$) örtasidagi energetik balans quyidagi tenglama bilan ifodalanadi:
 
 $ P_"in" = P_"mech" + P_"loss" $
 
-bunda $P_"loss"$ --- elektr yuritma va uzatma mexanizmidagi toʻliq quvvat yoʻqotishlari boʻlib, u elektr (mis yoʻqotishlari $P_"Cu"$), magnit (poʻlat yoʻqotishlari $P_"Fe"$), yarimoʻtkazgichli kalitlardagi yoʻqotishlar ($P_"sw"$) hamda mexanik ishqalanish yoʻqotishlaridan ($P_"frict"$) tashkil topadi.
+bunda $P_"loss"$ --- elektr yuritma va uzatma mexanizmidagi töliq quvvat yöqotişlari bölib, u elektr (mis yöqotişlari $P_"Cu"$), magnit (pölat yöqotişlari $P_"Fe"$), yarimötkazgiçli kalitlardagi yöqotişlar ($P_"sw"$) hamda mexanik işqalaniş yöqotişlaridan ($P_"frict"$) taşkil topadi.
 
-Elektr yuritmaning umumiy foydali ish koeffitsiyenti (FIK, $eta_"tot"$):
+Elektr yuritmaning umumiy foydali iş koeffitsiyenti (FIK, $eta_"tot"$):
 
 $ eta_"tot" = P_"mech" / P_"in" = eta_"inv" dot eta_"mot" dot eta_"red" $
 
@@ -76,33 +76,33 @@ bunda $eta_"inv"$ --- invertor FIKi (0.95--0.98), $eta_"mot"$ --- elektr dvigate
 
 = Mexanik yuklama quvvati va harakat rejimlari hisobi
 
-== Aylanma va chiziqli harakatdagi quvvat
+== Aylanma va çiziqli harakatdagi quvvat
 
-Aylanma harakat qiluvchi mexatronik boʻgʻin uchun talab etiladigan mexanik quvvat ($P_"rot"$) yuklama momenti $T_L$ (Nm) hamda burchak tezligi $omega_m$ (rad/s) yoki val aylanishlar soni $n_m$ (rpm) orqali aniqlanadi:
+Aylanma harakat qiluvçi mexatronik böğin uçun talab etiladigan mexanik quvvat ($P_"rot"$) yuklama momenti $T_L$ (Nm) hamda burçak tezligi $omega_m$ (rad/s) yoki val aylanişlar soni $n_m$ (rpm) orqali aniqlanadi:
 
 $ P_"rot" = T_L dot omega_m = (T_L dot n_m) / 9550 quad ["kW"] $
 
-Chiziqli harakatlanuvchi mexanizmlar (masalan, konveyer, chiziqli modul yoki gidro/pnevmosilindr oʻrniga qoʻllaniluvchi sharikli-vintli uzatmalar) uchun talab etiladigan mexanik quvvat ($P_"lin"$):
+Çiziqli harakatlanuvçi mexanizmlar (masalan, konveyer, çiziqli modul yoki gidro/pnevmosilindr örniga qöllaniluvçi şarikli-vintli uzatmalar) uçun talab etiladigan mexanik quvvat ($P_"lin"$):
 
 $ P_"lin" = F_"yuk" dot v_"lin" quad ["W"] $
 
-bunda $F_"yuk"$ --- chiziqli yoʻnalishdagi toʻliq yuklama kuchi (N), $v_"lin"$ --- chiziqli koʻchish tezligi (m/s).
+bunda $F_"yuk"$ --- çiziqli yönalişdagi töliq yuklama kuçi (N), $v_"lin"$ --- çiziqli köçiş tezligi (m/s).
 
-== Tezlanish va dinamik pik quvvat
+== Tezlaniş va dinamik pik quvvat
 
-Sanoat robotlari hamda tezkor mexatronik modullar uzluksiz pozitsiyalash rejimida ishlaydi. Trapetsiyasimon tezlik profili sharoitida tezlanish bosqichida dvigatel nafaqat texnologik yuklama momentini ($T_L$), balki tizimning toʻliq inersiyasini ($I_"tot"$) yengish uchun dinamik tezlanish momentini ($T_"acc"$) ham rivojlantirishi shart:
+Sanoat robotlari hamda tezkor mexatronik modullar uzluksiz pozitsiyalaş rejimida işlaydi. Trapetsiyasimon tezlik profili şaroitida tezlaniş bosqiçida dvigatel nafaqat texnologik yuklama momentini ($T_L$), balki tizimning töliq inersiyasini ($I_"tot"$) yengiş uçun dinamik tezlaniş momentini ($T_"acc"$) ham rivojlantirişi şart:
 
 $ T_"acc" = I_"tot" dot alpha_m + T_L = (I_m + I_L / (n^2 dot eta_"red")) alpha_m + T_L $
 
-bunda $I_m$ --- dvigatel rotorining inersiya momenti, $I_L$ --- yuklamaning inersiya momenti, $n$ --- reduktor uzatish nisbati, $alpha_m$ --- dvigatel valining burchak tezlanishi (rad/s#super[2]).
+bunda $I_m$ --- dvigatel rotorining inersiya momenti, $I_L$ --- yuklamaning inersiya momenti, $n$ --- reduktor uzatiş nisbati, $alpha_m$ --- dvigatel valining burçak tezlanişi (rad/s#super[2]).
 
-Tezlanish bosqichining oxirida dvigatel maksimal burchak tezligiga ($omega_"max"$) erishganda *maksimal pik quvvat (Peak Power)* talab etiladi:
+Tezlaniş bosqiçining oxirida dvigatel maksimal burçak tezligiga ($omega_"max"$) erişganda *maksimal pik quvvat (Peak Power)* talab etiladi:
 
 $ P_"peak" = T_"acc" dot omega_"max" quad ["W"] $
 
-== IEC 60034-1 standarti boʻyicha ish rejimlarining (Duty Cycles) tasnifi
+== IEC 60034-1 standarti böyiça iş rejimlarining (Duty Cycles) tasnifi
 
-Elektr dvigatelining qizish rejimini va yuklama quvvatini toʻgʻri baholash uchun xalqaro IEC 60034-1 standarti boʻyicha ish rejimlarini (S1--S8) eʼtiborga olish zarur:
+Elektr dvigatelining qiziş rejimini va yuklama quvvatini töğri baholaş uçun xalqaro IEC 60034-1 standarti böyiça iş rejimlarini (S1--S8) eʼtiborga oliş zarur:
 
 #figure(
   {
@@ -114,50 +114,50 @@ Elektr dvigatelining qizish rejimini va yuklama quvvatini toʻgʻri baholash uch
       stroke: none,
       inset: (x: 5pt, y: 5pt),
       table.hline(stroke: 1pt),
-      table.header([*Rejim*], [*Nomi*], [*Tavsifi va qizish sharoiti*]),
+      table.header([*Rejim*], [*Nomi*], [*Tavsifi va qiziş şaroiti*]),
       table.hline(stroke: 0.5pt),
       [*S1*], [Uzluksiz rejim \ (_Continuous duty_)],
-      [Dvigatel oʻzgarmas yuklama quvvatida issiqlik muvozanat haroratiga ($Delta T_"max"$) yetguncha uzoq vaqt ishlaydi.],
+      [Dvigatel özgarmas yuklama quvvatida issiqlik muvozanat haroratiga ($Delta T_"max"$) yetgunça uzoq vaqt işlaydi.],
       [*S2*], [Qisqa muddatli rejim \ (_Short-time duty_)],
-      [Dvigatel maʼlum vaqt (10, 30, 60 min) ishlaydi, soʻngra toʻliq sovuguncha toʻxtab turadi.],
-      [*S3*], [Davriy takrorlanuvchi rejim \ (_Intermittent periodic duty_)],
-      [Ishlash va pauza vaqtlari takrorlanadi. Ish davomiyligi nisbati: $"DC" = t_i / (t_i + t_p) dot 100%$.],
+      [Dvigatel maʼlum vaqt (10, 30, 60 min) işlaydi, söngra töliq sovugunça töxtab turadi.],
+      [*S3*], [Davriy takrorlanuvçi rejim \ (_Intermittent periodic duty_)],
+      [Işlaş va pauza vaqtlari takrorlanadi. Iş davomiyligi nisbati: $"DC" = t_i / (t_i + t_p) dot 100%$.],
       [*S4--S8*], [Dinamik va reversiv rejimlar],
-      [Tezlanish, tormozlanish va tezlikni oʻzgartirish bosqichlari yuqori issiqlik ajralishi bilan kechadigan murakkab rejimlar.],
+      [Tezlaniş, tormozlaniş va tezlikni özgartiriş bosqiçlari yuqori issiqlik ajralişi bilan keçadigan murakkab rejimlar.],
       table.hline(stroke: 1pt),
     )
   },
-  caption: [IEC 60034-1 standarti boʻyicha elektr dvigatellarining asosiy ish rejimlari tavsifi],
+  caption: [IEC 60034-1 standarti böyiça elektr dvigatellarining asosiy iş rejimlari tavsifi],
 )
 
-= Oʻrtacha kvadratik quvvat (RMS Power) va issiqlik rejimi hisobi
+= Örtaça kvadratik quvvat (RMS Power) va issiqlik rejimi hisobi
 
-Davriy va dinamik takrorlanuvchi yuklamalarda (S3--S8 rejimlarida) dvigatel quvvati faqat pik quvvat boʻyicha emas, balki *oʻrtacha kvadratik quvvat (RMS Power)* hamda chulgʻamlar haroratining ruxsat etilgan chegaradan oshmasligi mezonidan kelib chiqib hisoblanadi.
+Davriy va dinamik takrorlanuvçi yuklamalarda (S3--S8 rejimlarida) dvigatel quvvati faqat pik quvvat böyiça emas, balki *örtaça kvadratik quvvat (RMS Power)* hamda çulğamlar haroratining ruxsat etilgan çegaradan oşmasligi mezonidan kelib çiqib hisoblanadi.
 
-== Oʻrtacha kvadratik moment va quvvat formulalari
+== Örtaça kvadratik moment va quvvat formulalari
 
-Bir toʻliq sikl ($t_"sikl" = t_a + t_v + t_d + t_p$) davomida dvigatel chulgʻamlarida ajraladigan issiqlik miqdori oʻrtacha kvadratik moment ($T_"rms"$) kvadratiga mutanosibdir:
+Bir töliq sikl ($t_"sikl" = t_a + t_v + t_d + t_p$) davomida dvigatel çulğamlarida ajraladigan issiqlik miqdori örtaça kvadratik moment ($T_"rms"$) kvadratiga mutanosibdir:
 
 $ T_"rms" = sqrt((T_"acc"^2 dot t_a + T_"const"^2 dot t_v + T_"dec"^2 dot t_d + T_"pauza"^2 dot t_p) / t_"sikl") $
 
-Ushbu momentga mos keluvchi nominal ekvivalent *RMS quvvat ($P_"rms"$)*:
+Uşbu momentga mos keluvçi nominal ekvivalent *RMS quvvat ($P_"rms"$)*:
 
 $ P_"rms" = T_"rms" dot omega_"nom" = (T_"rms" dot n_"nom") / 9550 quad ["kW"] $ <eq-prms>
 
-== Dvigatel nominal quvvatini tanlash sharti
+== Dvigatel nominal quvvatini tanlaş şarti
 
-Dvigatel chulgʻamlari issiqlikdan shikastlanmasligi va xizmat muddatini saqlashi uchun quyidagi 3 ta asosiy shart bir vaqtda bajarilishi shart:
+Dvigatel çulğamlari issiqlikdan şikastlanmasligi va xizmat muddatini saqlaşi uçun quyidagi 3 ta asosiy şart bir vaqtda bajarilişi şart:
 
-+ *Uzluksiz issiqlik sharti:* dvigatelning nominal quvvati zaxira koeffitsiyenti ($K_z = 1.15 dots 1.30$) bilan RMS quvvatdan katta yoki teng boʻlishi kerak:
++ *Uzluksiz issiqlik şarti:* dvigatelning nominal quvvati zaxira koeffitsiyenti ($K_z = 1.15 dots 1.30$) bilan RMS quvvatdan katta yoki teng bölişi kerak:
   $ P_"nom" >= K_z dot P_"rms" $
-+ *Pik moment sharti:* dvigatel va invertorning maksimal ruxsat etilgan pik momenti tezlanish momentidan katta boʻlishi shart:
++ *Pik moment şarti:* dvigatel va invertorning maksimal ruxsat etilgan pik momenti tezlaniş momentidan katta bölişi şart:
   $ T_"peak" >= T_"acc" $
-+ *Tezlik sharti:* maksimal ishchi tezlik dvigatelning salt ishlash tezligidan oshmasligi kerak (kuchlanish zaxirasi $20%$ bilan):
++ *Tezlik şarti:* maksimal işçi tezlik dvigatelning salt işlaş tezligidan oşmasligi kerak (kuçlaniş zaxirasi $20%$ bilan):
   $ n_"max" <= 0.80 dot n_"no-load" $
 
 = Grafik va sxematik tasvirlar
 
-== Elektr yuritmadagi quvvat oqimi va yoʻqotishlar balansi
+== Elektr yuritmadagi quvvat oqimi va yöqotişlar balansi
 
 #figure(
   {
@@ -181,16 +181,16 @@ Dvigatel chulgʻamlari issiqlikdan shikastlanmasligi va xizmat muddatini saqlash
       edge((2, 0), (3, 0), "-|>", label: $P_"val"$),
       edge((3, 0), (4, 0), "-|>", label: $P_"foydali"$),
 
-      node((1, 1), text(fill: loss, b[Invertor yoʻqotishi \ $P_"sw"$ (kalitlar)]), stroke: none),
-      node((2, 1), text(fill: loss, b[Dvigatel yoʻqotishi \ $P_"Cu" + P_"Fe"$ (issiqlik)]), stroke: none),
-      node((3, 1), text(fill: loss, b[Mexanik yoʻqotish \ $P_"frict"$ (ishqalanish)]), stroke: none),
+      node((1, 1), text(fill: loss, b[Invertor yöqotişi \ $P_"sw"$ (kalitlar)]), stroke: none),
+      node((2, 1), text(fill: loss, b[Dvigatel yöqotişi \ $P_"Cu" + P_"Fe"$ (issiqlik)]), stroke: none),
+      node((3, 1), text(fill: loss, b[Mexanik yöqotiş \ $P_"frict"$ (işqalaniş)]), stroke: none),
       ..range(1, 4).map(i => edge((i, 0), (i, 1), "-|>", stroke: 1pt + loss)),
     )
   },
-  caption: [Elektr yuritma tizimidagi quvvat oqimi va yoʻqotishlar balansi diagrammasi],
+  caption: [Elektr yuritma tizimidagi quvvat oqimi va yöqotişlar balansi diagrammasi],
 )
 
-== Ish sikli davomida yuklama momenti va tezligining oʻzgarish profili
+== Iş sikli davomida yuklama momenti va tezligining özgariş profili
 
 #figure(
   cetz.canvas(length: 1cm, {
@@ -234,7 +234,7 @@ Dvigatel chulgʻamlari issiqlikdan shikastlanmasligi va xizmat muddatini saqlash
 
     // T_rms chizigʻi
     line((0, 1.14), (6.0, 1.14), stroke: (paint: grn-c, thickness: 1.6pt, dash: "dashed"))
-    content((6.05, 1.14), anchor: "west", text(fill: grn-c, small[$T_"rms"$ (oʻrtacha kvadratik moment)]))
+    content((6.05, 1.14), anchor: "west", text(fill: grn-c, small[$T_"rms"$ (örtaça kvadratik moment)]))
 
     // Vaqt belgilari
     for (x, lab) in (
@@ -249,14 +249,14 @@ Dvigatel chulgʻamlari issiqlikdan shikastlanmasligi va xizmat muddatini saqlash
     }
 
     // Izohlar
-    content((0.5, 3.4), text(fill: red-c, small[$T_"acc"$ (tezlanish)]))
+    content((0.5, 3.4), text(fill: red-c, small[$T_"acc"$ (tezlaniş)]))
     content((2.25, 0.62), text(fill: red-c, small[$T_"const"$ (statik)]))
     content((4.0, -1.25), text(fill: red-c, small[$T_"dec"$ (tormoz)]))
   }),
-  caption: [Dinamik ish siklida tezlik, moment va oʻrtacha kvadratik momentning ($T_"rms"$) vaqt boʻyicha oʻzgarishi],
+  caption: [Dinamik iş siklida tezlik, moment va örtaça kvadratik momentning ($T_"rms"$) vaqt böyiça özgarişi],
 )
 
-== IEC S1 va S3 ish rejimlarining qizish diagrammasi
+== IEC S1 va S3 iş rejimlarining qiziş diagrammasi
 
 #figure(
   cetz.canvas(length: 1cm, {
@@ -292,73 +292,73 @@ Dvigatel chulgʻamlari issiqlikdan shikastlanmasligi va xizmat muddatini saqlash
     bezier((3.0, 1.8), (4.0, 2.5), (3.5, 2.5), stroke: s3)
     content((4.1, 2.35), anchor: "north-west", text(fill: blue-c, small[S3 rejim (pauza bilan)]))
   }),
-  caption: [Uzluksiz (S1) va davriy takrorlanuvchi (S3) rejimlarda chulgʻamlar qizish haroratining oʻzgarishi],
+  caption: [Uzluksiz (S1) va davriy takrorlanuvçi (S3) rejimlarda çulğamlar qiziş haroratining özgarişi],
 )
 
-= Amaliy hisoblash misoli (sanoat konveyer yuritmasi)
+= Amaliy hisoblaş misoli (sanoat konveyer yuritmasi)
 
-== Masalaning qoʻyilishi
+== Masalaning qöyilişi
 
-Sanoat roboti liniyasida detallarni uzatuvchi konveyer lentasi va uning elektr yuritmasining yuklama quvvatini hisoblash talab etiladi.
+Sanoat roboti liniyasida detallarni uzatuvçi konveyer lentasi va uning elektr yuritmasining yuklama quvvatini hisoblaş talab etiladi.
 
-- Konveyer lentasidagi toʻliq harakatlanuvchi massa: $m = 120 "kg"$;
+- Konveyer lentasidagi töliq harakatlanuvçi massa: $m = 120 "kg"$;
 - Lenta harakat tezligi: $v = 1.2 "m/s"$;
-- Sirpanish ishqalanish koeffitsiyenti: $mu = 0.15$;
+- Sirpaniş işqalaniş koeffitsiyenti: $mu = 0.15$;
 - Baraban diametri: $D_"baraban" = 0.2 "m"$ (radiusi $r = 0.1 "m"$);
-- Reduktor uzatish nisbati: $n = 10$, reduktor FIKi: $eta_"red" = 0.88$;
-- Ish rejimi vaqtlari (S3): tezlanish vaqti $t_a = 0.3 "s"$, oʻzgarmas tezlik vaqti $t_v = 2.0 "s"$, tormozlanish vaqti $t_d = 0.3 "s"$, pauza vaqti $t_p = 1.4 "s"$ (toʻliq sikl $t_"sikl" = 4.0 "s"$, ish davomiyligi $"DC" = 2.6 \/ 4.0 = 65%$).
+- Reduktor uzatiş nisbati: $n = 10$, reduktor FIKi: $eta_"red" = 0.88$;
+- Iş rejimi vaqtlari (S3): tezlaniş vaqti $t_a = 0.3 "s"$, özgarmas tezlik vaqti $t_v = 2.0 "s"$, tormozlaniş vaqti $t_d = 0.3 "s"$, pauza vaqti $t_p = 1.4 "s"$ (töliq sikl $t_"sikl" = 4.0 "s"$, iş davomiyligi $"DC" = 2.6 \/ 4.0 = 65%$).
 
-== Qadamma-qadam hisoblash bosqichlari
+== Qadamma-qadam hisoblaş bosqiçlari
 
-*1-bosqich: statik va dinamik kuchlarni hisoblash*
+*1-bosqiç: statik va dinamik kuçlarni hisoblaş*
 
-- Statik ishqalanish kuchi:
+- Statik işqalaniş kuçi:
   $ F_"frict" = mu dot m dot g = 0.15 dot 120 dot 9.81 = 176.58 quad ["N"] $
-- Tezlanish:
+- Tezlaniş:
   $ a = v / t_a = 1.2 / 0.3 = 4.0 quad ["m/s"^2] $
-- Dinamik inersion kuch:
+- Dinamik inersion kuç:
   $ F_"acc" = m dot a = 120 dot 4.0 = 480.0 quad ["N"] $
 
-*2-bosqich: dvigatel validagi momentlarni hisoblash*
+*2-bosqiç: dvigatel validagi momentlarni hisoblaş*
 
-- Tezlanish bosqichidagi moment ($T_"acc"$):
+- Tezlaniş bosqiçidagi moment ($T_"acc"$):
   $
     T_"acc" = ((F_"frict" + F_"acc") dot r) / (n dot eta_"red")
     = ((176.58 + 480.0) dot 0.1) / (10 dot 0.88) = 65.658 / 8.8 = 7.461 quad ["Nm"]
   $
-- Barqaror harakat bosqichidagi moment ($T_"const"$):
+- Barqaror harakat bosqiçidagi moment ($T_"const"$):
   $ T_"const" = (F_"frict" dot r) / (n dot eta_"red") = (176.58 dot 0.1) / 8.8 = 17.658 / 8.8 = 2.007 quad ["Nm"] $
-- Tormozlanish bosqichidagi moment ($T_"dec"$):
+- Tormozlaniş bosqiçidagi moment ($T_"dec"$):
   $
     T_"dec" = ((F_"frict" - F_"acc") dot r) / (n dot eta_"red")
     = ((176.58 - 480.0) dot 0.1) / 8.8 = -30.342 / 8.8 = -3.448 quad ["Nm"]
   $
 
-*3-bosqich: dvigatel burchak tezligi va RMS quvvatni hisoblash*
+*3-bosqiç: dvigatel burçak tezligi va RMS quvvatni hisoblaş*
 
-- Baraban burchak tezligi: $omega_"baraban" = v \/ r = 1.2 \/ 0.1 = 12.0 "rad/s"$.
-- Dvigatel valining burchak tezligi:
+- Baraban burçak tezligi: $omega_"baraban" = v \/ r = 1.2 \/ 0.1 = 12.0 "rad/s"$.
+- Dvigatel valining burçak tezligi:
   $
     omega_m = omega_"baraban" dot n = 12.0 dot 10 = 120.0 quad ["rad/s"]
     quad ==> \ quad n_m = (120 dot 60) / (2 pi) = 1145.9 quad ["rpm"]
   $
-- Oʻrtacha kvadratik moment ($T_"rms"$), pauzada $T_"pauza" = 0$:
+- Örtaça kvadratik moment ($T_"rms"$), pauzada $T_"pauza" = 0$:
   $
     T_"rms" = sqrt((7.461^2 dot 0.3 + 2.007^2 dot 2.0 + (-3.448)^2 dot 0.3) / 4.0)
     = \ sqrt((16.700 + 8.056 + 3.567) / 4.0) = 2.661 quad ["Nm"]
   $
-- Ekvivalent RMS quvvat (@eq-prms formula, $n_m = 1145.9 "rpm"$ boʻlgani uchun nominal tezligi $n_"nom" = 1500 "rpm"$, $omega_"nom" = 157.08 "rad/s"$ boʻlgan dvigatel koʻzda tutiladi):
+- Ekvivalent RMS quvvat (@eq-prms formula, $n_m = 1145.9 "rpm"$ bölgani uçun nominal tezligi $n_"nom" = 1500 "rpm"$, $omega_"nom" = 157.08 "rad/s"$ bölgan dvigatel közda tutiladi):
   $ P_"rms" = T_"rms" dot omega_"nom" = 2.661 dot 157.08 = 418.0 quad ["W"] = 0.418 quad ["kW"] $
 
-*4-bosqich: dvigatel nominal quvvatini tanlash*
+*4-bosqiç: dvigatel nominal quvvatini tanlaş*
 
 Zaxira koeffitsiyenti $K_z = 1.25$ eʼtiborga olinganda talab etiladigan nominal quvvat:
 
 $ P_"nom, talab" >= 1.25 dot 0.418 = 0.5225 quad ["kW"] = 522.5 quad ["W"] $
 
-Katalogdan eng yaqin standart quvvat qatori boʻyicha *0.55 kW, 1500 rpm* servodvigatel tanlanadi. Uning nominal momenti $T_"nom" = P_"nom" \/ omega_"nom" = 550 \/ 157.08 = 3.50 "Nm"$; pik momenti odatda $approx 3 T_"nom" = 10.5 "Nm"$ (aniq qiymat tanlangan model katalogidan tekshiriladi).
+Katalogdan eng yaqin standart quvvat qatori böyiça *0.55 kW, 1500 rpm* servodvigatel tanlanadi. Uning nominal momenti $T_"nom" = P_"nom" \/ omega_"nom" = 550 \/ 157.08 = 3.50 "Nm"$; pik momenti odatda $approx 3 T_"nom" = 10.5 "Nm"$ (aniq qiymat tanlangan model katalogidan tekşiriladi).
 
-= Hisoblash natijalari va solishtirma jadval
+= Hisoblaş natijalari va soliştirma jadval
 
 #figure(
   {
@@ -373,19 +373,19 @@ Katalogdan eng yaqin standart quvvat qatori boʻyicha *0.55 kW, 1500 rpm* servod
       table.header([*Parametr nomi*], [*Hisoblangan qiymat*], [*Tanlangan dvigatel*], [*Zaxira*]),
       table.hline(stroke: 0.5pt),
       [Nominal quvvat ($P_"nom"$)], [0.523 kW], [*0.550 kW*], [+5.3% (yetarli)],
-      [Nominal moment ($T_"nom"$)], [2.661 Nm], [*3.50 Nm*], [+31.5% (toʻliq mos)],
+      [Nominal moment ($T_"nom"$)], [2.661 Nm], [*3.50 Nm*], [+31.5% (töliq mos)],
       [Maksimal pik moment ($T_"peak"$)], [7.461 Nm], [*$approx$ 10.5 Nm*], [+40.7% (dinamik mos)],
       [Nominal tezlik ($n_"nom"$)], [1145.9 rpm], [*1500 rpm*], [+30.9% (tezlik zaxirasi)],
       table.hline(stroke: 1pt),
     )
   },
-  caption: [Konveyer elektr yuritmasining hisoblangan va katalogdan tanlangan dvigatel koʻrsatkichlari],
+  caption: [Konveyer elektr yuritmasining hisoblangan va katalogdan tanlangan dvigatel körsatkiçlari],
 )
 
 = Nazorat savollari
 
-+ Elektr yuritmaning yuklama quvvatini hisoblashda _oversizing_ (ortiqcha quvvat) va _undersizing_ (kam quvvat) tanlashning qanday texnik va iqtisodiy salbiy oqibatlari bor?
-+ Uzluksiz rejim (S1) va davriy takrorlanuvchi rejimda (S3) elektr dvigatelining quvvatini hisoblash usullari oʻrtasidagi asosiy farqlar nimada?
-+ Oʻrtacha kvadratik moment ($T_"rms"$) va RMS quvvat ($P_"rms"$) dvigatel chulgʻamlarining issiqlik rejimiga qanday bogʻlangan?
-+ Dinamik tezlanish bosqichida pik quvvat ($P_"peak"$) qanday omillarga bogʻliq va u invertor quvvatini tanlashga qanday taʼsir qiladi?
-+ Elektr yuritma tizimining toʻliq FIKi ($eta_"tot"$) tarkibiy qismlari (invertor, dvigatel, reduktor) boʻyicha qanday aniqlanadi?
++ Elektr yuritmaning yuklama quvvatini hisoblaşda _oversizing_ (ortiqça quvvat) va _undersizing_ (kam quvvat) tanlaşning qanday texnik va iqtisodiy salbiy oqibatlari bor?
++ Uzluksiz rejim (S1) va davriy takrorlanuvçi rejimda (S3) elektr dvigatelining quvvatini hisoblaş usullari örtasidagi asosiy farqlar nimada?
++ Örtaça kvadratik moment ($T_"rms"$) va RMS quvvat ($P_"rms"$) dvigatel çulğamlarining issiqlik rejimiga qanday boğlangan?
++ Dinamik tezlaniş bosqiçida pik quvvat ($P_"peak"$) qanday omillarga boğliq va u invertor quvvatini tanlaşga qanday taʼsir qiladi?
++ Elektr yuritma tizimining töliq FIKi ($eta_"tot"$) tarkibiy qismlari (invertor, dvigatel, reduktor) böyiça qanday aniqlanadi?

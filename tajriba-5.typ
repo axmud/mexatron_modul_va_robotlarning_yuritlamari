@@ -117,7 +117,7 @@
 // ============ Hujjat sozlamalari ============
 #let headingblue = rgb(20, 50, 120)
 
-#set document(title: "Pnevmoyuritma dinamik xarakteristikalarini tadqiq etish")
+#set document(title: "Pnevmoyuritma dinamik xarakteristikalarini tadqiq etiş")
 
 #set page(
   paper: "a4",
@@ -138,7 +138,7 @@
   line(length: 100%, stroke: 0.4pt + luma(170))
 })
 // ===================
-#set text(size: 12pt, lang: "uz")
+#set text(size: 12pt, lang: "uz", font: info.font)
 #set par(justify: true, leading: 0.75em)
 #set heading(numbering: "1.1.")
 #show heading: it => block(above: 1.2em, below: 0.7em)[
@@ -155,11 +155,11 @@
 
 // ============ Sarlavha ============
 #align(center)[
-  #text(size: 18pt, weight: "bold", fill: headingblue)[TAJRIBA MASHGʻULOTI №5]
+  #text(size: 18pt, weight: "bold", fill: headingblue)[TAJRIBA MAŞĞULOTI №5]
 
   #v(0.2cm)
   #text(size: 13pt, weight: "bold")[
-    Mavzu: Pnevmoyuritma dinamik xarakteristikalarini tadqiq etish
+    Mavzu: Pnevmoyuritma dinamik xarakteristikalarini tadqiq etiş
   ]
 
   #v(0.1cm)
@@ -171,80 +171,80 @@
 
 #v(0.3cm)
 
-= Ishning maqsadi
+= Işning maqsadi
 
-- Mexatronik tizimlar va sanoat robotlarining pnevmoyuritmalarida oʻtish
-  jarayonlari (transient response), kechikish vaqti
-  ($t_"kechikish"$ / dead time) hamda dinamik harakat koʻrsatkichlarini
-  tajriba yoʻli bilan tadqiq etish.
+- Mexatronik tizimlar va sanoat robotlarining pnevmoyuritmalarida ötiş
+  jarayonlari (transient response), keçikiş vaqti
+  ($t_"keçikiş"$ / dead time) hamda dinamik harakat körsatkiçlarini
+  tajriba yöli bilan tadqiq etiş.
 
-- Pnevmotaqsimlagichga signal berilgan momentdan porshen harakatlana
-  boshlagungacha boʻlgan vaqt diapazonlarini va ishchi kameralardagi bosim
-  sakrashlarini (pressure spikes) oʻrganish.
+- Pnevmotaqsimlagiçga signal berilgan momentdan porşen harakatlana
+  boşlagungaça bölgan vaqt diapazonlarini va işçi kameralardagi bosim
+  sakraşlarini (pressure spikes) örganiş.
 
-- Yuqori tezlikdagi bosim va koʻchish datchiklari hamda analog-raqamli
-  oʻzgartirgichlar (AChP/ADC) yordamida dinamik xarakteristikalarni
-  ($x(t), V(t), P_1(t), P_2(t)$) qayd etish koʻnikmalarini shakllantirish.
+- Yuqori tezlikdagi bosim va köçiş datçiklari hamda analog-raqamli
+  özgartirgiçlar (AÇP/ADC) yordamida dinamik xarakteristikalarni
+  ($x(t), V(t), P_1(t), P_2(t)$) qayd etiş könikmalarini şakllantiriş.
 
-= Qisqacha nazariy maʼlumotlar
+= Qisqaça nazariy maʼlumotlar
 
-Pnevmoyuritmalar dinamikasi siqilgan havoning termodinamik xossalari, ishchi
-kameralarning toʻlish/boʻshalish tezligi hamda porshen inertsiya massasiga
-bogʻliq boʻlgan murakkab nochiziqli jarayondir.
+Pnevmoyuritmalar dinamikasi siqilgan havoning termodinamik xossalari, işçi
+kameralarning töliş/böşaliş tezligi hamda porşen inertsiya massasiga
+boğliq bölgan murakkab noçiziqli jarayondir.
 
 == Dinamik Harakat Tenglamasi
 
-Pnevmosilindr porshenining vaqt oʻtishi bilan harakati Nyutonning ikkinchi
+Pnevmosilindr porşenining vaqt ötişi bilan harakati Nyutonning ikkinçi
 qonuni asosida quyidagi differensial tenglama bilan ifodalanadi:
 
 $
   M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk"
-  = P_1 (t) A_1 - P_2 (t) A_2 - f_"ishq" dot "sgn" ((dif x) / (dif t))
+  = P_1 (t) A_1 - P_2 (t) A_2 - f_"işq" dot "sgn" ((dif x) / (dif t))
 $
 
 bunda:
 
-- $M$ --- keltirilgan harakatlanuvchi massa (porshen, shtok va yuklama);
-- $x(t)$, $(dif x) / (dif t)$, $(dif^2 x) / (dif t^2)$ --- porshenning
-  koʻchishi, tezligi va tezlanishi;
-- $b$ --- viskoz ishqalanish koeffitsienti;
-- $P_1 (t)$, $P_2 (t)$ --- porshen va shtok kameralaridagi vaqtga bogʻliq
+- $M$ --- keltirilgan harakatlanuvçi massa (porşen, ştok va yuklama);
+- $x(t)$, $(dif x) / (dif t)$, $(dif^2 x) / (dif t^2)$ --- porşenning
+  köçişi, tezligi va tezlanişi;
+- $b$ --- viskoz işqalaniş koeffitsienti;
+- $P_1 (t)$, $P_2 (t)$ --- porşen va ştok kameralaridagi vaqtga boğliq
   dinamik bosimlar;
-- $f_"ishq"$ --- quruq (Kulon) ishqalanish kuchi.
+- $f_"işq"$ --- quruq (Kulon) işqalaniş kuçi.
 
-== Dinamik Oʻtish Jarayoni Bosqichlari
+== Dinamik Ötiş Jarayoni Bosqiçlari
 
-Pnevmoyuritmaning toʻliq dinamik sikli 4 ta asosiy bosqichdan iborat:
+Pnevmoyuritmaning töliq dinamik sikli 4 ta asosiy bosqiçdan iborat:
 
-+ *Kechikish vaqti ($t_d$ --- Dead Time):* Taqsimlagich solenoidiga elektr
-  signal berilgandan soʻng, porshen kamerasidagi bosim $P_1$ ishqalanish va
-  yuklama kuchlarini yengish uchun yetarli darajaga yetguncha ketgan vaqt.
-+ *Tezlanish bosqichi ($t_a$ --- Acceleration Phase):* Porshen harakatlana
-  boshlab, maksimal belgilangan tezlikka erishguncha boʻlgan vaqt oraligʻi.
-+ *Barqaror harakat bosqichi ($t_v$ --- Steady Velocity Phase):* Porshen
-  drossel orqali belgilangan oʻzgarmas tezlikda harakatlanadigan bosqich.
-+ *Tormozlanish va toʻxtash ($t_(s t)$ --- Cushioning / Stop Phase):* Silindr
-  chetki pozitsiyaga yetganda va dempferlash (cushioning) tizimi ishga
-  tushgandagi tormozlanish jarayoni.
++ *Keçikiş vaqti ($t_d$ --- Dead Time):* Taqsimlagiç solenoidiga elektr
+  signal berilgandan söng, porşen kamerasidagi bosim $P_1$ işqalaniş va
+  yuklama kuçlarini yengiş uçun yetarli darajaga yetgunça ketgan vaqt.
++ *Tezlaniş bosqiçi ($t_a$ --- Acceleration Phase):* Porşen harakatlana
+  boşlab, maksimal belgilangan tezlikka erişgunça bölgan vaqt oraliği.
++ *Barqaror harakat bosqiçi ($t_v$ --- Steady Velocity Phase):* Porşen
+  drossel orqali belgilangan özgarmas tezlikda harakatlanadigan bosqiç.
++ *Tormozlaniş va töxtaş ($t_(s t)$ --- Cushioning / Stop Phase):* Silindr
+  çetki pozitsiyaga yetganda va dempferlaş (cushioning) tizimi işga
+  tuşgandagi tormozlaniş jarayoni.
 
 = Kerakli jihozlar va stend elementlari
 
 + *Pnevmatik stend:* Kompressor, resiver, FRL bloki.
 + *Ijro organi:* Dempferli ikki taraflama pnevmosilindr
   ($D = 25 "mm"$, $S = 200 "mm"$).
-+ *Boshqaruv apparati:* Aniq va tezkor harakatlanuvchi 5/2
-  elektropnevmotaqsimlagich (solenoidli).
-+ *Datchiklar va oʻlchov kompleksi:*
-  - Yuqori tezlikdagi piezoelektrik / pyezoqarshilik bosim datchiklari
++ *Boşqaruv apparati:* Aniq va tezkor harakatlanuvçi 5/2
+  elektropnevmotaqsimlagiç (solenoidli).
++ *Datçiklar va ölçov kompleksi:*
+  - Yuqori tezlikdagi piezoelektrik / pyezoqarşilik bosim datçiklari
     ($P_1, P_2$);
-  - Chiziqli optik enkoder yoki LVDT pozitsiya datchigi ($x(t)$);
-  - AChP maʼlumotlar yigʻish platasi (Data Acquisition Board --- DAQ /
+  - Çiziqli optik enkoder yoki LVDT pozitsiya datçigi ($x(t)$);
+  - AÇP maʼlumotlar yiğiş platasi (Data Acquisition Board --- DAQ /
     Osillograf);
   - Kompyuter dasturiy taʼminoti (LabVIEW / MATLAB Simulink).
 
 = Pnevmatik va Dinamik Taʼsir Sxemalari
 
-== Dinamik Xarakteristikalarni Oʻlchash Stendi Sxemasi
+== Dinamik Xarakteristikalarni Ölçaş Stendi Sxemasi
 
 #figure(
   sxema(xmin: -1.2, xmax: 9.6, ymin: -1.1, ymax: 6.0, d => {
@@ -264,16 +264,16 @@ Pnevmoyuritmaning toʻliq dinamik sikli 4 ta asosiy bosqichdan iborat:
     BX(
       (0.0, 4.95),
       (4.5, 5.6),
-      align(center, sb(6.5pt)[Chiziqli Koʻchish Datchigi \ LVDT / Enkoder $x(t)$]),
+      align(center, sb(6.5pt)[Çiziqli Köçiş Datçigi \ LVDT / Enkoder $x(t)$]),
       fl: yellow.lighten(70%),
     )
     (d.L)((4.5, 4.1), (4.5, 4.95), st: (paint: red, thickness: 1pt, dash: "dashed"))
 
     // --- Yuqori tezlikdagi bosim datchiklari ---
     (d.L)((0.6, 3.5), (0.6, 3.1))
-    BX((-0.1, 2.7), (1.3, 3.1), sb(6.5pt)[Datchik $P_1$], fl: green.lighten(75%))
+    BX((-0.1, 2.7), (1.3, 3.1), sb(6.5pt)[Datçik $P_1$], fl: green.lighten(75%))
     (d.L)((2.9, 3.5), (2.9, 3.1))
-    BX((2.3, 2.7), (3.7, 3.1), sb(6.5pt)[Datchik $P_2$], fl: green.lighten(75%))
+    BX((2.3, 2.7), (3.7, 3.1), sb(6.5pt)[Datçik $P_2$], fl: green.lighten(75%))
 
     // --- Ulanish chiziqlari ---
     (d.L)((0.6, 2.7), (0.6, 1.4))
@@ -289,7 +289,7 @@ Pnevmoyuritmaning toʻliq dinamik sikli 4 ta asosiy bosqichdan iborat:
     BX(
       (5.5, 1.5),
       (7.8, 4.5),
-      align(center, sb(8pt)[DAQ Bloki / \ AChP Plata \ (Data Acquisition)]),
+      align(center, sb(8pt)[DAQ Bloki / \ AÇP Plata \ (Data Acquisition)]),
       fl: orange.lighten(75%),
     )
 
@@ -312,10 +312,10 @@ Pnevmoyuritmaning toʻliq dinamik sikli 4 ta asosiy bosqichdan iborat:
     (d.A)((1.75, 0.2), "up")
     (d.T)((1.85, -0.25), sb(9pt)[P ($P_"tam" = 6$ bar)], at: left + horizon)
   }),
-  caption: [Dinamik oʻtish jarayonlarini qayd etish oʻlchov kompleksi sxemasi],
+  caption: [Dinamik ötiş jarayonlarini qayd etiş ölçov kompleksi sxemasi],
 )
 
-== Dinamik Oʻtish Jarayonlari Grafiklari ($x(t)$, $V(t)$, $P_1 (t)$)
+== Dinamik Ötiş Jarayonlari Grafiklari ($x(t)$, $V(t)$, $P_1 (t)$)
 
 #figure(
   sxema(xmin: -0.7, xmax: 8.4, ymin: -1.1, ymax: 6.0, ux: 1.2cm, uy: 0.9cm, d => {
@@ -334,7 +334,7 @@ Pnevmoyuritmaning toʻliq dinamik sikli 4 ta asosiy bosqichdan iborat:
 
     // --- Kechikish liniyasi ---
     (d.L)((1.2, 0), (1.2, 4.5), st: (paint: red, thickness: 1pt, dash: "dashed"))
-    (d.T)((0.95, 2.5), rotate(-90deg, reflow: false, text(size: 6.5pt, weight: "bold", fill: red)[Kechikish $t_d$]))
+    (d.T)((0.95, 2.5), rotate(-90deg, reflow: false, text(size: 6.5pt, weight: "bold", fill: red)[Keçikiş $t_d$]))
 
     // --- P1(t): bosim sakrashi bilan ---
     let gcol = 1.8pt + green.darken(30%)
@@ -349,7 +349,7 @@ Pnevmoyuritmaning toʻliq dinamik sikli 4 ta asosiy bosqichdan iborat:
     (d.L)((0, 0), (1.2, 0), st: bcol)
     (d.B)((1.2, 0), (2.0, 0.5), (3.0, 3.0), (4.5, 4.0), st: bcol)
     (d.L)((4.5, 4.0), (5.5, 4.0), st: bcol)
-    (d.T)((5.6, 4.0), sb(7pt)[$x(t)$ (Koʻchish)], at: left + horizon)
+    (d.T)((5.6, 4.0), sb(7pt)[$x(t)$ (Köçiş)], at: left + horizon)
 
     // --- V(t): trapetsiyasimon tezlik ---
     (d.L)((0, 0), (1.2, 0), (2.2, 2.8), (3.8, 2.8), (4.5, 0), (5.5, 0), st: 1.8pt + red.darken(20%))
@@ -361,35 +361,35 @@ Pnevmoyuritmaning toʻliq dinamik sikli 4 ta asosiy bosqichdan iborat:
     }
   }),
   caption: [
-    Pnevmosilindr oʻtish jarayonlarining dinamik vaqtinchalik
+    Pnevmosilindr ötiş jarayonlarining dinamik vaqtinçalik
     xarakteristikalari
   ],
 )
 
-= Tajribani bajarish va ishni oʻtkazish ketma-ketligi
+= Tajribani bajariş va işni ötkaziş ketma-ketligi
 
-#heading(level: 2, numbering: none, outlined: false)[1-bosqich: Kechikish vaqti ($t_d$) va tezlanish vaqtini oʻlchash]
+#heading(level: 2, numbering: none, outlined: false)[1-bosqiç: Keçikiş vaqti ($t_d$) va tezlaniş vaqtini ölçaş]
 
 + Pnevmatizimga $P_"tam" = 6 "bar"$ taʼminot bosimini berib, DAQ kompleksi va
-  osillografni ishga tushiring.
-+ Pnevmotaqsimlagich solenoidiga elektr signal uzating va signal berilgan
-  ondan porshen siljiy boshlaguncha oʻtgan kechikish vaqtini ($t_d$)
+  osillografni işga tuşiring.
++ Pnevmotaqsimlagiç solenoidiga elektr signal uzating va signal berilgan
+  ondan porşen siljiy boşlagunça ötgan keçikiş vaqtini ($t_d$)
   osillogrammada aniqlang.
-+ Porshenning maksimal tezlikka chiqish vaqti ($t_a$) hamda toʻliq yurish
-  vaqti ($t_"toʻliq"$) ni qayd eting.
++ Porşenning maksimal tezlikka çiqiş vaqti ($t_a$) hamda töliq yuriş
+  vaqti ($t_"töliq"$) ni qayd eting.
 
 #heading(
   level: 2,
   numbering: none,
   outlined: false,
-)[2-bosqich: Har xil yuklamalarda dinamik bosim sakrashlarini ($P_"spike"$) tadqiq etish]
+)[2-bosqiç: Har xil yuklamalarda dinamik bosim sakraşlarini ($P_"spike"$) tadqiq etiş]
 
-+ Silindr shtokiga ketma-ket $M = 0, 5, 10, 15 "kg"$ yuk massalarini ulagan
++ Silindr ştokiga ketma-ket $M = 0, 5, 10, 15 "kg"$ yuk massalarini ulagan
   holda tajribani takrorlang.
-+ Harakat boshidagi va toʻxtash momentidagi pik bosim qiymatlari
-  ($P_"max"$) hamda aks bosim ($P_2$) oʻzgarishlarini yozib oling.
++ Harakat boşidagi va töxtaş momentidagi pik bosim qiymatlari
+  ($P_"max"$) hamda aks bosim ($P_2$) özgarişlarini yozib oling.
 
-= Tajriba natijalari va hisoblashlar jadvali
+= Tajriba natijalari va hisoblaşlar jadvali
 
 #figure(
   table(
@@ -399,7 +399,7 @@ Pnevmoyuritmaning toʻliq dinamik sikli 4 ta asosiy bosqichdan iborat:
     inset: (x: 4pt, y: 6pt),
     table.hline(stroke: 1pt),
     [*T/r*], [*$M$ (kg)*], [*$t_d$ (ms)*], [*$t_a$ (ms)*],
-    [*$t_"toʻliq"$ (ms)*], [*$V_"max"$ (m/s)*], [*$P_(1,"max")$ (bar)*],
+    [*$t_"töliq"$ (ms)*], [*$V_"max"$ (m/s)*], [*$P_(1,"max")$ (bar)*],
     [*$P_(2,"aks")$ (bar)*],
     table.hline(stroke: 0.5pt),
     [1], [0.0], [28], [45], [310], [0.72], [6.2], [1.1],
@@ -417,19 +417,19 @@ Pnevmoyuritmaning toʻliq dinamik sikli 4 ta asosiy bosqichdan iborat:
 = Hisobot mazmuni va grafik tahlil
 
 + Tajriba osillogrammalari asosida $x(t)$, $V(t)$, $P_1 (t)$ va $P_2 (t)$
-  dinamik grafiklarini chizish.
-+ Yuklama massasi $M$ ortishi bilan kechikish vaqti $t_d$ va bosim sakrashi
-  $P_"max"$ ortish sabablarini tahlil qilish.
-+ Sanoat robotlarining yuqori tezlikda ishlovchi mexanizmlarida dinamik zarba
-  va tebranishlarni kamaytirish usullarini koʻrsatish.
+  dinamik grafiklarini çiziş.
++ Yuklama massasi $M$ ortişi bilan keçikiş vaqti $t_d$ va bosim sakraşi
+  $P_"max"$ ortiş sabablarini tahlil qiliş.
++ Sanoat robotlarining yuqori tezlikda işlovçi mexanizmlarida dinamik zarba
+  va tebranişlarni kamaytiriş usullarini körsatiş.
 
 = Nazorat savollari
 
 + Pnevmoyuritmaning dinamik xarakteristikasi deb nimaga aytiladi va u statik
   xarakteristikadan nimasi bilan farq qiladi?
-+ Kechikish vaqti (dead time) nima va u qaysi omillar (bosim, havo hajmi,
-  ishqalanish) hisobiga yuzaga keladi?
-+ Harakat boshida va oxirida yuzaga keladigan bosim sakrashlari (pressure
++ Keçikiş vaqti (dead time) nima va u qaysi omillar (bosim, havo hajmi,
+  işqalaniş) hisobiga yuzaga keladi?
++ Harakat boşida va oxirida yuzaga keladigan bosim sakraşlari (pressure
   spikes) va dinamik zarbalarning sababi nimada?
-+ Sanoat robotlari pnevmoyuritmalarida dinamik tebranishlarni silliqlash uchun
-  qanday dempferlash qurilmalari qoʻllaniladi?
++ Sanoat robotlari pnevmoyuritmalarida dinamik tebranişlarni silliqlaş uçun
+  qanday dempferlaş qurilmalari qöllaniladi?

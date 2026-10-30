@@ -7,7 +7,7 @@
 
 #let headingblue = rgb(20, 50, 120)
 
-#set document(title: "Robot ijro mexanizmining yuklama diagrammasini qurish")
+#set document(title: "Robot ijro mexanizmining yuklama diagrammasini quriş")
 #set page(
   paper: "a4",
   margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 2cm),
@@ -27,7 +27,7 @@
   line(length: 100%, stroke: 0.4pt + luma(170))
 })
 // ===================
-#set text(size: 12pt, lang: "uz")
+#set text(size: 12pt, lang: "uz", font: info.font)
 #set par(justify: true, leading: 0.65em)
 #set heading(numbering: "1.1")
 #set math.equation(numbering: "(1)", supplement: none)
@@ -40,103 +40,103 @@
 
 // ---------------- Sarlavha ----------------
 #align(center)[
-  #text(size: 20pt, weight: "bold", fill: headingblue)[AMALIYOT MASHGʻULOTI №8]
+  #text(size: 20pt, weight: "bold", fill: headingblue)[AMALIYOT MAŞĞULOTI №8]
   #v(0.4cm)
-  #text(size: 14pt, weight: "bold")[Mavzu: Robot ijro mexanizmining yuklama diagrammasini qurish]
+  #text(size: 14pt, weight: "bold")[Mavzu: Robot ijro mexanizmining yuklama diagrammasini quriş]
   #v(0.2cm)
-  #text(size: 10pt)[(Mexatronik tizimlar va sanoat robotlarini loyihalash va hisoblash)]
+  #text(size: 10pt)[(Mexatronik tizimlar va sanoat robotlarini loyihalaş va hisoblaş)]
   #v(0.6cm)
   #line(length: 100%, stroke: 1pt)
 ]
 #v(0.3cm)
 
-= Ishning maqsadi
+= Işning maqsadi
 
-- Mexatron modullar va sanoat robotlarining ijro mexanizmlari hamda boʻgʻinlariga tushadigan statik, dinamik va tashqi yuklamalarni tahlil qilish koʻnikmalarini shakllantirish.
-- Robot kinematik trayektoriyasi va trapetsiyasimon tezlik profili ($omega(t)$) boʻyicha boʻgʻindagi toʻliq yuklama momenti ($T_L (t)$) hamda quvvatining ($P_L (t)$) vaqtga bogʻliqlik *yuklama diagrammasini (Load Profile / Duty Cycle)* qurish.
-- Qurilgan yuklama diagrammasi asosida elektr/gidravlik yuritmaning pik momenti ($T_"peak"$), oʻrtacha kvadratik momenti ($T_"rms"$) va nominal quvvatini ($P_"nom"$) hisoblash hamda yuritmani $T - omega$ xarakteristika tekisligida toʻgʻri tanlash usullarini egallash.
+- Mexatron modullar va sanoat robotlarining ijro mexanizmlari hamda böğinlariga tuşadigan statik, dinamik va taşqi yuklamalarni tahlil qiliş könikmalarini şakllantiriş.
+- Robot kinematik trayektoriyasi va trapetsiyasimon tezlik profili ($omega(t)$) böyiça böğindagi töliq yuklama momenti ($T_L (t)$) hamda quvvatining ($P_L (t)$) vaqtga boğliqlik *yuklama diagrammasini (Load Profile / Duty Cycle)* quriş.
+- Qurilgan yuklama diagrammasi asosida elektr/gidravlik yuritmaning pik momenti ($T_"peak"$), örtaça kvadratik momenti ($T_"rms"$) va nominal quvvatini ($P_"nom"$) hisoblaş hamda yuritmani $T - omega$ xarakteristika tekisligida töğri tanlaş usullarini egallaş.
 
-= Qisqacha nazariy maʼlumotlar va tizimli yondashuv
+= Qisqaça nazariy maʼlumotlar va tizimli yondaşuv
 
-Sanoat robotlari hamda mexatronik tizimlarni loyihalashda eng masʼuliyatli va muhim bosqichlardan biri bu ijro mexanizmining *yuklama diagrammasini (Load Diagram / Duty Cycle)* toʻgʻri qurishdir. R. Crowder (_Electric Drives and Electromechanical Systems_) taʼkidlaganidek, eng mukammal mikroprotsessorli boshqaruv va zamonaviy raqamli algoritmlar ham notoʻgʻri tanlangan yuritmani va yetarsiz dinamik quvvatni kompensatsiya qila olmaydi (_Systems Approach_).
+Sanoat robotlari hamda mexatronik tizimlarni loyihalaşda eng masʼuliyatli va muhim bosqiçlardan biri bu ijro mexanizmining *yuklama diagrammasini (Load Diagram / Duty Cycle)* töğri qurişdir. R. Crowder (_Electric Drives and Electromechanical Systems_) taʼkidlaganidek, eng mukammal mikroprotsessorli boşqaruv va zamonaviy raqamli algoritmlar ham notöğri tanlangan yuritmani va yetarsiz dinamik quvvatni kompensatsiya qila olmaydi (_Systems Approach_).
 
 == Robot manipulyatori dinamikasi va yuklama momenti
 
-B. Siciliano va boshq. (_Robotics: Modelling, Planning and Control_) boʻyicha $n$-boʻgʻinli robot manipulyatorining dinamik tenglamasi Eyler–Lagranj (_Euler–Lagrange_) usulida quyidagicha ifodalanadi:
+B. Siciliano va boşq. (_Robotics: Modelling, Planning and Control_) böyiça $n$-böğinli robot manipulyatorining dinamik tenglamasi Eyler–Lagranj (_Euler–Lagrange_) usulida quyidagiça ifodalanadi:
 
-$ M(q) dot.double(q) + C(q, dot(q)) dot(q) + F_v dot(q) + F_s "sgn"(dot(q)) + g(q) = tau_"boʻgʻin" $
+$ M(q) dot.double(q) + C(q, dot(q)) dot(q) + F_v dot(q) + F_s "sgn"(dot(q)) + g(q) = tau_"böğin" $
 
 bunda:
 
-- $M(q)$ --- manipulyator boʻgʻinlarining simmetrik musbat aniqlangan inersiya matritsasi;
-- $C(q, dot(q)) dot(q)$ --- Koriolis va markazdan qochma kuchlar momenti vektori;
-- $F_v dot(q) + F_s "sgn"(dot(q))$ --- yopishqoq (_viscous_) va quruq (_Coulomb_) ishqalanish momentlari;
-- $g(q)$ --- gravitatsiya (ogʻirlik kuchi) momentlari vektori;
-- $tau_"boʻgʻin"$ --- boʻgʻinga keltirilgan toʻliq yuklama momenti vektori.
+- $M(q)$ --- manipulyator böğinlarining simmetrik musbat aniqlangan inersiya matritsasi;
+- $C(q, dot(q)) dot(q)$ --- Koriolis va markazdan qoçma kuçlar momenti vektori;
+- $F_v dot(q) + F_s "sgn"(dot(q))$ --- yopişqoq (_viscous_) va quruq (_Coulomb_) işqalaniş momentlari;
+- $g(q)$ --- gravitatsiya (oğirlik kuçi) momentlari vektori;
+- $tau_"böğin"$ --- böğinga keltirilgan töliq yuklama momenti vektori.
 
-Bir erkinlik darajali robot boʻgʻini yoki alohida ijro mexanizmi uchun umumiy yuklama momenti $T_L (t)$ quyidagi toʻrtta asosiy tashkil etuvchining yigʻindisidan iborat boʻladi:
+Bir erkinlik darajali robot böğini yoki alohida ijro mexanizmi uçun umumiy yuklama momenti $T_L (t)$ quyidagi törtta asosiy taşkil etuvçining yiğindisidan iborat böladi:
 
 $ T_L (t) = T_"in" (t) + T_g (theta) + T_"frict" (dot(theta)) + T_"ext" (t) $
 
 === Dinamik inersiya momenti ($T_"in"$)
 
-Harakatlanuvchi boʻgʻin va yukning tezlanishi natijasida yuzaga keladi:
+Harakatlanuvçi böğin va yukning tezlanişi natijasida yuzaga keladi:
 
 $ T_"in" (t) = I_"tot" dot alpha(t) = I_"tot" dot (d omega) / (d t) $
 
-bunda $I_"tot" = I_"boʻgʻin" + I_"yuk" + I_"red"$ --- boʻgʻinga keltirilgan toʻliq inersiya momenti, $alpha(t)$ --- burchak tezlanishi.
+bunda $I_"tot" = I_"böğin" + I_"yuk" + I_"red"$ --- böğinga keltirilgan töliq inersiya momenti, $alpha(t)$ --- burçak tezlanişi.
 
 === Gravitatsion yuklama momenti ($T_g$)
 
-Boʻgʻin ogʻish burchagi $theta(t)$ ga bogʻliq ravishda oʻzgaruvchi ogʻirlik kuchi momenti:
+Böğin oğiş burçagi $theta(t)$ ga boğliq ravişda özgaruvçi oğirlik kuçi momenti:
 
-$ T_g (theta) = (m_"boʻgʻin" dot r_c + m_"yuk" dot L) dot g dot cos(theta) $
+$ T_g (theta) = (m_"böğin" dot r_c + m_"yuk" dot L) dot g dot cos(theta) $
 
-bunda $r_c$ --- boʻgʻin ogʻirlik markazigacha masofa, $L$ --- boʻgʻin uzunligi, $g = 9.81 "m/s"^2$.
+bunda $r_c$ --- böğin oğirlik markazigaça masofa, $L$ --- böğin uzunligi, $g = 9.81 "m/s"^2$.
 
-=== Ishqalanish momenti ($T_"frict"$)
+=== Işqalaniş momenti ($T_"frict"$)
 
-Uzatma mexanizmi va podshipniklardagi quruq va yopishqoq ishqalanishlar:
+Uzatma mexanizmi va podşipniklardagi quruq va yopişqoq işqalanişlar:
 
 $ T_"frict" (omega) = T_c dot "sgn"(omega) + b dot omega $
 
-=== Tashqi ishchi kuchlar momenti ($T_"ext"$)
+=== Taşqi işçi kuçlar momenti ($T_"ext"$)
 
-Robot ushlagichi (gripper) orqali texnologik jarayonda bajariladigan tashqi kuchlar (payvandlash, kesish, bosish) momenti.
+Robot uşlagiçi (gripper) orqali texnologik jarayonda bajariladigan taşqi kuçlar (payvandlaş, kesiş, bosiş) momenti.
 
 == Kinematik profil va trapetsiyasimon tezlik grafigi
 
-Yuklama diagrammasini qurish uchun avvalo robot boʻgʻinining harakat kinematikasi berilishi lozim. Sanoat robotlarida eng keng tarqalgan kinematik profil bu *trapetsiyasimon tezlik grafigi* hisoblanadi. U toʻrtta davrdan iborat:
+Yuklama diagrammasini quriş uçun avvalo robot böğinining harakat kinematikasi berilişi lozim. Sanoat robotlarida eng keng tarqalgan kinematik profil bu *trapetsiyasimon tezlik grafigi* hisoblanadi. U törtta davrdan iborat:
 
-+ *Tezlanish davri ($t_a$):* burchak tezligi $omega(t)$ 0 dan $omega_"max"$ gacha chiziqli oʻsadi ($alpha = alpha_"max"$).
-+ *Barqaror harakat davri ($t_v$):* burchak tezligi oʻzgarmas ushlab turiladi ($omega = omega_"max"$, $alpha = 0$).
-+ *Tormozlanish davri ($t_d$):* burchak tezligi $omega_"max"$ dan 0 gacha chiziqli kamayadi ($alpha = -alpha_"max"$).
-+ *Pauza / ushlab turish davri ($t_p$):* dvigatel toʻxtab turadi ($omega = 0$), lekin gravitatsion momentni ushlab turishi lozim.
++ *Tezlaniş davri ($t_a$):* burçak tezligi $omega(t)$ 0 dan $omega_"max"$ gaça çiziqli ösadi ($alpha = alpha_"max"$).
++ *Barqaror harakat davri ($t_v$):* burçak tezligi özgarmas uşlab turiladi ($omega = omega_"max"$, $alpha = 0$).
++ *Tormozlaniş davri ($t_d$):* burçak tezligi $omega_"max"$ dan 0 gaça çiziqli kamayadi ($alpha = -alpha_"max"$).
++ *Pauza / uşlab turiş davri ($t_p$):* dvigatel töxtab turadi ($omega = 0$), lekin gravitatsion momentni uşlab turişi lozim.
 
-Toʻliq sikl vaqti: $t_"sikl" = t_a + t_v + t_d + t_p$.
+Töliq sikl vaqti: $t_"sikl" = t_a + t_v + t_d + t_p$.
 
-== Yuklama diagrammasi asosida yuritmani tanlash mezonlari
+== Yuklama diagrammasi asosida yuritmani tanlaş mezonlari
 
-Yuklama diagrammasi $T_L (t)$ qurilgach, yuritma dvigateli quyidagi uchta kritik shart boʻyicha tekshiriladi:
+Yuklama diagrammasi $T_L (t)$ qurilgaç, yuritma dvigateli quyidagi uçta kritik şart böyiça tekşiriladi:
 
-+ *Pik moment sharti (Peak Torque Requirement):*
++ *Pik moment şarti (Peak Torque Requirement):*
   $ T_"peak" = max_(0 <= t <= t_"sikl") |T_L (t)| <= T_"max, motor" $
 
-+ *Oʻrtacha kvadratik moment sharti (RMS Torque --- Thermal Limit):* dvigatel chulgʻamlarining ruxsat etilgan haroratdan oshib ketmasligini taʼminlovchi ekvivalent moment:
++ *Örtaça kvadratik moment şarti (RMS Torque --- Thermal Limit):* dvigatel çulğamlarining ruxsat etilgan haroratdan oşib ketmasligini taʼminlovçi ekvivalent moment:
   $ T_"rms" = sqrt(1 / t_"sikl" integral_0^(t_"sikl") T_L^2 (t) dif t) <= T_"nom, motor" $
-  Diskret shaklda (trapetsiyasimon boʻlaklar uchun):
+  Diskret şaklda (trapetsiyasimon bölaklar uçun):
   $ T_"rms" = sqrt((T_(a,"rms")^2 dot t_a + T_v^2 dot t_v + T_(d,"rms")^2 dot t_d + T_p^2 dot t_p) / t_"sikl") $
 
-+ *$T - omega$ tekisligidagi ishchi nuqtalar trayektoriyasi (Operating Point Trajectory):* yuklama diagrammasi nuqtalari dvigatelning $T - omega$ xarakteristikasidagi uzluksiz (_Continuous Duty Zone --- S1_) hamda vaqtinchalik (_Intermittent Zone --- S3_) zonalariga toʻliq tushishi shart.
++ *$T - omega$ tekisligidagi işçi nuqtalar trayektoriyasi (Operating Point Trajectory):* yuklama diagrammasi nuqtalari dvigatelning $T - omega$ xarakteristikasidagi uzluksiz (_Continuous Duty Zone --- S1_) hamda vaqtinçalik (_Intermittent Zone --- S3_) zonalariga töliq tuşişi şart.
 
 = Kerakli jihozlar va dasturiy vositalar
 
-+ *Dasturiy vositalar:* MATLAB / Simulink (Simscape Multibody), Python (Matplotlib / NumPy) yoki C.W. de Silva metodikasi boʻyicha hisoblash jadvallari.
-+ *Oʻlchov va tajriba stendi:* sanoat roboti boʻgʻini, moment datchigi (_torque sensor_), LVDT va enkoderlar.
++ *Dasturiy vositalar:* MATLAB / Simulink (Simscape Multibody), Python (Matplotlib / NumPy) yoki C.W. de Silva metodikasi böyiça hisoblaş jadvallari.
++ *Ölçov va tajriba stendi:* sanoat roboti böğini, moment datçigi (_torque sensor_), LVDT va enkoderlar.
 
 = Robot ijro mexanizmi va yuklama diagrammasi sxemalari
 
-== Robot boʻgʻinining kinematik va kuch modeli
+== Robot böğinining kinematik va kuç modeli
 
 #figure(
   cetz.canvas(length: 1.2cm, {
@@ -167,12 +167,12 @@ Yuklama diagrammasi $T_L (t)$ qurilgach, yuritma dvigateli quyidagi uchta kritik
     // Aylanish oʻqi
     circle((0, 0), radius: 0.4, fill: gray.lighten(70%), stroke: 1pt)
     circle((0, 0), radius: 0.08, fill: black, stroke: none)
-    content((-0.2, -0.45), anchor: "north-east", text(size: 8pt, weight: "bold")[Boʻgʻin markazi (Joint 1)])
+    content((-0.2, -0.45), anchor: "north-east", text(size: 8pt, weight: "bold")[Böğin markazi (Joint 1)])
 
     // Massa markazi va ogʻirlik kuchi
     circle((1.732, 1.0), radius: 0.08, fill: red.darken(20%), stroke: none)
     line((1.732, 1.0), (1.732, -0.2), stroke: 2pt + red.darken(20%), mark: arrow(red.darken(20%)))
-    content((1.8, -0.1), anchor: "west", small[$F_(g,"boʻgʻin") = m_1 g$])
+    content((1.8, -0.1), anchor: "west", small[$F_(g,"böğin") = m_1 g$])
 
     // Foydali yuk ogʻirlik kuchi
     content((3.4, 2.25), anchor: "south", small[Foydali yuk $m_L$])
@@ -184,7 +184,7 @@ Yuklama diagrammasi $T_L (t)$ qurilgach, yuritma dvigateli quyidagi uchta kritik
     arc((0.6, -0.5), start: -40deg, stop: 60deg, radius: 0.7, stroke: 2pt + tc, mark: arrow(tc))
     content((0.9, 0.75), text(size: 9pt, weight: "bold", fill: tc)[$T_L (t)$])
   }),
-  caption: [Sanoat roboti boʻgʻinining kinematik hamda gravitatsion yuklama kuchi modeli],
+  caption: [Sanoat roboti böğinining kinematik hamda gravitatsion yuklama kuçi modeli],
 )
 
 == Yuklama diagrammasi profili ($omega(t), alpha(t), T_L (t)$)
@@ -214,7 +214,7 @@ Yuklama diagrammasi $T_L (t)$ qurilgach, yuritma dvigateli quyidagi uchta kritik
 
     // Burchak tezligi ω(t)
     line((0, 0), (2, 2), (5, 2), (7, 0), (9, 0), stroke: 2pt + blue-c)
-    content((3.5, 2.3), text(fill: blue-c, small[Burchak tezligi $omega(t)$]))
+    content((3.5, 2.3), text(fill: blue-c, small[Burçak tezligi $omega(t)$]))
 
     // Tezlanish α(t)
     line((0, 1.2), (2, 1.2), (2, 0), (5, 0), (5, -1.2), (7, -1.2), (7, 0), (9, 0), stroke: (
@@ -222,7 +222,7 @@ Yuklama diagrammasi $T_L (t)$ qurilgach, yuritma dvigateli quyidagi uchta kritik
       thickness: 1pt,
       dash: "dashed",
     ))
-    content((1.0, 1.5), text(fill: red-c, small[Tezlanish $alpha(t)$]))
+    content((1.0, 1.5), text(fill: red-c, small[Tezlaniş $alpha(t)$]))
 
     // Yuklama momenti T_L(t) — cos θ taʼsirida barqaror davrda kamayadi
     line((0, 3.8), (2, 3.73), (2, 3.10), (5, 0.79), (5, 0.16), (7, -0.48), (7, 0.14), (9, 0.14), stroke: 2pt + grn-c)
@@ -237,10 +237,10 @@ Yuklama diagrammasi $T_L (t)$ qurilgach, yuritma dvigateli quyidagi uchta kritik
       content((x, -2.05), anchor: "north", small(lab))
     }
   }),
-  caption: [Robot ijro mexanizmining toʻliq dinamik yuklama diagrammasi profili],
+  caption: [Robot ijro mexanizmining töliq dinamik yuklama diagrammasi profili],
 )
 
-== Dvigatel $T - omega$ tekisligidagi ishchi nuqtalar trayektoriyasi
+== Dvigatel $T - omega$ tekisligidagi işçi nuqtalar trayektoriyasi
 
 #figure(
   cetz.canvas(length: 1cm, {
@@ -253,7 +253,7 @@ Yuklama diagrammasi $T_L (t)$ qurilgach, yuritma dvigateli quyidagi uchta kritik
     // Uzluksiz zona (S1)
     line((0, 0), (0, 2.2), (3.5, 2.2), (4.8, 0), close: true, fill: green.lighten(85%), stroke: 1pt + green.darken(40%))
     content((2.6, 1.1), align(center, text(fill: green.darken(40%), small[
-      Uzluksiz ish zonasi \ (Continuous Duty Zone --- S1)
+      Uzluksiz iş zonasi \ (Continuous Duty Zone --- S1)
     ])))
 
     // Vaqtinchalik zona (S3)
@@ -263,13 +263,13 @@ Yuklama diagrammasi $T_L (t)$ qurilgach, yuritma dvigateli quyidagi uchta kritik
       dash: "dashed",
     ))
     content((1.3, 3.75), align(center, text(fill: orange.darken(20%), small[
-      Vaqtinchalik pik zonasi \ (Intermittent Zone --- S3)
+      Vaqtinçalik pik zonasi \ (Intermittent Zone --- S3)
     ])))
 
     // Oʻqlar
     line((0, -1.0), (0, 5.0), stroke: 1pt, mark: arrow)
     line((0, 0), (6.0, 0), stroke: 1pt, mark: arrow)
-    content((6.1, 0), anchor: "west", text(size: 9pt, weight: "bold")[Burchak tezligi $omega$ (rad/s)])
+    content((6.1, 0), anchor: "west", text(size: 9pt, weight: "bold")[Burçak tezligi $omega$ (rad/s)])
     content((0, 5.1), anchor: "south", text(size: 9pt, weight: "bold")[Moment $T$ (Nm)])
 
     // Ishchi trayektoriya: pauza → tezlanish → barqaror → tormozlanish → pauza
@@ -282,59 +282,59 @@ Yuklama diagrammasi $T_L (t)$ qurilgach, yuritma dvigateli quyidagi uchta kritik
       circle(p, radius: 0.07, fill: rc, stroke: none)
     }
     content((0.1, 0.3), anchor: "west", text(fill: rc, small[1: $T_"hold"$ (pauza)]))
-    content((1.9, 3.3), anchor: "south-west", text(fill: rc, small[2: $T_"acc, max"$ (tezlanish)]))
+    content((1.9, 3.3), anchor: "south-west", text(fill: rc, small[2: $T_"acc, max"$ (tezlaniş)]))
     content((1.9, 1.9), anchor: "west", text(fill: rc, small[3: $T_"const"$ (barqaror)]))
-    content((0.15, -0.55), anchor: "north-west", text(fill: rc, small[4: $T_"dec"$ (tormozlanish)]))
+    content((0.15, -0.55), anchor: "north-west", text(fill: rc, small[4: $T_"dec"$ (tormozlaniş)]))
   }),
-  caption: [Yuklama diagrammasining dvigatel $T - omega$ xarakteristikasidagi ishchi trayektoriyasi],
+  caption: [Yuklama diagrammasining dvigatel $T - omega$ xarakteristikasidagi işçi trayektoriyasi],
 )
 
-= Tajribani bajarish va hisoblash ketma-ketligi
+= Tajribani bajariş va hisoblaş ketma-ketligi
 
-Yuklama diagrammasini qurish va yuritma quvvatini hisoblash quyidagi tartibda amalga oshiriladi:
+Yuklama diagrammasini quriş va yuritma quvvatini hisoblaş quyidagi tartibda amalga oşiriladi:
 
-+ *Boshlangʻich maʼlumotlarni yigʻish:* boʻgʻin massasi $m_1$, uzunligi $L$, ogʻirlik markazi $r_c$, foydali yuk massasi $m_L$, burilish burchagi $theta_"max"$ va harakat vaqti $t_"sikl"$.
++ *Boşlanğiç maʼlumotlarni yiğiş:* böğin massasi $m_1$, uzunligi $L$, oğirlik markazi $r_c$, foydali yuk massasi $m_L$, buriliş burçagi $theta_"max"$ va harakat vaqti $t_"sikl"$.
 
-+ *Kinematik hisob:* trapetsiyasimon profil uchun $t_a, t_v, t_d$ vaqtlari boʻyicha maksimal burchak tezligi $omega_"max"$ va tezlanish $alpha_"max"$ ni aniqlash:
++ *Kinematik hisob:* trapetsiyasimon profil uçun $t_a, t_v, t_d$ vaqtlari böyiça maksimal burçak tezligi $omega_"max"$ va tezlaniş $alpha_"max"$ ni aniqlaş:
   $ omega_"max" = theta_"max" / (t_v + (t_a + t_d) \/ 2), quad alpha_"max" = omega_"max" / t_a $
 
-+ *Statik va dinamik momentlarni boʻlaklar boʻyicha hisoblash:*
-  - *Tezlanish davri ($0 <= t <= t_a$):*
++ *Statik va dinamik momentlarni bölaklar böyiça hisoblaş:*
+  - *Tezlaniş davri ($0 <= t <= t_a$):*
     $ T_a (t) = I_"tot" dot alpha_"max" + (m_1 r_c + m_L L) g cos(theta(t)) + T_"frict" $
   - *Barqaror harakat davri ($t_a <= t <= t_a + t_v$):*
     $ T_v (t) = (m_1 r_c + m_L L) g cos(theta(t)) + T_"frict" $
-  - *Tormozlanish davri ($t_a + t_v <= t <= t_a + t_v + t_d$):*
+  - *Tormozlaniş davri ($t_a + t_v <= t <= t_a + t_v + t_d$):*
     $ T_d (t) = -I_"tot" dot alpha_"max" + (m_1 r_c + m_L L) g cos(theta(t)) + T_"frict" $
   - *Pauza davri ($t_a + t_v + t_d <= t <= t_"sikl"$):*
     $ T_p = (m_1 r_c + m_L L) g cos(theta_"max") $
 
-+ *Yuklama diagrammasini ($T_L (t)$ va $P_L (t) = T_L (t) dot omega(t)$) grafik koʻrinishda qurish.*
++ *Yuklama diagrammasini ($T_L (t)$ va $P_L (t) = T_L (t) dot omega(t)$) grafik körinişda quriş.*
 
-+ *$T_"peak"$ va $T_"rms"$ koʻrsatkichlarini hisoblab, katalogdan yuritma dvigateli va reduktorni tanlash.*
++ *$T_"peak"$ va $T_"rms"$ körsatkiçlarini hisoblab, katalogdan yuritma dvigateli va reduktorni tanlaş.*
 
-= Amaliy hisoblash misoli (sanoat roboti boʻgʻini)
+= Amaliy hisoblaş misoli (sanoat roboti böğini)
 
-== Boshlangʻich maʼlumotlar
+== Boşlanğiç maʼlumotlar
 
-Sanoat roboti 2-boʻgʻini vertikal tekislikda $theta = 0 degree$ (gorizontal) dan $theta = 90 degree$ (vertikal) gacha buriladi.
+Sanoat roboti 2-böğini vertikal tekislikda $theta = 0 degree$ (gorizontal) dan $theta = 90 degree$ (vertikal) gaça buriladi.
 
-- Boʻgʻin massasi: $m_1 = 10.0 "kg"$, uzunligi: $L = 0.5 "m"$, ogʻirlik markazi: $r_c = 0.25 "m"$.
-- Boʻgʻinning aylanish oʻqiga nisbatan inersiya momenti (bir uchidan aylanuvchi sterjen): $I_"boʻgʻin" = 1/3 m_1 L^2 = 1/3 dot 10.0 dot 0.5^2 = 0.8333 "kg" dot "m"^2$.
+- Böğin massasi: $m_1 = 10.0 "kg"$, uzunligi: $L = 0.5 "m"$, oğirlik markazi: $r_c = 0.25 "m"$.
+- Böğinning aylaniş öqiga nisbatan inersiya momenti (bir uçidan aylanuvçi sterjen): $I_"böğin" = 1/3 m_1 L^2 = 1/3 dot 10.0 dot 0.5^2 = 0.8333 "kg" dot "m"^2$.
 - Foydali yuk massasi: $m_L = 6.0 "kg"$ ($I_"yuk" = m_L L^2 = 1.500 "kg" dot "m"^2$).
-- Toʻliq inersiya momenti: $I_"tot" = 0.8333 + 1.500 = 2.3333 "kg" dot "m"^2$.
-- Burilish burchagi: $theta_"max" = 90 degree = 1.5708 "rad"$.
+- Töliq inersiya momenti: $I_"tot" = 0.8333 + 1.500 = 2.3333 "kg" dot "m"^2$.
+- Buriliş burçagi: $theta_"max" = 90 degree = 1.5708 "rad"$.
 - Sikl vaqtlari: $t_a = 0.3 "s"$, $t_v = 0.8 "s"$, $t_d = 0.3 "s"$, $t_p = 1.0 "s"$ ($t_"sikl" = 2.4 "s"$).
-- Reduktor uzatish nisbati: $n = 50$, FIK: $eta_"red" = 0.85$. Ishqalanish momenti: $T_"frict" = 2.5 "Nm"$.
+- Reduktor uzatiş nisbati: $n = 50$, FIK: $eta_"red" = 0.85$. Işqalaniş momenti: $T_"frict" = 2.5 "Nm"$.
 
 == Kinematik va momentlar hisobi
 
-Maksimal burchak tezligi va tezlanishi:
+Maksimal burçak tezligi va tezlanişi:
 
 $ omega_"max" = 1.5708 / (0.8 + (0.3 + 0.3) \/ 2) = 1.5708 / 1.1 = 1.428 "rad/s" quad (n_L = 13.64 "rpm") $
 
 $ alpha_"max" = 1.428 / 0.3 = 4.760 "rad/s"^2 $
 
-Boʻgʻin validagi momentlar:
+Böğin validagi momentlar:
 
 - Maksimal gravitatsion moment ($theta = 0 degree$):
   $ T_(g,"max") = (10.0 dot 0.25 + 6.0 dot 0.5) dot 9.81 = (2.5 + 3.0) dot 9.81 = 53.955 "Nm" $
@@ -343,18 +343,18 @@ Boʻgʻin validagi momentlar:
 
 Dvigatel validagi momentlar ($T_m = T_L \/ (n dot eta_"red")$):
 
-+ *Tezlanish davri ($t_a = 0.3 "s"$):*
++ *Tezlaniş davri ($t_a = 0.3 "s"$):*
   $ T_"acc, max" = (11.107 + 53.955 + 2.5) / (50 dot 0.85) = 67.562 / 42.5 = 1.590 "Nm" $
-+ *Barqaror harakat davri ($t_v = 0.8 "s"$ --- oʻrtacha $theta = 45 degree$, $cos 45 degree = 0.707$):*
++ *Barqaror harakat davri ($t_v = 0.8 "s"$ --- örtaça $theta = 45 degree$, $cos 45 degree = 0.707$):*
   $ T_"const" = (53.955 dot 0.707 + 2.5) / 42.5 = (38.146 + 2.5) / 42.5 = 0.956 "Nm" $
-+ *Tormozlanish davri ($t_d = 0.3 "s"$ --- $theta approx 80 degree$, $cos 80 degree = 0.174$):*
++ *Tormozlaniş davri ($t_d = 0.3 "s"$ --- $theta approx 80 degree$, $cos 80 degree = 0.174$):*
   $ T_"dec" = (-11.107 + 53.955 dot 0.174 + 2.5) / 42.5 = \ (-11.107 + 9.388 + 2.5) / 42.5 = 0.018 "Nm" $
 + *Pauza davri ($t_p = 1.0 "s"$ --- vertikal holat $theta = 90 degree$, $cos 90 degree = 0$):*
   $ T_"hold" = (0 + 2.5) / 42.5 = 0.059 "Nm" $
 
-== RMS moment va dvigatel tanlash
+== RMS moment va dvigatel tanlaş
 
-Oʻrtacha kvadratik moment (RMS):
+Örtaça kvadratik moment (RMS):
 
 $ T_"rms" = sqrt(((1.590)^2 dot 0.3 + (0.956)^2 dot 0.8 + (0.018)^2 dot 0.3 + (0.059)^2 dot 1.0) / 2.4) $
 
@@ -368,7 +368,7 @@ Maksimal pik quvvat:
 
 $ P_"peak" = T_"acc, max" dot omega_m = 1.590 dot 71.4 = 113.5 "W" $
 
-= Hisoblash natijalari va solishtirma jadvallar
+= Hisoblaş natijalari va soliştirma jadvallar
 
 #figure(
   {
@@ -384,16 +384,16 @@ $ P_"peak" = T_"acc, max" dot omega_m = 1.590 dot 71.4 = 113.5 "W" $
         [*Harakat davri*],
         [*Vaqt* \ *$t$ (s)*],
         [*Tezlik* \ *$omega_m$ (rad/s)*],
-        [*Boʻgʻin momenti (Nm)*],
+        [*Böğin momenti (Nm)*],
         [*Dvigatel momenti (Nm)*],
       ),
       table.hline(stroke: 0.5pt),
-      [Tezlanish ($t_a$)], [0.3], [$0 -> 71.4$], [67.56], [1.590 ($T_"peak"$)],
+      [Tezlaniş ($t_a$)], [0.3], [$0 -> 71.4$], [67.56], [1.590 ($T_"peak"$)],
       [Barqaror ($t_v$)], [0.8], [71.4], [40.65], [0.956],
-      [Tormozlanish ($t_d$)], [0.3], [$71.4 -> 0$], [0.78], [0.018],
+      [Tormozlaniş ($t_d$)], [0.3], [$71.4 -> 0$], [0.78], [0.018],
       [Pauza ($t_p$)], [1.0], [0], [2.50], [0.059],
       table.hline(stroke: 0.5pt),
-      [*Sikl koʻrsatkichlari*],
+      [*Sikl körsatkiçlari*],
       [*$t_"sikl" = 2.4 "s"$*],
       [*$n_"max" = 682 "rpm"$*],
       [*$T_"rms" = 0.789 "Nm"$*],
@@ -401,7 +401,7 @@ $ P_"peak" = T_"acc, max" dot omega_m = 1.590 dot 71.4 = 113.5 "W" $
       table.hline(stroke: 1pt),
     )
   },
-  caption: [Robot ijro mexanizmining yuklama diagrammasi hisoblash koʻrsatkichlari],
+  caption: [Robot ijro mexanizmining yuklama diagrammasi hisoblaş körsatkiçlari],
 )
 
 #figure(
@@ -423,19 +423,19 @@ $ P_"peak" = T_"acc, max" dot omega_m = 1.590 dot 71.4 = 113.5 "W" $
       table.hline(stroke: 1pt),
     )
   },
-  caption: [Katalogdan tanlangan BLDC servodvigatel xarakteristikalari va zaxira koʻrsatkichlari],
+  caption: [Katalogdan tanlangan BLDC servodvigatel xarakteristikalari va zaxira körsatkiçlari],
 )
 
 = Hisobot mazmuni va xulosalar
 
-+ Robot ijro mexanizmining toʻliq kinematik va dinamik tenglamalari asosida $T_L (t)$ hamda $P_L (t)$ yuklama diagrammalari chizildi.
-+ Trapetsiyasimon tezlik profilida tezlanish davri $t_a$ va gravitatsion moment $T_g (theta)$ pik momentni belgilashi koʻrsatildi.
-+ Hisoblangan $T_"rms" = 0.789 "Nm"$ va $T_"peak" = 1.590 "Nm"$ koʻrsatkichlari boʻyicha tanlangan 350 W BLDC servodvigateli issiqlik hamda dinamik qayta yuklanish rejimlarida toʻliq xavfsiz ishlashi tasdiqlandi.
++ Robot ijro mexanizmining töliq kinematik va dinamik tenglamalari asosida $T_L (t)$ hamda $P_L (t)$ yuklama diagrammalari çizildi.
++ Trapetsiyasimon tezlik profilida tezlaniş davri $t_a$ va gravitatsion moment $T_g (theta)$ pik momentni belgilaşi körsatildi.
++ Hisoblangan $T_"rms" = 0.789 "Nm"$ va $T_"peak" = 1.590 "Nm"$ körsatkiçlari böyiça tanlangan 350 W BLDC servodvigateli issiqlik hamda dinamik qayta yuklaniş rejimlarida töliq xavfsiz işlaşi tasdiqlandi.
 
 = Nazorat savollari
 
-+ Robot ijro mexanizmining yuklama diagrammasi deb nimaga aytiladi va u qanday asosiy boʻlimlardan tashkil topadi?
-+ Yuklama diagrammasida inersiya momenti ($T_"in"$) va gravitatsion moment ($T_g$) vaqt boʻyicha qanday oʻzgaradi?
-+ Nima uchun dvigatel nominal quvvatini tanlashda oʻrtacha kvadratik moment ($T_"rms"$) koʻrsatkichidan foydalaniladi?
-+ Dvigatelning moment–tezlik ($T - omega$) xarakteristikasidagi S1 (uzluksiz) va S3 (vaqtinchalik) zonalarining farqi nimada?
-+ Inersiya moslashuvi (_Inertia Matching_) sharti ($n^* = sqrt(I_L \/ I_m)$) yuklama diagrammasiga qanday taʼsir koʻrsatadi?
++ Robot ijro mexanizmining yuklama diagrammasi deb nimaga aytiladi va u qanday asosiy bölimlardan taşkil topadi?
++ Yuklama diagrammasida inersiya momenti ($T_"in"$) va gravitatsion moment ($T_g$) vaqt böyiça qanday özgaradi?
++ Nima uçun dvigatel nominal quvvatini tanlaşda örtaça kvadratik moment ($T_"rms"$) körsatkiçidan foydalaniladi?
++ Dvigatelning moment–tezlik ($T - omega$) xarakteristikasidagi S1 (uzluksiz) va S3 (vaqtinçalik) zonalarining farqi nimada?
++ Inersiya moslaşuvi (_Inertia Matching_) şarti ($n^* = sqrt(I_L \/ I_m)$) yuklama diagrammasiga qanday taʼsir körsatadi?

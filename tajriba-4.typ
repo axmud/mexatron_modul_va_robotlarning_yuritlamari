@@ -117,7 +117,7 @@
 // ============ Hujjat sozlamalari ============
 #let headingblue = rgb(20, 50, 120)
 
-#set document(title: "4-Tajriba Mashguloti: Pnevmoyuritma xarakteristikalariga havo bosimi taʼsirini tadqiq etish")
+#set document(title: "4-Tajriba Maşguloti: Pnevmoyuritma xarakteristikalariga havo bosimi taʼsirini tadqiq etiş")
 
 #set page(
   paper: "a4",
@@ -138,7 +138,7 @@
   line(length: 100%, stroke: 0.4pt + luma(170))
 })
 // ===================
-#set text(size: 12pt, lang: "uz")
+#set text(size: 12pt, lang: "uz", font: info.font)
 #set par(justify: true, leading: 0.75em)
 #set heading(numbering: "1.1.")
 #show heading: it => block(above: 1.2em, below: 0.7em)[
@@ -155,11 +155,11 @@
 
 // ============ Sarlavha ============
 #align(center)[
-  #text(size: 18pt, weight: "bold", fill: headingblue)[TAJRIBA MASHGʻULOTI №4]
+  #text(size: 18pt, weight: "bold", fill: headingblue)[TAJRIBA MAŞĞULOTI №4]
 
   #v(0.2cm)
   #text(size: 13pt, weight: "bold")[
-    Mavzu: Pnevmoyuritma xarakteristikalariga havo bosimi taʼsirini tadqiq etish
+    Mavzu: Pnevmoyuritma xarakteristikalariga havo bosimi taʼsirini tadqiq etiş
   ]
 
   #v(0.1cm)
@@ -171,73 +171,73 @@
 
 #v(0.3cm)
 
-= Ishning maqsadi
+= Işning maqsadi
 
 - Mexatron modullar va sanoat robotlarida siqilgan havo taʼminot bosimining
   ($P_"tam"$) pnevmoyuritmaning statik va dinamik xarakteristikalariga
-  taʼsirini tajribada oʻrganish.
+  taʼsirini tajribada örganiş.
 
-- Taʼminot bosimi oʻzgarishi bilan pnevmosilindr rivojlantiradigan kuch
-  ($F = f(P)$), porshen harakat tezligi ($V = f(P)$) va havo sarfi
-  ($Q = f(P)$) oʻrtasidagi bogʻliqliklarni tadqiq etish.
+- Taʼminot bosimi özgarişi bilan pnevmosilindr rivojlantiradigan kuç
+  ($F = f(P)$), porşen harakat tezligi ($V = f(P)$) va havo sarfi
+  ($Q = f(P)$) örtasidagi boğliqliklarni tadqiq etiş.
 
-- Havo tayyorlash blokidagi bosim reduktori (pressure regulator) va
-  proporsional pnevmotaqsimlagichlar yordamida bosimni aniq rostlash hamda
-  oʻlchov vositalari bilan ish olib borish koʻnikmalarini shakllantirish.
+- Havo tayyorlaş blokidagi bosim reduktori (pressure regulator) va
+  proporsional pnevmotaqsimlagiçlar yordamida bosimni aniq rostlaş hamda
+  ölçov vositalari bilan iş olib boriş könikmalarini şakllantiriş.
 
-= Qisqacha nazariy maʼlumotlar
+= Qisqaça nazariy maʼlumotlar
 
 Pnevmatik yuritmalarning asosiy energetik manbai siqilgan havo bosimi
-hisoblanadi. Sanoat pnevmo-tizimlarida standart ishchi bosim odatda
-$P_"tam" = 4 dots 8 "bar"$ diapazonida oʻzgaradi. Bosimning oʻzgarishi
-pnevmoyuritmaning barcha asosiy xarakteristikalariga bevosita taʼsir
-koʻrsatadi.
+hisoblanadi. Sanoat pnevmo-tizimlarida standart işçi bosim odatda
+$P_"tam" = 4 dots 8 "bar"$ diapazonida özgaradi. Bosimning özgarişi
+pnevmoyuritmaning barça asosiy xarakteristikalariga bevosita taʼsir
+körsatadi.
 
-== Bosim va Kuch Bogʻliqligi
+== Bosim va Kuç Boğliqligi
 
-Pnevmosilindr porshenining ishchi yurishida rivojlantiriladigan nazariy kuch
-taʼminot bosimi ($P_"tam"$) va porshen yuzasiga ($A_1$) toʻgʻri
+Pnevmosilindr porşenining işçi yurişida rivojlantiriladigan nazariy kuç
+taʼminot bosimi ($P_"tam"$) va porşen yuzasiga ($A_1$) töğri
 mutanosibdir:
 
 $ F_"naz" = P_"tam" dot A_1 = P_"tam" dot (pi D^2) / 4 $
 
-Real sharoitda manjetlardagi ishqalanish kuchi ($f$) va aks bosim ($P_2$)
-hisobga olinsa, amaldagi foydali kuch:
+Real şaroitda manjetlardagi işqalaniş kuçi ($f$) va aks bosim ($P_2$)
+hisobga olinsa, amaldagi foydali kuç:
 
 $ F_"taj" = P_1 A_1 - P_2 A_2 - f $
 
-bunda $A_2 = A_1 - a_"shtok"$ --- shtok kamerasining effektiv yuzasi.
+bunda $A_2 = A_1 - a_"ştok"$ --- ştok kamerasining effektiv yuzasi.
 
 == Bosim va Tezlik (Havo Sarfi) Munosabati
 
-Siqilgan havoning drossel va truboprovod teshiklaridan oqib oʻtish sarfi ($Q$)
-kirish va chiqish kameralaridagi bosimlar farqiga
-($Delta P = P_"tam" - P_1$) bogʻliq boʻlib, quyidagi ifoda bilan aniqlanadi:
+Siqilgan havoning drossel va truboprovod teşiklaridan oqib ötiş sarfi ($Q$)
+kiriş va çiqiş kameralaridagi bosimlar farqiga
+($Delta P = P_"tam" - P_1$) boğliq bölib, quyidagi ifoda bilan aniqlanadi:
 
 $ Q = mu dot f_0 dot sqrt(2 / rho Delta P) $
 
-bunda $mu$ --- sarf koeffitsienti, $f_0$ --- drossel teshigi yuzasi,
-$rho$ --- siqilgan havo zichligi.
+bunda $mu$ --- sarf koeffitsienti, $f_0$ --- drossel teşigi yuzasi,
+$rho$ --- siqilgan havo ziçligi.
 
-Silindr porshenining harakat tezligi esa havo sarfi $Q$ ga mutanosibdir
-($V = Q \/ A_1$). Taʼminot bosimi $P_"tam"$ oshishi bilan kameralarga havo
-toʻlish tezligi va massa sarfi ortadi, bu esa pnevmosilindrning tezlanishi va
-maksimal harakat tezligini oshiradi.
+Silindr porşenining harakat tezligi esa havo sarfi $Q$ ga mutanosibdir
+($V = Q \/ A_1$). Taʼminot bosimi $P_"tam"$ oşişi bilan kameralarga havo
+töliş tezligi va massa sarfi ortadi, bu esa pnevmosilindrning tezlanişi va
+maksimal harakat tezligini oşiradi.
 
 = Kerakli jihozlar va stend elementlari
 
-+ *Pnevmatik laboratoriya stendi:* Kompressor, resiver va aniq rostlanuvchi
++ *Pnevmatik laboratoriya stendi:* Kompressor, resiver va aniq rostlanuvçi
   FRL bloki.
-+ *Ijro organi:* Ikki taraflama taʼsir etuvchi pnevmosilindr
++ *Ijro organi:* Ikki taraflama taʼsir etuvçi pnevmosilindr
   ($D = 25 "mm"$, $S = 200 "mm"$).
-+ *Boshqaruv apparati:* 5/2-yoʻlli elektropnevmotaqsimlagich hamda bosimni
-  proporsional rostlash klapani.
-+ *Oʻlchov datchiklari:* Raqamli manometrlar ($P_1, P_2$), kuch datchigi
-  (load cell), chiziqli koʻchish va tezlik datchigi (LVDT / optik enkoder).
++ *Boşqaruv apparati:* 5/2-yölli elektropnevmotaqsimlagiç hamda bosimni
+  proporsional rostlaş klapani.
++ *Ölçov datçiklari:* Raqamli manometrlar ($P_1, P_2$), kuç datçigi
+  (load cell), çiziqli köçiş va tezlik datçigi (LVDT / optik enkoder).
 
 = Pnevmatik va Bosim Taʼsiri Sxemalari
 
-== Bosim Taʼsirini Tadqiq Etish Tajriba Stendi Sxemasi
+== Bosim Taʼsirini Tadqiq Etiş Tajriba Stendi Sxemasi
 
 #figure(
   sxema(xmin: -2.4, xmax: 7.4, ymin: -2.7, ymax: 5.3, d => {
@@ -254,7 +254,7 @@ maksimal harakat tezligini oshiradi.
     (d.T)((1.5, 4.6), sb(9pt)[Pnevmosilindr ($D = 25$ mm)], at: center + bottom)
 
     // --- Kuch datchigi ---
-    BX((3.95, 3.55), (5.15, 4.45), align(center, sb(7pt)[Kuch \ Datchigi]), fl: orange.lighten(70%))
+    BX((3.95, 3.55), (5.15, 4.45), align(center, sb(7pt)[Kuç \ Datçigi]), fl: orange.lighten(70%))
 
     // --- Bosim datchiklari ---
     (d.L)((0.5, 3.5), (0.5, 3.1))
@@ -271,7 +271,7 @@ maksimal harakat tezligini oshiradi.
     (d.L)((1.5, 0.2), (1.5, 1.4), st: (paint: black, thickness: 1pt, dash: "dashed"))
     (d.T)((0.65, 0.8), align(center, sb(7pt)[Pozitsiya 1 \ P$->$A, B$->$R]))
     (d.T)((2.35, 0.8), align(center, sb(7pt)[Pozitsiya 2 \ P$->$B, A$->$S]))
-    (d.T)((1.5, 1.48), box(fill: white, inset: 1pt, sb(9pt)[5/2 Elektropnevmotaqsimlagich]), at: center + bottom)
+    (d.T)((1.5, 1.48), box(fill: white, inset: 1pt, sb(9pt)[5/2 Elektropnevmotaqsimlagiç]), at: center + bottom)
 
     // --- Aniq rostlanuvchi bosim reduktori ---
     BX(
@@ -287,10 +287,10 @@ maksimal harakat tezligini oshiradi.
     (d.A)((1.5, -1.3), "up")
     (d.T)((1.5, -2.1), sb(9pt)[Kompressor Manbai], at: center + top)
   }),
-  caption: [Bosim oʻzgarishining pnevmoyuritmaga taʼsirini oʻrganish stendi],
+  caption: [Bosim özgarişining pnevmoyuritmaga taʼsirini örganiş stendi],
 )
 
-== Bosim va Kuch/Tezlik Bogʻliqlik Grafiklari ($F = f(P)$ va $V = f(P)$)
+== Bosim va Kuç/Tezlik Boğliqlik Grafiklari ($F = f(P)$ va $V = f(P)$)
 
 #figure(
   sxema(xmin: -0.6, xmax: 8.6, ymin: -1.0, ymax: 5.3, ux: 1.2cm, uy: 1cm, d => {
@@ -305,7 +305,7 @@ maksimal harakat tezligini oshiradi.
     (d.T)((5.65, 0), sb(9pt)[Taʼminot bosimi $P_"tam"$ (bar)], at: left + horizon)
     (d.L)((0, 0), (0, 4.4), st: 1pt + black)
     (d.A)((0, 4.5), "up")
-    (d.T)((0.05, 4.6), sb(9pt)[Kuch $F$ (N) / Tezlik $V$ (m/s)], at: left + bottom)
+    (d.T)((0.05, 4.6), sb(9pt)[Kuç $F$ (N) / Tezlik $V$ (m/s)], at: left + bottom)
 
     // --- Kuch chizigʻi F = f(P): chiziqli ---
     (d.L)((0.5, 0.4), (4.8, 4.0), st: 1.8pt + blue.darken(20%))
@@ -322,37 +322,37 @@ maksimal harakat tezligini oshiradi.
     }
   }),
   caption: [
-    Taʼminot bosimiga bogʻliq ravishda kuch hamda tezlikning oʻzgarish
+    Taʼminot bosimiga boğliq ravişda kuç hamda tezlikning özgariş
     grafiklari
   ],
 )
 
-= Tajribani bajarish va ishni oʻtkazish ketma-ketligi
+= Tajribani bajariş va işni ötkaziş ketma-ketligi
 
-#heading(level: 2, numbering: none, outlined: false)[1-bosqich: Bosimning statik kuchga taʼsirini aniqlash ($F = f(P)$)]
+#heading(level: 2, numbering: none, outlined: false)[1-bosqiç: Bosimning statik kuçga taʼsirini aniqlaş ($F = f(P)$)]
 
 + Bosim reduktori yordamida taʼminot bosimini ketma-ket
   $P_"tam" = 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0 "bar"$ qiymatlarga sozlang.
-+ Har bir bosim qiymatida silindr shtokiga kuch datchigini (load cell) tirab,
-  pnevmoyuritmaning maksimal statik kuchi $F_"taj"$ ni oʻlchang.
-+ Nazariy kuch $F_"naz" = P_"tam" A_1$ ni hisoblang hamda FİK ($eta$)
-  oʻzgarishini aniqlang.
++ Har bir bosim qiymatida silindr ştokiga kuç datçigini (load cell) tirab,
+  pnevmoyuritmaning maksimal statik kuçi $F_"taj"$ ni ölçang.
++ Nazariy kuç $F_"naz" = P_"tam" A_1$ ni hisoblang hamda FİK ($eta$)
+  özgarişini aniqlang.
 
 #heading(
   level: 2,
   numbering: none,
   outlined: false,
-)[2-bosqich: Bosimning harakat tezligiga taʼsirini aniqlash ($V = f(P)$)]
+)[2-bosqiç: Bosimning harakat tezligiga taʼsirini aniqlaş ($V = f(P)$)]
 
-+ Drossel ochilishini 100% (toʻliq ochiq) holatda va oʻzgarmas yuklamada
-  ($M = 5 "kg"$) ushlang.
-+ Taʼminot bosimini $P_"tam" = 2.0 dots 8.0 "bar"$ diapazonda oʻzgartirib,
-  porshenning toʻliq yurish vaqti ($t$) va oʻrtacha tezligini
-  ($V = S \/ t$) oʻlchang.
-+ Tajribani drossel ochilishi 50% boʻlgan holat uchun takrorlang va
++ Drossel oçilişini 100% (töliq oçiq) holatda va özgarmas yuklamada
+  ($M = 5 "kg"$) uşlang.
++ Taʼminot bosimini $P_"tam" = 2.0 dots 8.0 "bar"$ diapazonda özgartirib,
+  porşenning töliq yuriş vaqti ($t$) va örtaça tezligini
+  ($V = S \/ t$) ölçang.
++ Tajribani drossel oçilişi 50% bölgan holat uçun takrorlang va
   taqqoslang.
 
-= Tajriba natijalari va hisoblashlar jadvali
+= Tajriba natijalari va hisoblaşlar jadvali
 
 #figure(
   table(
@@ -374,27 +374,27 @@ maksimal harakat tezligini oshiradi.
     table.hline(stroke: 1pt),
   ),
   caption: [
-    Taʼminot bosimi taʼsirini tadqiq etish tajriba natijalari
+    Taʼminot bosimi taʼsirini tadqiq etiş tajriba natijalari
     ($D = 25 "mm"$, $S = 0.2 "m"$)
   ],
 )
 
 = Hisobot mazmuni va grafik tahlil
 
-+ Oʻlchangan natijalar asosida $F = f(P_"tam")$, $V = f(P_"tam")$ hamda
-  $Q = f(P_"tam")$ *grafiklarini qurish*.
-+ Bosim ortishi bilan kuch va tezlikning oʻzgarish xarakteridagi farqlarni
-  (chiziqli va notoʻgʻri chiziqli oʻsish) tushuntirish.
-+ Sanoat robotlarining pnevmoyuritmalarida energiyani tejash va maqbul ishchi
-  bosimni tanlash boʻyicha tavsiyalar berish.
++ Ölçangan natijalar asosida $F = f(P_"tam")$, $V = f(P_"tam")$ hamda
+  $Q = f(P_"tam")$ *grafiklarini quriş*.
++ Bosim ortişi bilan kuç va tezlikning özgariş xarakteridagi farqlarni
+  (çiziqli va notöğri çiziqli ösiş) tuşuntiriş.
++ Sanoat robotlarining pnevmoyuritmalarida energiyani tejaş va maqbul işçi
+  bosimni tanlaş böyiça tavsiyalar beriş.
 
 = Nazorat savollari
 
-+ Taʼminot bosimi $P_"tam"$ pnevmoyuritmaning rivojlantiradigan kuchiga va
-  porshen tezligiga qanday taʼsir koʻrsatadi?
-+ Nima uchun bosim ortishi bilan kuch chiziqli ravishda, tezlik esa
-  toʻyinuvchan, chiziqli boʻlmagan holda oshadi?
-+ Pnevmatik tizimlarda bosim reduktori (pressure regulator) qanday ishlaydi va
++ Taʼminot bosimi $P_"tam"$ pnevmoyuritmaning rivojlantiradigan kuçiga va
+  porşen tezligiga qanday taʼsir körsatadi?
++ Nima uçun bosim ortişi bilan kuç çiziqli ravişda, tezlik esa
+  töyinuvçan, çiziqli bölmagan holda oşadi?
++ Pnevmatik tizimlarda bosim reduktori (pressure regulator) qanday işlaydi va
   uning vazifasi nimadan iborat?
-+ Bosimning meʼyordan oshib ketishi pnevmoyuritma va manjetlarning xizmat
++ Bosimning meʼyordan oşib ketişi pnevmoyuritma va manjetlarning xizmat
   muddatiga qanday taʼsir qiladi?

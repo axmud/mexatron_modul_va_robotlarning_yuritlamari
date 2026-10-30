@@ -7,7 +7,7 @@
 
 #let headingblue = rgb(20, 50, 120)
 
-#set document(title: "Mexatron modul va robotlarning elektr yuritmalarini hisoblash")
+#set document(title: "Mexatron modul va robotlarning elektr yuritmalarini hisoblaş")
 #set page(
   paper: "a4",
   margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 2cm),
@@ -27,7 +27,7 @@
   line(length: 100%, stroke: 0.4pt + luma(170))
 })
 // ===================
-#set text(size: 12pt, lang: "uz")
+#set text(size: 12pt, lang: "uz", font: info.font)
 #set par(justify: true, leading: 0.65em)
 #set heading(numbering: "1.1")
 #set math.equation(numbering: "(1)", supplement: none)
@@ -43,73 +43,73 @@
 
 // ---------------- Sarlavha ----------------
 #align(center)[
-  #text(size: 20pt, weight: "bold", fill: headingblue)[AMALIYOT MASHGʻULOTI №4]
+  #text(size: 20pt, weight: "bold", fill: headingblue)[AMALIYOT MAŞĞULOTI №4]
   #v(0.4cm)
-  #text(size: 14pt, weight: "bold")[Mavzu: Mexatron modul va robotlarning elektr yuritmalarini hisoblash]
+  #text(size: 14pt, weight: "bold")[Mavzu: Mexatron modul va robotlarning elektr yuritmalarini hisoblaş]
   #v(0.2cm)
-  #text(size: 10pt)[(Elektromexanik tizimlar, BLDC va servodvigatellarni hisoblash hamda tanlash)]
+  #text(size: 10pt)[(Elektromexanik tizimlar, BLDC va servodvigatellarni hisoblaş hamda tanlaş)]
   #v(0.6cm)
   #line(length: 100%, stroke: 1pt)
 ]
 #v(0.3cm)
 
-= Ishning maqsadi
+= Işning maqsadi
 
-- Mexatronik modullar va sanoat robotlarining boʻgʻinlarida qoʻllaniladigan elektr yuritmalarni (BLDC, PMSM, qadamli va servo dvigatellar) tizimli yondashuv (_systems approach_) asosida hisoblash hamda tanlash metodologiyasini oʻrganish.
-- Dvigatel valiga keltirilgan inersiya momenti ($I_"tot"$), optimal uzatish nisbati ($n^*$), trapetsiyasimon tezlik profili va oʻrtacha kvadratik moment ($T_"rms"$) koʻrsatkichlarini hisoblash koʻnikmalarini shakllantirish.
-- Richard Crowder (_Electric Drives and Electromechanical Systems_) hamda Siciliano (_Robotics: Modelling, Planning and Control_) ilmiy-uslubiy manbalariga tayanib, elektr dvigatelining moment–tezlik ($T - omega$) xarakteristikasi boʻyicha dinamik va issiqlik rejimlarini tahlil qilish.
+- Mexatronik modullar va sanoat robotlarining böğinlarida qöllaniladigan elektr yuritmalarni (BLDC, PMSM, qadamli va servo dvigatellar) tizimli yondaşuv (_systems approach_) asosida hisoblaş hamda tanlaş metodologiyasini örganiş.
+- Dvigatel valiga keltirilgan inersiya momenti ($I_"tot"$), optimal uzatiş nisbati ($n^*$), trapetsiyasimon tezlik profili va örtaça kvadratik moment ($T_"rms"$) körsatkiçlarini hisoblaş könikmalarini şakllantiriş.
+- Richard Crowder (_Electric Drives and Electromechanical Systems_) hamda Siciliano (_Robotics: Modelling, Planning and Control_) ilmiy-uslubiy manbalariga tayanib, elektr dvigatelining moment–tezlik ($T - omega$) xarakteristikasi böyiça dinamik va issiqlik rejimlarini tahlil qiliş.
 
-= Qisqacha nazariy maʼlumotlar
+= Qisqaça nazariy maʼlumotlar
 
-Mexatronik tizimlar va robototexnika majmualarida elektr yuritmalar eng keng tarqalgan va moslashuvchan ijro organi hisoblanadi. Richard Crowder oʻzining _Electric Drives and Electromechanical Systems_ asarida taʼkidlaganidek, *tizimli yondashuv (systems approach)* elektr yuritmani loyihalashning asosiy tayanchi hisoblanadi: hech qanday mukammal dasturiy taʼminot yoki mikrokontrollerli boshqaruv algoritmi notoʻgʻri tanlangan elektr dvigatel va reduktorning kamchiliklarini yopib keta olmaydi.
+Mexatronik tizimlar va robototexnika majmualarida elektr yuritmalar eng keng tarqalgan va moslaşuvçan ijro organi hisoblanadi. Richard Crowder özining _Electric Drives and Electromechanical Systems_ asarida taʼkidlaganidek, *tizimli yondaşuv (systems approach)* elektr yuritmani loyihalaşning asosiy tayançi hisoblanadi: heç qanday mukammal dasturiy taʼminot yoki mikrokontrollerli boşqaruv algoritmi notöğri tanlangan elektr dvigatel va reduktorning kamçiliklarini yopib keta olmaydi.
 
-== Elektr dvigatellarining turlari va solishtirma tahlili
+== Elektr dvigatellarining turlari va soliştirma tahlili
 
-Sanoat robotlari hamda mexatronik modullarda quyidagi asosiy elektr dvigatellari qoʻllaniladi:
+Sanoat robotlari hamda mexatronik modullarda quyidagi asosiy elektr dvigatellari qöllaniladi:
 
-+ *Choʻtkali oʻzgarmas tok dvigatellari (Brushed DC Motors):* konstruksiyasi oddiy, lekin kollektor-choʻtka tugunidagi ishqalanish va uchqunlanish sababli xizmat muddati cheklangan.
-+ *Choʻtkasiz oʻzgarmas tok dvigatellari (BLDC va PMSM):* yuqori quvvat zichligi (_power density_), uzoq xizmat muddati hamda ajoyib dinamik koʻrsatkichlarga ega. Zamonaviy robotlarda eng keng qoʻllaniladigan yuritma turidir.
-+ *Qadamli dvigatellar (Stepper Motors):* ochiq zanjirli (_open-loop_) pozitsiyalash imkonini beradi, lekin yuqori tezlikda moment pasayadi va qadam yoʻqotish (_stall_) xavfi mavjud.
-+ *Asinxron elektr dvigatellari (Induction Motors):* yuqori quvvatli sanoat qurilmalarida qoʻllaniladi, lekin robot boʻgʻinlarida BLDC ga nisbatan rotor inersiyasi yuqoriroq.
++ *Çötkali özgarmas tok dvigatellari (Brushed DC Motors):* konstruksiyasi oddiy, lekin kollektor-çötka tugunidagi işqalaniş va uçqunlaniş sababli xizmat muddati çeklangan.
++ *Çötkasiz özgarmas tok dvigatellari (BLDC va PMSM):* yuqori quvvat ziçligi (_power density_), uzoq xizmat muddati hamda ajoyib dinamik körsatkiçlarga ega. Zamonaviy robotlarda eng keng qöllaniladigan yuritma turidir.
++ *Qadamli dvigatellar (Stepper Motors):* oçiq zanjirli (_open-loop_) pozitsiyalaş imkonini beradi, lekin yuqori tezlikda moment pasayadi va qadam yöqotiş (_stall_) xavfi mavjud.
++ *Asinxron elektr dvigatellari (Induction Motors):* yuqori quvvatli sanoat qurilmalarida qöllaniladi, lekin robot böğinlarida BLDC ga nisbatan rotor inersiyasi yuqoriroq.
 
-== Keltirilgan inersiya momenti va optimal uzatish nisbati
+== Keltirilgan inersiya momenti va optimal uzatiş nisbati
 
-Robot boʻgʻinida dvigatel valining burchak tezligi $omega_m$ reduktor orqali yuklama burchak tezligiga ($omega_L$) oʻzgartiriladi. Uzatish nisbati $n$:
+Robot böğinida dvigatel valining burçak tezligi $omega_m$ reduktor orqali yuklama burçak tezligiga ($omega_L$) özgartiriladi. Uzatiş nisbati $n$:
 
 $ n = omega_m / omega_L = theta_m / theta_L $
 
-Yuklamaning inersiya momenti $I_L$ va dvigatel rotorining inersiya momenti $I_m$ boʻlganda, dvigatel valiga keltirilgan toʻliq inersiya momenti $I_"tot"$ quyidagicha ifodalanadi:
+Yuklamaning inersiya momenti $I_L$ va dvigatel rotorining inersiya momenti $I_m$ bölganda, dvigatel valiga keltirilgan töliq inersiya momenti $I_"tot"$ quyidagiça ifodalanadi:
 
 $ I_"tot" = I_m + I_L / (n^2 dot eta_"red") $
 
-bunda $eta_"red"$ --- reduktorning mexanik FIK koʻrsatkichi (koʻpincha $eta_"red" = 0.85 dots 0.95$).
+bunda $eta_"red"$ --- reduktorning mexanik FIK körsatkiçi (köpinça $eta_"red" = 0.85 dots 0.95$).
 
-Dvigatelning maksimal burchak tezlanishini ($alpha_m = n dot alpha_L$) taʼminlash uchun inersiya moslashuvi (_inertia matching_) amalga oshiriladi. Dvigatel va yuklama inersiya momentlari oʻrtasidagi *optimal uzatish nisbati ($n^*$)* quyidagi shartdan topiladi:
+Dvigatelning maksimal burçak tezlanişini ($alpha_m = n dot alpha_L$) taʼminlaş uçun inersiya moslaşuvi (_inertia matching_) amalga oşiriladi. Dvigatel va yuklama inersiya momentlari örtasidagi *optimal uzatiş nisbati ($n^*$)* quyidagi şartdan topiladi:
 
 $ n^* = sqrt(I_L / I_m) $
 
-Ushbu shart bajarilganda dvigatel berilgan moment bilan yuklamaga eng yuqori burchak tezlanishini beradi.
+Uşbu şart bajarilganda dvigatel berilgan moment bilan yuklamaga eng yuqori burçak tezlanişini beradi.
 
 == Dinamik momentlar va trapetsiyasimon tezlik profili
 
-Robot boʻgʻinining harakati odatda trapetsiyasimon tezlik profili boʻyicha rejalashtiriladi. Harakat 3 faza va toʻxtash fazasidan iborat:
+Robot böğinining harakati odatda trapetsiyasimon tezlik profili böyiça rejalaştiriladi. Harakat 3 faza va töxtaş fazasidan iborat:
 
-- *Tezlanish fazasi ($t_a$):* dvigatel yuklama inersiyasi hamda qarshilik momentini yengishi kerak.
-- *Barqaror tezlik fazasi ($t_v$):* tezlanish nolga teng ($alpha_L = 0$), faqat statik yuklama va ishqalanish momenti yengiladi.
-- *Tormozlanish fazasi ($t_d$):* dvigatel rekuperativ tormozlanish rejimida ishlaydi.
-- *Toʻxtash/pauza fazasi ($t_s$):* dvigatel toʻxtab turadi yoki ushlab turuvchi moment beradi.
+- *Tezlaniş fazasi ($t_a$):* dvigatel yuklama inersiyasi hamda qarşilik momentini yengişi kerak.
+- *Barqaror tezlik fazasi ($t_v$):* tezlaniş nolga teng ($alpha_L = 0$), faqat statik yuklama va işqalaniş momenti yengiladi.
+- *Tormozlaniş fazasi ($t_d$):* dvigatel rekuperativ tormozlaniş rejimida işlaydi.
+- *Töxtaş/pauza fazasi ($t_s$):* dvigatel töxtab turadi yoki uşlab turuvçi moment beradi.
 
-Dvigatel valida hosil boʻladigan dinamik momentlar:
+Dvigatel valida hosil böladigan dinamik momentlar:
 
-$ T_"acc" = (I_m + I_L / (n^2 eta_"red")) dot alpha_m + T_L / (n dot eta_"red") + T_"ishq" $ <eq-acc>
+$ T_"acc" = (I_m + I_L / (n^2 eta_"red")) dot alpha_m + T_L / (n dot eta_"red") + T_"işq" $ <eq-acc>
 
-$ T_"const" = T_L / (n dot eta_"red") + T_"ishq" $ <eq-const>
+$ T_"const" = T_L / (n dot eta_"red") + T_"işq" $ <eq-const>
 
-$ T_"dec" = (I_m + I_L / (n^2 eta_"red")) dot (-alpha_m) + T_L / (n dot eta_"red") + T_"ishq" $ <eq-dec>
+$ T_"dec" = (I_m + I_L / (n^2 eta_"red")) dot (-alpha_m) + T_L / (n dot eta_"red") + T_"işq" $ <eq-dec>
 
-== Oʻrtacha kvadratik moment (RMS) va issiqlik hisobi
+== Örtaça kvadratik moment (RMS) va issiqlik hisobi
 
-Dvigatel chulgʻamlarining qizib ketmasligini taʼminlash uchun toʻliq sikl davomida oʻrtacha kvadratik moment ($T_"rms"$) hisoblanadi:
+Dvigatel çulğamlarining qizib ketmasligini taʼminlaş uçun töliq sikl davomida örtaça kvadratik moment ($T_"rms"$) hisoblanadi:
 
 $
   T_"rms" = sqrt(
@@ -118,25 +118,25 @@ $
   )
 $ <eq-rms>
 
-*Dvigatelni tanlashning 3 ta oltin qoidasi:*
+*Dvigatelni tanlaşning 3 ta oltin qoidasi:*
 
-+ *Nominal moment sharti:* $T_"rms" <= T_"nom"$ (dvigatel chulgʻami ruxsat etilgan issiqlik meʼyorida ishlaydi).
-+ *Maksimal pik moment sharti:* $T_"acc" <= T_"peak"$ (dvigatel magnitlari magnitsizlanmaydi va drayver tokni ushlaydi).
-+ *Maksimal tezlik sharti:* $omega_(m,"max") = n dot omega_(L,"max") <= omega_"nom"$ (yoki $omega_"max"$).
++ *Nominal moment şarti:* $T_"rms" <= T_"nom"$ (dvigatel çulğami ruxsat etilgan issiqlik meʼyorida işlaydi).
++ *Maksimal pik moment şarti:* $T_"acc" <= T_"peak"$ (dvigatel magnitlari magnitsizlanmaydi va drayver tokni uşlaydi).
++ *Maksimal tezlik şarti:* $omega_(m,"max") = n dot omega_(L,"max") <= omega_"nom"$ (yoki $omega_"max"$).
 
 = Kerakli jihozlar va stend elementlari
 
 + *Elektr yuritma stendi:* BLDC va PMSM servodvigatellari, enkoderli rekuperativ tormoz bloki.
 + *Reduktorlar:* garmonik (_Harmonic Drive_) hamda planetar reduktorlar ($n = 10 dots 100$).
-+ *Boshqaruv drayveri:* tok va tezlik konturiga ega boʻlgan raqamli servo drayver (Panasonic / Maxon / Siemens Servo Drive).
-+ *Oʻlchov va qayd etish kompleksi:*
++ *Boşqaruv drayveri:* tok va tezlik konturiga ega bölgan raqamli servo drayver (Panasonic / Maxon / Siemens Servo Drive).
++ *Ölçov va qayd etiş kompleksi:*
   - optik/magnit absolyut va inkremental enkoderlar (1024--4096 CPR);
-  - tok datchigi (Hall effect current sensor);
-  - raqamli ossillograf va maʼlumotlar yigʻish platasi (DAQ).
+  - tok datçigi (Hall effect current sensor);
+  - raqamli ossillograf va maʼlumotlar yiğiş platasi (DAQ).
 
-= Elektr yuritma va boshqaruv sxemalari
+= Elektr yuritma va boşqaruv sxemalari
 
-== Robot boʻgʻini elektr yuritmasining kinematik va boshqaruv sxemasi
+== Robot böğini elektr yuritmasining kinematik va boşqaruv sxemasi
 
 #figure(
   cetz.canvas(length: 1cm, {
@@ -156,7 +156,7 @@ $ <eq-rms>
     rect((2.5, 1.9), (3.5, 2.1), fill: gray.lighten(40%), stroke: 1.4pt)
     boxed((3.5, 0.8), (5.2, 3.2), orange.lighten(80%))[Reduktor \ ($n, eta_"red"$)]
     rect((5.2, 1.85), (6.5, 2.15), fill: gray.lighten(20%), stroke: 1.4pt)
-    boxed((6.5, 0.5), (8.0, 3.5), red.lighten(75%))[Robot \ boʻgʻini \ ($I_L, T_L$)]
+    boxed((6.5, 0.5), (8.0, 3.5), red.lighten(75%))[Robot \ böğini \ ($I_L, T_L$)]
 
     // Enkoder (dvigatel ortida)
     boxed((-1.2, 1.3), (0, 2.7), green.lighten(75%), size: 6.5pt)[Enkoder \ (Feedback)]
@@ -177,13 +177,13 @@ $ <eq-rms>
     content((-0.65, -0.4), anchor: "south", text(fill: green.darken(40%), small[Enkoder signali]))
     line((6.5, -0.9), (4.5, -0.9), stroke: blu-s, mark: (end: "stealth", fill: blue.darken(20%)))
     content((6.6, -0.9), anchor: "west", align(left, text(fill: blue.darken(20%), small[
-      Topshiriq $theta_"ref"$ \ (CANopen / EtherCAT)
+      Topşiriq $theta_"ref"$ \ (CANopen / EtherCAT)
     ])))
   }),
-  caption: [Robot boʻgʻini elektr yuritmasining tuzilish va boshqaruv sxemasi],
+  caption: [Robot böğini elektr yuritmasining tuziliş va boşqaruv sxemasi],
 )
 
-== Dvigatelning moment–tezlik ($T - omega$) xarakteristikasi va ishchi zonasi
+== Dvigatelning moment–tezlik ($T - omega$) xarakteristikasi va işçi zonasi
 
 #figure(
   cetz.canvas(length: 1cm, {
@@ -212,7 +212,7 @@ $ <eq-rms>
       stroke: 0.6pt,
     )
     content((1.8, 1.1), align(center, text(fill: blue.darken(30%), small[
-      Uzluksiz ish zonasi \ (Continuous Duty Zone) \ $T_"rms" <= T_"nom"$
+      Uzluksiz iş zonasi \ (Continuous Duty Zone) \ $T_"rms" <= T_"nom"$
     ])))
 
     // Vaqtinchalik pik zona
@@ -245,7 +245,7 @@ $ <eq-rms>
     content((6.1, 0), anchor: "west", text(size: 9pt, weight: "bold")[Tezlik $omega_m$ (rpm)])
     content((0, 4.9), anchor: "south", text(size: 9pt, weight: "bold")[Moment $T_m$ (Nm)])
   }),
-  caption: [BLDC/servodvigatelning $T - omega$ xarakteristikasi va ishchi zonalari],
+  caption: [BLDC/servodvigatelning $T - omega$ xarakteristikasi va işçi zonalari],
 )
 
 == Trapetsiyasimon tezlik profili va dinamik moment diagrammasi
@@ -298,39 +298,39 @@ $ <eq-rms>
       content((-0.1, -1.4), anchor: "east", small[$T_"dec"$])
     })
   }),
-  caption: [Trapetsiyasimon tezlik profili va unga mos keluvchi dinamik moment grafigi],
+  caption: [Trapetsiyasimon tezlik profili va unga mos keluvçi dinamik moment grafigi],
 )
 
-= Tajribani bajarish va hisoblash ketma-ketligi
+= Tajribani bajariş va hisoblaş ketma-ketligi
 
-#heading(level: 2, numbering: none)[1-bosqich: kinematik va dinamik parametrlarni aniqlash]
+#heading(level: 2, numbering: none)[1-bosqiç: kinematik va dinamik parametrlarni aniqlaş]
 
-+ Robot boʻgʻinining harakat burchagi $theta_L$, toʻliq harakat vaqti $t_"harakat"$ hamda yuklama inersiyasi $I_L$ va statik momenti $T_L$ aniqlanadi.
-+ Trapetsiyasimon tezlik profili uchun tezlanish vaqti $t_a$, barqaror tezlik vaqti $t_v$ hamda tormozlanish vaqti $t_d$ belgilanadi (odatda $t_a = t_d = 0.2 dot t_"harakat"$).
-+ Yuklamaning maksimal burchak tezligi $omega_(L,"max")$ va burchak tezlanishi $alpha_L$ hisoblanadi:
++ Robot böğinining harakat burçagi $theta_L$, töliq harakat vaqti $t_"harakat"$ hamda yuklama inersiyasi $I_L$ va statik momenti $T_L$ aniqlanadi.
++ Trapetsiyasimon tezlik profili uçun tezlaniş vaqti $t_a$, barqaror tezlik vaqti $t_v$ hamda tormozlaniş vaqti $t_d$ belgilanadi (odatda $t_a = t_d = 0.2 dot t_"harakat"$).
++ Yuklamaning maksimal burçak tezligi $omega_(L,"max")$ va burçak tezlanişi $alpha_L$ hisoblanadi:
   $ omega_(L,"max") = theta_L / (t_"harakat" - t_a), quad alpha_L = omega_(L,"max") / t_a $
 
-#heading(level: 2, numbering: none)[2-bosqich: reduktor uzatish nisbatini va momentlarni hisoblash]
+#heading(level: 2, numbering: none)[2-bosqiç: reduktor uzatiş nisbatini va momentlarni hisoblaş]
 
-+ Taxminiy dvigatel inersiyasi $I_m$ uchun optimal uzatish nisbati $n^* = sqrt(I_L \/ I_m)$ hisoblanadi va standart reduktor katalogidan eng yaqin $n$ tanlanadi.
-+ Dvigatel valiga keltirilgan momentlar $T_"acc", T_"const", T_"dec"$ @eq-acc–@eq-dec formulalar boʻyicha hisoblanadi.
-+ Toʻliq sikl uchun oʻrtacha kvadratik moment $T_"rms"$ @eq-rms formula boʻyicha hisoblanadi.
++ Taxminiy dvigatel inersiyasi $I_m$ uçun optimal uzatiş nisbati $n^* = sqrt(I_L \/ I_m)$ hisoblanadi va standart reduktor katalogidan eng yaqin $n$ tanlanadi.
++ Dvigatel valiga keltirilgan momentlar $T_"acc", T_"const", T_"dec"$ @eq-acc–@eq-dec formulalar böyiça hisoblanadi.
++ Töliq sikl uçun örtaça kvadratik moment $T_"rms"$ @eq-rms formula böyiça hisoblanadi.
 
-#heading(level: 2, numbering: none)[3-bosqich: katalogdan elektr dvigatelini tanlash]
+#heading(level: 2, numbering: none)[3-bosqiç: katalogdan elektr dvigatelini tanlaş]
 
-+ Maxon / Panasonic / Siemens kataloglaridan $T_"nom" >= T_"rms"$, $T_"peak" >= T_"acc"$ hamda $omega_"nom" >= n dot omega_(L,"max")$ shartlarini qanoatlantiruvchi BLDC/PMSM dvigateli tanlanadi.
++ Maxon / Panasonic / Siemens kataloglaridan $T_"nom" >= T_"rms"$, $T_"peak" >= T_"acc"$ hamda $omega_"nom" >= n dot omega_(L,"max")$ şartlarini qanoatlantiruvçi BLDC/PMSM dvigateli tanlanadi.
 
-= Amaliy hisoblash misoli (sanoat roboti boʻgʻini yuritmasi)
+= Amaliy hisoblaş misoli (sanoat roboti böğini yuritmasi)
 
 #heading(level: 2, numbering: none)[Berilgan maʼlumotlar]
 
-- Robot boʻgʻini yuklama inersiya momenti: $I_L = 0.8 "kg" dot "m"^2$;
-- Yuklama qarshilik kuchi va ogʻirlik momenti: $T_L = 15 "Nm"$;
-- Boʻgʻin burilish burchagi: $theta_L = 180 degree = pi "rad" approx 3.1416 "rad"$;
-- Toʻliq harakat vaqti: $t_"harakat" = 1.0 "s"$ ($t_a = 0.2 "s"$, $t_v = 0.6 "s"$, $t_d = 0.2 "s"$, $t_s = 0.5 "s"$);
-- Reduktor FIK koʻrsatkichi: $eta_"red" = 0.88$.
+- Robot böğini yuklama inersiya momenti: $I_L = 0.8 "kg" dot "m"^2$;
+- Yuklama qarşilik kuçi va oğirlik momenti: $T_L = 15 "Nm"$;
+- Böğin buriliş burçagi: $theta_L = 180 degree = pi "rad" approx 3.1416 "rad"$;
+- Töliq harakat vaqti: $t_"harakat" = 1.0 "s"$ ($t_a = 0.2 "s"$, $t_v = 0.6 "s"$, $t_d = 0.2 "s"$, $t_s = 0.5 "s"$);
+- Reduktor FIK körsatkiçi: $eta_"red" = 0.88$.
 
-#heading(level: 2, numbering: none)[Bosqichma-bosqich hisoblash]
+#heading(level: 2, numbering: none)[Bosqiçma-bosqiç hisoblaş]
 
 *1. Kinematik hisob-kitob:*
 
@@ -340,15 +340,15 @@ $ <eq-rms>
 
 *2. Dvigatel va reduktor hisobi:*
 
-Dastlabki taxmin uchun $I_m = 2.0 times 10^(-4) "kg" dot "m"^2$ deb olamiz. Optimal uzatish nisbati:
+Dastlabki taxmin uçun $I_m = 2.0 times 10^(-4) "kg" dot "m"^2$ deb olamiz. Optimal uzatiş nisbati:
 
 #eq($ n^* = sqrt(0.8 / (2.0 times 10^(-4))) = sqrt(4000) approx 63.25 $)
 
-Standart planetar reduktordan $n = 50$ uzatish nisbatini tanlaymiz.
+Standart planetar reduktordan $n = 50$ uzatiş nisbatini tanlaymiz.
 
 *3. Dvigatel valiga keltirilgan momentlar:*
 
-Dvigatel valiga keltirilgan toʻliq inersiya:
+Dvigatel valiga keltirilgan töliq inersiya:
 
 #eq(
   $
@@ -357,18 +357,18 @@ Dvigatel valiga keltirilgan toʻliq inersiya:
   $,
 )
 
-Dvigatel valining burchak tezlanishi: $alpha_m = n dot alpha_L = 50 times 19.635 = 981.75 "rad/s"^2$.
+Dvigatel valining burçak tezlanişi: $alpha_m = n dot alpha_L = 50 times 19.635 = 981.75 "rad/s"^2$.
 
-- *Tezlanish momenti ($T_"acc"$):*
+- *Tezlaniş momenti ($T_"acc"$):*
   #eq($ T_"acc" = (5.636 times 10^(-4)) times 981.75 + 15 / (50 times 0.88) = 0.553 + 0.341 = 0.894 "Nm" $)
 - *Barqaror tezlik momenti ($T_"const"$):*
   #eq($ T_"const" = 15 / (50 times 0.88) = 0.341 "Nm" $)
-- *Tormozlanish momenti ($T_"dec"$):*
+- *Tormozlaniş momenti ($T_"dec"$):*
   #eq($ T_"dec" = -0.553 + 0.341 = -0.212 "Nm" $)
 
-*4. Oʻrtacha kvadratik moment ($T_"rms"$) hisobi:*
+*4. Örtaça kvadratik moment ($T_"rms"$) hisobi:*
 
-Toʻliq sikl vaqti $t_"sikl" = 0.2 + 0.6 + 0.2 + 0.5 = 1.5 "s"$.
+Töliq sikl vaqti $t_"sikl" = 0.2 + 0.6 + 0.2 + 0.5 = 1.5 "s"$.
 
 #eq($ T_"rms" = sqrt(((0.894)^2 times 0.2 + (0.341)^2 times 0.6 + (-0.212)^2 times 0.2 + 0) / 1.5) $)
 
@@ -378,18 +378,18 @@ Dvigatelning maksimal tezligi:
 
 #eq($ omega_(m,"max") = 50 times 3.927 = 196.35 "rad/s" quad (1875 "rpm") $)
 
-*5. Katalogdan dvigatel tanlash:*
+*5. Katalogdan dvigatel tanlaş:*
 
-Hisoblangan koʻrsatkichlar ($T_"rms" = 0.40 "Nm"$, $T_"acc" = 0.89 "Nm"$, $omega_m = 1875 "rpm"$) boʻyicha Maxon EC-45 Flange choʻtkasiz servodvigateli tanlandi:
+Hisoblangan körsatkiçlar ($T_"rms" = 0.40 "Nm"$, $T_"acc" = 0.89 "Nm"$, $omega_m = 1875 "rpm"$) böyiça Maxon EC-45 Flange çötkasiz servodvigateli tanlandi:
 
 - Nominal moment: $T_"nom" = 0.52 "Nm" > 0.40 "Nm"$ (qanoatlantiradi);
 - Maksimal pik moment: $T_"peak" = 1.45 "Nm" > 0.89 "Nm"$ (qanoatlantiradi);
 - Nominal tezlik: $n_"nom" = 3000 "rpm" > 1875 "rpm"$ (qanoatlantiradi);
 - Rotor inersiyasi: $I_m = 1.95 times 10^(-4) "kg" dot "m"^2 approx 2.0 times 10^(-4)$ (dastlabki taxminga mos).
 
-= Hisoblash natijalari va solishtirma jadvallar
+= Hisoblaş natijalari va soliştirma jadvallar
 
-#heading(level: 2, numbering: none)[1-jadval: dvigatellarning parametrik solishtirma xarakteristikasi]
+#heading(level: 2, numbering: none)[1-jadval: dvigatellarning parametrik soliştirma xarakteristikasi]
 
 #figure(
   {
@@ -402,20 +402,20 @@ Hisoblangan koʻrsatkichlar ($T_"rms" = 0.40 "Nm"$, $T_"acc" = 0.89 "Nm"$, $omeg
       inset: (x: 5pt, y: 5pt),
       table.hline(stroke: 1pt),
       table.header(
-        [*Dvigatel turi*], [*Quvvat zichligi*], [*Dinamik aniqlik*], [*Xizmat muddati*], [*Boshqaruv murakkabligi*]
+        [*Dvigatel turi*], [*Quvvat ziçligi*], [*Dinamik aniqlik*], [*Xizmat muddati*], [*Boşqaruv murakkabligi*]
       ),
       table.hline(stroke: 0.5pt),
-      [Brushed DC], [Oʻrta], [Oʻrta], [Past (choʻtkali)], [Juda oddiy],
+      [Brushed DC], [Örta], [Örta], [Past (çötkali)], [Juda oddiy],
       [BLDC / PMSM], [Juda yuqori], [Yuqori], [Juda yuqori], [Murakkab (PWM/FOC)],
-      [Qadamli (Stepper)], [Yuqori], [Oʻrta (ochiq zanjir)], [Yuqori], [Oddiy],
-      [Asinxron (AC)], [Oʻrta], [Oʻrta], [Yuqori], [Oʻrta (VFD)],
+      [Qadamli (Stepper)], [Yuqori], [Örta (oçiq zanjir)], [Yuqori], [Oddiy],
+      [Asinxron (AC)], [Örta], [Örta], [Yuqori], [Örta (VFD)],
       table.hline(stroke: 1pt),
     )
   },
-  caption: [Robotlar va mexatron modullarda qoʻllaniladigan elektr dvigatellari solishtirmasi],
+  caption: [Robotlar va mexatron modullarda qöllaniladigan elektr dvigatellari soliştirmasi],
 )
 
-#heading(level: 2, numbering: none)[2-jadval: amaliy hisoblangan va katalogdan tanlangan dvigatel koʻrsatkichlari]
+#heading(level: 2, numbering: none)[2-jadval: amaliy hisoblangan va katalogdan tanlangan dvigatel körsatkiçlari]
 
 #figure(
   {
@@ -441,19 +441,19 @@ Hisoblangan koʻrsatkichlar ($T_"rms" = 0.40 "Nm"$, $T_"acc" = 0.89 "Nm"$, $omeg
       table.hline(stroke: 1pt),
     )
   },
-  caption: [Robot boʻgʻini elektr yuritmasining hisobiy va nominal parametrlari],
+  caption: [Robot böğini elektr yuritmasining hisobiy va nominal parametrlari],
 )
 
 = Hisobot mazmuni va grafik tahlil
 
-+ Hisoblangan trapetsiyasimon tezlik va moment grafiklarini ($omega(t), T(t)$) qurish va tahlil qilish.
-+ Uzatish nisbati $n$ oʻzgarishining dvigatel validagi $T_"rms"$ momentiga taʼsirini tahlil qilish hamda minimal moment beruvchi uzatish nisbatini asoslash.
-+ Tanlangan BLDC dvigatelining issiqlik zaxirasi hamda rekuperativ tormozlanish rejimida energiya qaytarish samaradorligini baholash.
++ Hisoblangan trapetsiyasimon tezlik va moment grafiklarini ($omega(t), T(t)$) quriş va tahlil qiliş.
++ Uzatiş nisbati $n$ özgarişining dvigatel validagi $T_"rms"$ momentiga taʼsirini tahlil qiliş hamda minimal moment beruvçi uzatiş nisbatini asoslaş.
++ Tanlangan BLDC dvigatelining issiqlik zaxirasi hamda rekuperativ tormozlaniş rejimida energiya qaytariş samaradorligini baholaş.
 
 = Nazorat savollari
 
-+ R. Crowder tomonidan ilgari surilgan tizimli yondashuv (_systems approach_) nima va dvigatel tanlashda u nima uchun muhim?
-+ Dvigatel va yuklama inersiya momentlarini moslashtirishda (_inertia matching_) optimal uzatish nisbati $n^*$ qanday aniqlanadi?
-+ Dvigatelning nominal moment sharti ($T_"rms" <= T_"nom"$) va pik moment sharti ($T_"acc" <= T_"peak"$) oʻrtasidagi farq nimada?
-+ Trapetsiyasimon tezlik profilida tezlanish vaqti $t_a$ qisqartirilsa, dvigatelning $T_"acc"$ va $T_"rms"$ momentlari qanday oʻzgaradi?
-+ BLDC va PMSM elektr dvigatellarining robototexnika va mexatronikada keng qoʻllanilishiga sabab boʻlgan asosiy ustunliklari nimada?
++ R. Crowder tomonidan ilgari surilgan tizimli yondaşuv (_systems approach_) nima va dvigatel tanlaşda u nima uçun muhim?
++ Dvigatel va yuklama inersiya momentlarini moslaştirişda (_inertia matching_) optimal uzatiş nisbati $n^*$ qanday aniqlanadi?
++ Dvigatelning nominal moment şarti ($T_"rms" <= T_"nom"$) va pik moment şarti ($T_"acc" <= T_"peak"$) örtasidagi farq nimada?
++ Trapetsiyasimon tezlik profilida tezlaniş vaqti $t_a$ qisqartirilsa, dvigatelning $T_"acc"$ va $T_"rms"$ momentlari qanday özgaradi?
++ BLDC va PMSM elektr dvigatellarining robototexnika va mexatronikada keng qöllanilişiga sabab bölgan asosiy ustunliklari nimada?

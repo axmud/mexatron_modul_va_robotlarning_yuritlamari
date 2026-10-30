@@ -119,7 +119,7 @@
 #let headingblue = rgb(20, 50, 120)
 
 #set document(
-  title: "1-2-Tajribalar (2-qism): Pnevmoyuritmaning dinamik xarakteristikalari, pnevmatik qattiqligi va PLC asosida sikl boshqaruvi",
+  title: "1-2-Tajribalar (2-qism): Pnevmoyuritmaning dinamik xarakteristikalari, pnevmatik qattiqligi va PLC asosida sikl boşqaruvi",
 )
 
 #set page(
@@ -141,7 +141,7 @@
   line(length: 100%, stroke: 0.4pt + luma(170))
 })
 // ===================
-#set text(size: 12pt, lang: "uz")
+#set text(size: 12pt, lang: "uz", font: info.font)
 #set par(justify: true, leading: 0.75em)
 #set heading(numbering: "1.1.")
 #show heading: it => block(above: 1.2em, below: 0.7em)[
@@ -165,7 +165,7 @@
 
 // ============ Sarlavha ============
 #align(center)[
-  #text(size: 18pt, weight: "bold", fill: headingblue)[TAJRIBA MASHGʻULOTLARI №1 va №2]
+  #text(size: 18pt, weight: "bold", fill: headingblue)[TAJRIBA MAŞĞULOTLARI №1 va №2]
 
   #v(0.1cm)
   #text(size: 14pt, weight: "bold", fill: headingblue)[2-QISM]
@@ -173,12 +173,12 @@
   #v(0.2cm)
   #text(size: 13pt, weight: "bold")[
     Mavzu: Pnevmoyuritmaning dinamik xarakteristikalari, pnevmatik qattiqligi
-    va PLC asosida avtomatlashtirilgan ish siklini tadqiq etish
+    va PLC asosida avtomatlaştirilgan iş siklini tadqiq etiş
   ]
 
   #v(0.1cm)
   #text(size: 10pt)[
-    (1-qismning davomi: ikkinchi mashgʻulot uchun uslubiy koʻrsatma)
+    (1-qismning davomi: ikkinçi maşğulot uçun uslubiy körsatma)
   ]
 
   #v(0.3cm)
@@ -187,51 +187,51 @@
 
 #v(0.3cm)
 
-= Ishning maqsadi
+= Işning maqsadi
 
 - 1-qismda olingan statik va yuklama xarakteristikalariga tayangan holda
-  pnevmoyuritmaning *dinamik (oʻtkinchi) jarayonlarini* --- harakatga kirishish
-  kechikishi, tezlanish, barqaror harakat va toʻxtash bosqichlarini --- tajribada
-  oʻrganish.
+  pnevmoyuritmaning *dinamik (ötkinçi) jarayonlarini* --- harakatga kirişiş
+  keçikişi, tezlaniş, barqaror harakat va töxtaş bosqiçlarini --- tajribada
+  örganiş.
 
-- "Meter-in" va "Meter-out" drossellash usullarini tashqi yuklama ostida
-  taqqoslash, harakat silliqligi hamda "stick-slip" (sakrashli harakat)
-  hodisasining yuzaga kelish shartlarini aniqlash.
+- "Meter-in" va "Meter-out" drossellaş usullarini taşqi yuklama ostida
+  taqqoslaş, harakat silliqligi hamda "stick-slip" (sakraşli harakat)
+  hodisasining yuzaga keliş şartlarini aniqlaş.
 
-- Siqilgan havoning siqiluvchanligi tufayli yuzaga keladigan *pnevmatik
-  qattiqlik* ($k_p$) va yuritmaning xususiy chastotasi ($f_0$) ning porshen
-  holatiga bogʻliqligini hisoblash va tajribada tekshirish.
+- Siqilgan havoning siqiluvçanligi tufayli yuzaga keladigan *pnevmatik
+  qattiqlik* ($k_p$) va yuritmaning xususiy çastotasi ($f_0$) ning porşen
+  holatiga boğliqligini hisoblaş va tajribada tekşiriş.
 
-- PLC kontroller yordamida avtomatik koʻp siklli ish rejimini (A+ / A−)
-  dasturlash, sikl vaqti, havo sarfi va energetik samaradorlikni baholash.
+- PLC kontroller yordamida avtomatik köp siklli iş rejimini (A+ / A−)
+  dasturlaş, sikl vaqti, havo sarfi va energetik samaradorlikni baholaş.
 
-- Tajriba natijalarini Python dasturlash tilida qayta ishlash va grafiklarini
-  qurish koʻnikmalarini shakllantirish.
+- Tajriba natijalarini Python dasturlaş tilida qayta işlaş va grafiklarini
+  quriş könikmalarini şakllantiriş.
 
-= Qisqacha nazariy maʼlumotlar
+= Qisqaça nazariy maʼlumotlar
 
-== Pnevmoyuritma ish siklining vaqt tarkibi
+== Pnevmoyuritma iş siklining vaqt tarkibi
 
-Elektropnevmotaqsimlagichga boshqaruv signali berilgandan soʻng porshen darhol
-harakatlanmaydi. Toʻliq sikl vaqti quyidagi tashkil etuvchilardan iborat:
+Elektropnevmotaqsimlagiçga boşqaruv signali berilgandan söng porşen darhol
+harakatlanmaydi. Töliq sikl vaqti quyidagi taşkil etuvçilardan iborat:
 
-$ t_"sikl" = t_"kech" + t_"harakat" + t_"qayt.kech" + t_"qaytish" $ <eq-sikl>
+$ t_"sikl" = t_"keç" + t_"harakat" + t_"qayt.keç" + t_"qaytiş" $ <eq-sikl>
 
-bunda $t_"kech"$ --- *harakatga kirishish kechikishi*: taqsimlagich
-zolotnigining qayta ulanish vaqti va ishchi kamerada bosim porshenni
-qoʻzgʻatishga yetarli boʻlgan qiymatgacha koʻtarilishi uchun ketadigan vaqt.
-Porshen harakatga kelishi uchun kamera bosimi quyidagi minimal qiymatga
-yetishi kerak:
+bunda $t_"keç"$ --- *harakatga kirişiş keçikişi*: taqsimlagiç
+zolotnigining qayta ulaniş vaqti va işçi kamerada bosim porşenni
+qözğatişga yetarli bölgan qiymatgaça kötarilişi uçun ketadigan vaqt.
+Porşen harakatga kelişi uçun kamera bosimi quyidagi minimal qiymatga
+yetişi kerak:
 
-$ P_(1,min) = (F_"yuk" + f_"ishq" + P_2 A_2) / A_1 $ <eq-pmin>
+$ P_(1,min) = (F_"yuk" + f_"işq" + P_2 A_2) / A_1 $ <eq-pmin>
 
-Demak, tashqi yuklama $F_"yuk"$ va aks bosim $P_2$ qanchalik katta boʻlsa,
-kechikish vaqti shunchalik uzayadi.
+Demak, taşqi yuklama $F_"yuk"$ va aks bosim $P_2$ qançalik katta bölsa,
+keçikiş vaqti şunçalik uzayadi.
 
 == Kameralardagi bosim dinamikasi
 
 Kameralardagi havo holati adiabatik ($kappa = 1.4$) deb qabul qilinsa, bosim
-oʻzgarishi massa sarfi balansi tenglamalari bilan ifodalanadi:
+özgarişi massa sarfi balansi tenglamalari bilan ifodalanadi:
 
 $
   (dif P_1) / (dif t) = (kappa R T) / (V_(01) + A_1 x) G_1
@@ -243,102 +243,102 @@ $
   + (kappa P_2 A_2) / (V_(02) + A_2 (S - x)) dot (dif x) / (dif t)
 $ <eq-p2>
 
-bunda $V_(01), V_(02)$ --- kameralar va ulanish quvurlarining "oʻlik" hajmlari,
+bunda $V_(01), V_(02)$ --- kameralar va ulaniş quvurlarining "ölik" hajmlari,
 $R = 287 "J/(kg·K)"$ --- havoning gaz doimiysi, $T$ --- havo harorati,
-$G_1, G_2$ --- kameralarga kiruvchi va chiquvchi havoning massa sarfi.
+$G_1, G_2$ --- kameralarga kiruvçi va çiquvçi havoning massa sarfi.
 
-Drossel (yoki taqsimlagich kanali) orqali oʻtuvchi massa sarfi ISO 6358
-standartiga koʻra aniqlanadi:
+Drossel (yoki taqsimlagiç kanali) orqali ötuvçi massa sarfi ISO 6358
+standartiga köra aniqlanadi:
 
 $
   G = cases(
-    C rho_0 P_"kir" & "agar" P_"chiq" / P_"kir" <= b "(kritik oqim)",
-    C rho_0 P_"kir" sqrt(1 - ((P_"chiq" \/ P_"kir" - b) / (1 - b))^2) & "agar" P_"chiq" / P_"kir" > b,
+    C rho_0 P_"kir" & "agar" P_"çiq" / P_"kir" <= b "(kritik oqim)",
+    C rho_0 P_"kir" sqrt(1 - ((P_"çiq" \/ P_"kir" - b) / (1 - b))^2) & "agar" P_"çiq" / P_"kir" > b,
   )
 $ <eq-iso>
 
-bunda $C$ --- tovush oʻtkazuvchanligi (sonic conductance), $b$ --- kritik
-bosimlar nisbati, $rho_0$ --- normal sharoitdagi havo zichligi.
+bunda $C$ --- tovuş ötkazuvçanligi (sonic conductance), $b$ --- kritik
+bosimlar nisbati, $rho_0$ --- normal şaroitdagi havo ziçligi.
 (@eq-p1), (@eq-p2), (@eq-iso) tenglamalar 1-qismdagi harakat tenglamasi bilan
-birgalikda pnevmoyuritmaning toʻliq nochiziqli matematik modelini tashkil etadi.
+birgalikda pnevmoyuritmaning töliq noçiziqli matematik modelini taşkil etadi.
 
-== Pnevmatik qattiqlik va xususiy chastota
+== Pnevmatik qattiqlik va xususiy çastota
 
-Porshen muvozanat holatidan kichik $Delta x$ ga siljiganda bir kamerada havo
-siqiladi, ikkinchisida kengayadi, natijada tiklovchi kuch hosil boʻladi.
-Ushbu "havo prujinasi"ning qattiqligi:
+Porşen muvozanat holatidan kiçik $Delta x$ ga siljiganda bir kamerada havo
+siqiladi, ikkinçisida kengayadi, natijada tiklovçi kuç hosil böladi.
+Uşbu "havo prujinasi"ning qattiqligi:
 
 $
   k_p = kappa (P_1 A_1^2 / (V_(01) + A_1 x)
     + P_2 A_2^2 / (V_(02) + A_2 (S - x)))
 $ <eq-kp>
 
-bunda $P_1, P_2$ --- *absolyut* bosimlar. Yuritmaning xususiy (tebranish)
-chastotasi:
+bunda $P_1, P_2$ --- *absolyut* bosimlar. Yuritmaning xususiy (tebraniş)
+çastotasi:
 
 $ omega_0 = sqrt(k_p / M), quad f_0 = omega_0 / (2 pi) $ <eq-f0>
 
-(@eq-kp) dan koʻrinib turibdiki, qattiqlik porshen holatiga bogʻliq: porshen
-yurishning chetki nuqtalarida eng katta, oʻrta qismida esa eng kichik
-qiymatga ega boʻladi. Pnevmoyuritmaning eng "yumshoq" va tebranishga moyil
-holati aynan shu minimal qattiqlik nuqtasidir. Shu sababli pozitsion
-pnevmoyuritmalarni loyihalashda $f_0$ ning minimal qiymati boʻyicha hisob
+(@eq-kp) dan körinib turibdiki, qattiqlik porşen holatiga boğliq: porşen
+yurişning çetki nuqtalarida eng katta, örta qismida esa eng kiçik
+qiymatga ega böladi. Pnevmoyuritmaning eng "yumşoq" va tebranişga moyil
+holati aynan şu minimal qattiqlik nuqtasidir. Şu sababli pozitsion
+pnevmoyuritmalarni loyihalaşda $f_0$ ning minimal qiymati böyiça hisob
 olib boriladi.
 
 == "Meter-in" va "Meter-out" usullarining dinamik farqi
 
-- *"Meter-out"* usulida ikkala kamera ham bosim ostida boʻladi, shu sababli
-  (@eq-kp) dagi ikkala qoʻshiluvchi ham qattiqlikka hissa qoʻshadi. Harakat
-  silliq, tashqi yuklama oʻzgarishiga sezgirlik past. Kamchiligi --- chiqish
-  kamerasi dastlab toʻliq bosim ostida boʻlgani uchun harakatga kirishish
-  kechikishi ($t_"kech"$) kattaroq.
-- *"Meter-in"* usulida chiqish kamerasi atmosferaga deyarli erkin ochiq
-  ($P_2 approx P_a$), qattiqlik asosan bitta kamera hisobiga hosil boʻladi.
-  Past tezliklarda statik va dinamik ishqalanish farqi tufayli porshen
-  "sakrab" harakatlanadi (stick-slip). Yuklama harakat yoʻnalishida taʼsir
-  etganda (tortuvchi yuklama) porshen boshqaruvdan chiqib "qochib" ketishi
+- *"Meter-out"* usulida ikkala kamera ham bosim ostida böladi, şu sababli
+  (@eq-kp) dagi ikkala qöşiluvçi ham qattiqlikka hissa qöşadi. Harakat
+  silliq, taşqi yuklama özgarişiga sezgirlik past. Kamçiligi --- çiqiş
+  kamerasi dastlab töliq bosim ostida bölgani uçun harakatga kirişiş
+  keçikişi ($t_"keç"$) kattaroq.
+- *"Meter-in"* usulida çiqiş kamerasi atmosferaga deyarli erkin oçiq
+  ($P_2 approx P_a$), qattiqlik asosan bitta kamera hisobiga hosil böladi.
+  Past tezliklarda statik va dinamik işqalaniş farqi tufayli porşen
+  "sakrab" harakatlanadi (stick-slip). Yuklama harakat yönalişida taʼsir
+  etganda (tortuvçi yuklama) porşen boşqaruvdan çiqib "qoçib" ketişi
   mumkin.
 
 == Havo sarfi va energetik samaradorlik
 
-Bir toʻliq siklda (A+ va A−) sarflanadigan erkin (atmosfera sharoitiga
+Bir töliq siklda (A+ va A−) sarflanadigan erkin (atmosfera şaroitiga
 keltirilgan) havo hajmi:
 
 $ V_"erkin" = (A_1 + A_2) S dot (P_"tam" + P_a) / P_a $ <eq-verkin>
 
-Minutiga $n$ ta sikl bajarilganda oʻrtacha havo sarfi
-$Q_"oʻrt" = V_"erkin" dot n$ ga teng. Ushbu havoni izotermik siqish uchun
-kompressor sarflaydigan minimal ish:
+Minutiga $n$ ta sikl bajarilganda örtaça havo sarfi
+$Q_"ört" = V_"erkin" dot n$ ga teng. Uşbu havoni izotermik siqiş uçun
+kompressor sarflaydigan minimal iş:
 
 $ W_"siq" = P_a V_"erkin" ln ((P_"tam" + P_a) / P_a) $ <eq-wsiq>
 
-Pnevmoyuritmaning energetik FIK i foydali mexanik ishning siqish ishiga
+Pnevmoyuritmaning energetik FIK i foydali mexanik işning siqiş işiga
 nisbati sifatida baholanadi:
 
 $ eta_E = (F_"yuk" dot S) / W_"siq" dot 100% $ <eq-etae>
 
-Amalda oʻlik hajmlar, quvurlar va sizib chiqishlar hisobiga haqiqiy havo sarfi
-(@eq-verkin) boʻyicha hisoblangan qiymatdan 10–25% ga koʻp boʻladi.
+Amalda ölik hajmlar, quvurlar va sizib çiqişlar hisobiga haqiqiy havo sarfi
+(@eq-verkin) böyiça hisoblangan qiymatdan 10–25% ga köp böladi.
 
-= Kerakli jihozlar (1-qism stendiga qoʻshimcha)
+= Kerakli jihozlar (1-qism stendiga qöşimça)
 
-+ 1-qismda foydalanilgan pnevmatik laboratoriya stendi toʻliq tarkibda
++ 1-qismda foydalanilgan pnevmatik laboratoriya stendi töliq tarkibda
   ($D = 25 "mm"$, $d = 10 "mm"$, $S = 200 "mm"$).
-+ *5/3-yoʻlli yopiq markazli elektropnevmotaqsimlagich* (porshenni yurishning
-  ixtiyoriy nuqtasida toʻxtatib, ikkala kamerani bosim ostida qulflash uchun).
-+ *Tez taʼsir etuvchi bosim datchiklari* (0–10 bar, 4–20 mA) --- PLC ning AI1,
-  AI2 analog kirishlariga ulanadi.
-+ *Havo sarfi oʻlchagichi* (raqamli flowmeter, 0–200 l/min) --- FRL blokidan
-  keyin oʻrnatiladi, AI3 kirishiga ulanadi.
-+ *Stop tugmasi* (NC kontakt) --- PLC ning I0.3 kirishiga ulanadi.
-+ *Maʼlumot yigʻish tizimi:* PLC trace funksiyasi yoki USB-osillograf
-  (namuna olish chastotasi $>= 1 "kHz"$).
-+ *Dasturiy muhit:* PLC dasturlash muhiti (TIA Portal / GX Works), Python 3
++ *5/3-yölli yopiq markazli elektropnevmotaqsimlagiç* (porşenni yurişning
+  ixtiyoriy nuqtasida töxtatib, ikkala kamerani bosim ostida qulflaş uçun).
++ *Tez taʼsir etuvçi bosim datçiklari* (0–10 bar, 4–20 mA) --- PLC ning AI1,
+  AI2 analog kirişlariga ulanadi.
++ *Havo sarfi ölçagiçi* (raqamli flowmeter, 0–200 l/min) --- FRL blokidan
+  keyin örnatiladi, AI3 kirişiga ulanadi.
++ *Stop tugmasi* (NC kontakt) --- PLC ning I0.3 kirişiga ulanadi.
++ *Maʼlumot yiğiş tizimi:* PLC trace funksiyasi yoki USB-osillograf
+  (namuna oliş çastotasi $>= 1 "kHz"$).
++ *Dasturiy muhit:* PLC dasturlaş muhiti (TIA Portal / GX Works), Python 3
   (`numpy`, `pandas`, `matplotlib` kutubxonalari).
 
 = Sxemalar va diagrammalar
 
-== Pnevmosilindr ish siklining vaqt diagrammasi
+== Pnevmosilindr iş siklining vaqt diagrammasi
 
 #figure(
   sxema(xmin: -1.6, xmax: 8.4, ymin: -1.5, ymax: 5.3, ux: 1.45cm, uy: 1cm, d => {
@@ -388,7 +388,7 @@ Amalda oʻlik hajmlar, quvurlar va sizib chiqishlar hisobiga haqiqiy havo sarfi
     (d.L)((0.56, -0.6), (1.14, -0.6), st: 0.8pt + black)
     (d.A)((0.5, -0.6), "left")
     (d.A)((1.2, -0.6), "right")
-    (d.T)((0.85, -0.7), sb(8pt)[$t_"kech"$], at: center + top)
+    (d.T)((0.85, -0.7), sb(8pt)[$t_"keç"$], at: center + top)
     (d.L)((1.26, -0.6), (3.94, -0.6), st: 0.8pt + black)
     (d.A)((1.2, -0.6), "left")
     (d.A)((4.0, -0.6), "right")
@@ -396,12 +396,12 @@ Amalda oʻlik hajmlar, quvurlar va sizib chiqishlar hisobiga haqiqiy havo sarfi
     (d.T)((0.5, -1.1), sb(7pt)[signal], at: center + top)
   }),
   caption: [
-    "Meter-out" drossellashda porshen holati $x(t)$ hamda kamera bosimlari
-    $P_1 (t)$, $P_2 (t)$ ning vaqt diagrammasi (sifat koʻrinishi)
+    "Meter-out" drossellaşda porşen holati $x(t)$ hamda kamera bosimlari
+    $P_1 (t)$, $P_2 (t)$ ning vaqt diagrammasi (sifat körinişi)
   ],
 ) <fig-vaqt>
 
-== Pnevmatik qattiqlik va xususiy chastotaning porshen holatiga bogʻliqligi
+== Pnevmatik qattiqlik va xususiy çastotaning porşen holatiga boğliqligi
 
 #figure(
   sxema(xmin: -1.0, xmax: 7.6, ymin: -1.0, ymax: 5.3, ux: 1.6cm, uy: 0.9cm, d => {
@@ -460,12 +460,12 @@ Amalda oʻlik hajmlar, quvurlar va sizib chiqishlar hisobiga haqiqiy havo sarfi
     (d.T)((2.75, 1.4), box(fill: white, inset: 2pt, align(center, sb(7pt)[minimal \ qattiqlik zonasi])))
   }),
   caption: [
-    Xususiy chastota $f_0$ ning porshen holati $x$ ga bogʻliqligi
+    Xususiy çastota $f_0$ ning porşen holati $x$ ga boğliqligi
     ($M = 10 "kg"$, $P_1 = P_2 = 7 "bar"$ abs., $V_(01) = V_(02) = 5 "sm"^3$)
   ],
 ) <fig-f0>
 
-== Avtomatik sikl uchun PLC narvon (Ladder) diagrammasi
+== Avtomatik sikl uçun PLC narvon (Ladder) diagrammasi
 
 #figure(
   sxema(xmin: -0.8, xmax: 11.0, ymin: 0.0, ymax: 6.9, ux: 1.35cm, uy: 1cm, d => {
@@ -508,7 +508,7 @@ Amalda oʻlik hajmlar, quvurlar va sizib chiqishlar hisobiga haqiqiy havo sarfi
     (d.L)((9.5, y), (10.2, y), st: w)
     // parallel oʻzini ushlash
     (d.L)((0.5, y), (0.5, 4.9), (1.0, 4.9), st: w)
-    NO(1.0, 4.9, [M0.0], [oʻzini ushlash])
+    NO(1.0, 4.9, [M0.0], [özini uşlaş])
     (d.L)((1.3, 4.9), (2.0, 4.9), (2.0, y), st: w)
 
     // --- 2-zanjir: oldinga yurish (Set) ---
@@ -539,85 +539,85 @@ Amalda oʻlik hajmlar, quvurlar va sizib chiqishlar hisobiga haqiqiy havo sarfi
     (d.L)((9.8, y), (10.2, y), st: w)
   }),
   caption: [
-    Pnevmosilindrni 10 marta avtomatik A+ / A− siklida ishlatish uchun PLC
+    Pnevmosilindrni 10 marta avtomatik A+ / A− siklida işlatiş uçun PLC
     narvon diagrammasi
   ],
 ) <fig-ladder>
 
-Dastur ishlash mantigʻi: "Start" tugmasi bosilganda M0.0 bayrogʻi oʻzini ushlab
-qoladi. Porshen boshlangʻich holatda (LS1) turganda Q0.0 chiqishi oʻrnatiladi
-(Set) va solenoid Y1 porshenni oldinga suradi. Porshen LS2 ga yetganda Q0.0
-tiklanadi (Reset) va prujina taqsimlagichni qaytarib, porshen ortga qaytadi.
-LS1 ga qaytishi bilan sikl takrorlanadi. C1 hisoblagich 10 ta siklni sanab
-boʻlgach, M0.0 ni oʻchiradi va yuritma boshlangʻich holatda toʻxtaydi.
+Dastur işlaş mantiği: "Start" tugmasi bosilganda M0.0 bayroği özini uşlab
+qoladi. Porşen boşlanğiç holatda (LS1) turganda Q0.0 çiqişi örnatiladi
+(Set) va solenoid Y1 porşenni oldinga suradi. Porşen LS2 ga yetganda Q0.0
+tiklanadi (Reset) va prujina taqsimlagiçni qaytarib, porşen ortga qaytadi.
+LS1 ga qaytişi bilan sikl takrorlanadi. C1 hisoblagiç 10 ta siklni sanab
+bölgaç, M0.0 ni öçiradi va yuritma boşlanğiç holatda töxtaydi.
 
-= Tajribani bajarish va ishni oʻtkazish ketma-ketligi
+= Tajribani bajariş va işni ötkaziş ketma-ketligi
 
 #heading(
   level: 2,
   numbering: none,
   outlined: false,
-)[4-bosqich: Dinamik (oʻtkinchi) jarayonlarni qayd etish]
+)[4-bosqiç: Dinamik (ötkinçi) jarayonlarni qayd etiş]
 
-+ Taʼminot bosimini $P_"tam" = 6 "bar"$, chiqish drosselini 50% ochiq holatga
++ Taʼminot bosimini $P_"tam" = 6 "bar"$, çiqiş drosselini 50% oçiq holatga
   sozlang.
 + PLC trace funksiyasi (yoki osillograf) yordamida Y1 signali, $P_1 (t)$,
   $P_2 (t)$ va LVDT dan olingan $x(t)$ signallarini bir vaqtda yozib oling.
-+ Olingan oscillogrammalardan $t_"kech"$ va $t_"harakat"$ ni aniqlang hamda
-  ularni @fig-vaqt dagi diagramma bilan solishtiring.
++ Olingan oscillogrammalardan $t_"keç"$ va $t_"harakat"$ ni aniqlang hamda
+  ularni @fig-vaqt dagi diagramma bilan soliştiring.
 + Tajribani $M = 0, 5, 10, 15, 20 "kg"$ yuklamalarda takrorlang.
 
 #heading(
   level: 2,
   numbering: none,
   outlined: false,
-)[5-bosqich: "Meter-in" va "Meter-out" usullarini taqqoslash]
+)[5-bosqiç: "Meter-in" va "Meter-out" usullarini taqqoslaş]
 
-+ 4-bosqichdagi oʻlchovlarni "Meter-out" sxemasi uchun 3-jadvalga kiriting.
-+ Drossellarning teskari klapanlarini burab (yoki drossellarni almashtirib)
-  sxemani "Meter-in" holatiga oʻtkazing. Kirish drosselini 50% ochiq holatga
++ 4-bosqiçdagi ölçovlarni "Meter-out" sxemasi uçun 3-jadvalga kiriting.
++ Drossellarning teskari klapanlarini burab (yoki drossellarni almaştirib)
+  sxemani "Meter-in" holatiga ötkazing. Kiriş drosselini 50% oçiq holatga
   sozlang.
-+ Xuddi shu yuklamalarda $t_"kech"$, $t$, $P_1$, $P_2$ ni oʻlchang va harakat
-  xarakterini (silliq / sakrashli) vizual hamda $x(t)$ grafigi boʻyicha
++ Xuddi şu yuklamalarda $t_"keç"$, $t$, $P_1$, $P_2$ ni ölçang va harakat
+  xarakterini (silliq / sakraşli) vizual hamda $x(t)$ grafigi böyiça
   baholang.
-+ Ikkala usul uchun $V = f(F_"yuk")$ bogʻliqliklarini bitta grafikda quring.
++ Ikkala usul uçun $V = f(F_"yuk")$ boğliqliklarini bitta grafikda quring.
 
 #heading(
   level: 2,
   numbering: none,
   outlined: false,
-)[6-bosqich: Pnevmatik qattiqlik va xususiy chastotani aniqlash]
+)[6-bosqiç: Pnevmatik qattiqlik va xususiy çastotani aniqlaş]
 
-+ Stendga 5/3-yoʻlli yopiq markazli taqsimlagichni ulang, yuk massasini
-  $M = 10 "kg"$ ga oʻrnating.
-+ Porshenni $x = 20, 50, 100, 150, 180 "mm"$ holatlariga keltirib,
-  taqsimlagichni markaziy (yopiq) holatga oʻtkazing.
-+ Yukka qisqa zarba berib, LVDT signalidagi soʻnuvchi tebranishlarni yozib
-  oling. Tebranishlar davri $T_"teb"$ boʻyicha $f_"taj" = 1 \/ T_"teb"$ ni
++ Stendga 5/3-yölli yopiq markazli taqsimlagiçni ulang, yuk massasini
+  $M = 10 "kg"$ ga örnating.
++ Porşenni $x = 20, 50, 100, 150, 180 "mm"$ holatlariga keltirib,
+  taqsimlagiçni markaziy (yopiq) holatga ötkazing.
++ Yukka qisqa zarba berib, LVDT signalidagi sönuvçi tebranişlarni yozib
+  oling. Tebranişlar davri $T_"teb"$ böyiça $f_"taj" = 1 \/ T_"teb"$ ni
   aniqlang.
-+ Har bir holat uchun (@eq-kp) va (@eq-f0) boʻyicha $k_p$ va $f_0$ ni hisoblang
-  hamda tajriba natijasi bilan solishtiring (4-jadval, @fig-f0).
++ Har bir holat uçun (@eq-kp) va (@eq-f0) böyiça $k_p$ va $f_0$ ni hisoblang
+  hamda tajriba natijasi bilan soliştiring (4-jadval, @fig-f0).
 
 #heading(
   level: 2,
   numbering: none,
   outlined: false,
-)[7-bosqich: Avtomatik sikl, havo sarfi va energetik samaradorlik]
+)[7-bosqiç: Avtomatik sikl, havo sarfi va energetik samaradorlik]
 
 + @fig-ladder dagi dasturni PLC ga yuklang va 10 siklli avtomatik rejimni
-  ishga tushiring.
-+ $P_"tam" = 4 "bar"$ va $6 "bar"$ da 10 sikl uchun umumiy vaqtni hamda havo
-  sarfi oʻlchagichi koʻrsatkichini qayd eting.
-+ (@eq-verkin), (@eq-wsiq), (@eq-etae) boʻyicha bir sikldagi nazariy havo sarfi,
-  siqish ishi va energetik FIK ni hisoblang ($M = 10 "kg"$ uchun).
+  işga tuşiring.
++ $P_"tam" = 4 "bar"$ va $6 "bar"$ da 10 sikl uçun umumiy vaqtni hamda havo
+  sarfi ölçagiçi körsatkiçini qayd eting.
++ (@eq-verkin), (@eq-wsiq), (@eq-etae) böyiça bir sikldagi nazariy havo sarfi,
+  siqiş işi va energetik FIK ni hisoblang ($M = 10 "kg"$ uçun).
 
-= Tajriba natijalari va hisoblashlar jadvallari
+= Tajriba natijalari va hisoblaşlar jadvallari
 
 #heading(
   level: 2,
   numbering: none,
   outlined: false,
-)[3-Jadval: "Meter-out" va "Meter-in" usullarini taqqoslash (drossel 50%)]
+)[3-Jadval: "Meter-out" va "Meter-in" usullarini taqqoslaş (drossel 50%)]
 
 #figure(
   table(
@@ -626,7 +626,7 @@ boʻlgach, M0.0 ni oʻchiradi va yuritma boshlangʻich holatda toʻxtaydi.
     stroke: none,
     inset: (x: 3.5pt, y: 5pt),
     table.hline(stroke: 1pt),
-    [*Usul*], [*$M$ \ (kg)*], [*$F_"yuk"$ \ (N)*], [*$t_"kech"$ \ (s)*],
+    [*Usul*], [*$M$ \ (kg)*], [*$F_"yuk"$ \ (N)*], [*$t_"keç"$ \ (s)*],
     [*$t$ \ (s)*], [*$V$ \ (m/s)*], [*$P_1$ \ (bar)*], [*$P_2$ \ (bar)*],
     [*Harakat \ xarakteri*],
     table.hline(stroke: 0.5pt),
@@ -640,26 +640,26 @@ boʻlgach, M0.0 ni oʻchiradi va yuritma boshlangʻich holatda toʻxtaydi.
     table.cell(rowspan: 5)[Meter- \ in],
     [0], [0.0], [0.05], [0.50], [0.400], [0.5], [0.2], [silliq],
     [5], [49.1], [0.06], [0.55], [0.362], [1.5], [0.2], [silliq],
-    [10], [98.1], [0.07], [0.63], [0.320], [2.5], [0.2], [kam tebranish],
-    [15], [147.2], [0.09], [0.74], [0.271], [3.5], [0.2], [sakrashli],
-    [20], [196.2], [0.11], [0.95], [0.210], [4.5], [0.2], [sakrashli],
+    [10], [98.1], [0.07], [0.63], [0.320], [2.5], [0.2], [kam tebraniş],
+    [15], [147.2], [0.09], [0.74], [0.271], [3.5], [0.2], [sakraşli],
+    [20], [196.2], [0.11], [0.95], [0.210], [4.5], [0.2], [sakraşli],
     table.hline(stroke: 1pt),
   ),
   caption: [
-    Drossellash usullarining yuklama ostidagi dinamik koʻrsatkichlari
+    Drossellaş usullarining yuklama ostidagi dinamik körsatkiçlari
     ($P_"tam" = 6 "bar"$, $S = 0.2 "m"$)
   ],
 )
 
-_Izoh:_ "Meter-out" rejimida salt ishlashda $P_2 > P_"tam"$ boʻlishi
-xatolik emas: $A_1 > A_2$ boʻlgani uchun porshen chiqish kamerasidagi havoni
-taʼminot bosimidan yuqori bosimgacha siqadi (bosim multiplikatsiyasi effekti).
+_Izoh:_ "Meter-out" rejimida salt işlaşda $P_2 > P_"tam"$ bölişi
+xatolik emas: $A_1 > A_2$ bölgani uçun porşen çiqiş kamerasidagi havoni
+taʼminot bosimidan yuqori bosimgaça siqadi (bosim multiplikatsiyasi effekti).
 
 #heading(
   level: 2,
   numbering: none,
   outlined: false,
-)[4-Jadval: Pnevmatik qattiqlik va xususiy chastota natijalari]
+)[4-Jadval: Pnevmatik qattiqlik va xususiy çastota natijalari]
 
 #figure(
   table(
@@ -679,7 +679,7 @@ taʼminot bosimidan yuqori bosimgacha siqadi (bosim multiplikatsiyasi effekti).
     table.hline(stroke: 1pt),
   ),
   caption: [
-    Porshen holatiga qarab pnevmatik qattiqlik va xususiy chastota \
+    Porşen holatiga qarab pnevmatik qattiqlik va xususiy çastota \
     ($M = 10 "kg"$, $P_1 = P_2 = 7 "bar"$ abs., $kappa = 1.4$)
   ],
 )
@@ -711,12 +711,12 @@ taʼminot bosimidan yuqori bosimgacha siqadi (bosim multiplikatsiyasi effekti).
   ],
 )
 
-= Natijalarni Python yordamida qayta ishlash
+= Natijalarni Python yordamida qayta işlaş
 
 Quyidagi dastur 3- va 4-jadval maʼlumotlari asosida $V = f(F_"yuk")$
-grafiklarini hamda nazariy $f_0 (x)$ egri chizigʻini tajriba nuqtalari bilan
-birga quradi. Talaba oʻz oʻlchov natijalarini massivlarga kiritib, grafiklarni
-hisobotga qoʻshishi mumkin.
+grafiklarini hamda nazariy $f_0 (x)$ egri çiziğini tajriba nuqtalari bilan
+birga quradi. Talaba öz ölçov natijalarini massivlarga kiritib, grafiklarni
+hisobotga qöşişi mumkin.
 
 ```python
 import numpy as np
@@ -756,33 +756,33 @@ plt.tight_layout(); plt.savefig("natijalar.png", dpi=200)
 = Hisobot mazmuni va grafik tahlil
 
 + Yozib olingan oscillogrammalar asosida $x(t)$, $P_1 (t)$, $P_2 (t)$
-  grafiklarini qurish, $t_"kech"$ va $t_"harakat"$ ni aniqlash hamda
-  (@eq-pmin) boʻyicha $t_"kech"$ ning yuklamaga bogʻliqligini tushuntirish.
-+ "Meter-in" va "Meter-out" usullari uchun $V = f(F_"yuk")$ hamda
-  $P_2 = f(F_"yuk")$ grafiklarini bitta koordinata tizimida qurish va harakat
-  barqarorligi boʻyicha xulosa chiqarish.
-+ $f_0 = f(x)$ ning nazariy va tajriba grafiklarini solishtirish, farqning
-  sabablarini (ishqalanish, oʻlik hajmlar, issiqlik almashinuvi) tahlil qilish.
+  grafiklarini quriş, $t_"keç"$ va $t_"harakat"$ ni aniqlaş hamda
+  (@eq-pmin) böyiça $t_"keç"$ ning yuklamaga boğliqligini tuşuntiriş.
++ "Meter-in" va "Meter-out" usullari uçun $V = f(F_"yuk")$ hamda
+  $P_2 = f(F_"yuk")$ grafiklarini bitta koordinata tizimida quriş va harakat
+  barqarorligi böyiça xulosa çiqariş.
++ $f_0 = f(x)$ ning nazariy va tajriba grafiklarini soliştiriş, farqning
+  sabablarini (işqalaniş, ölik hajmlar, issiqlik almaşinuvi) tahlil qiliş.
 + Havo sarfining nazariy va tajribaviy qiymatlari orasidagi farqni hamda
-  taʼminot bosimini kamaytirish orqali energiya tejash imkoniyatlarini
-  baholash.
-+ 1-qism natijalari bilan birgalikda sanoat roboti ushlash mexanizmi uchun
-  pnevmoyuritmaning optimal ish rejimi (bosim, drossellash usuli, tezlik)
-  boʻyicha umumiy xulosa yozish.
+  taʼminot bosimini kamaytiriş orqali energiya tejaş imkoniyatlarini
+  baholaş.
++ 1-qism natijalari bilan birgalikda sanoat roboti uşlaş mexanizmi uçun
+  pnevmoyuritmaning optimal iş rejimi (bosim, drossellaş usuli, tezlik)
+  böyiça umumiy xulosa yoziş.
 
 = Nazorat savollari
 
-+ Pnevmoyuritma ish sikli qanday vaqt tashkil etuvchilardan iborat va
-  harakatga kirishish kechikishi qaysi omillarga bogʻliq?
-+ Pnevmatik qattiqlik nima uchun porshen holatiga bogʻliq va uning minimal
++ Pnevmoyuritma iş sikli qanday vaqt taşkil etuvçilardan iborat va
+  harakatga kirişiş keçikişi qaysi omillarga boğliq?
++ Pnevmatik qattiqlik nima uçun porşen holatiga boğliq va uning minimal
   qiymati qayerda kuzatiladi?
-+ Nima uchun "Meter-in" usulida past tezliklarda "stick-slip" hodisasi yuzaga
++ Nima uçun "Meter-in" usulida past tezliklarda "stick-slip" hodisasi yuzaga
   keladi?
-+ "Meter-out" rejimida chiqish kamerasidagi bosim taʼminot bosimidan yuqori
-  boʻlishi mumkinligini qanday tushuntirasiz?
-+ ISO 6358 boʻyicha kritik va kritik boʻlmagan oqim rejimlari bir-biridan
++ "Meter-out" rejimida çiqiş kamerasidagi bosim taʼminot bosimidan yuqori
+  bölişi mumkinligini qanday tuşuntirasiz?
++ ISO 6358 böyiça kritik va kritik bölmagan oqim rejimlari bir-biridan
   qanday farq qiladi?
-+ Pnevmoyuritmaning energetik FIK ini oshirish uchun qanday konstruktiv va
-  boshqaruv choralari koʻriladi?
-+ Narvon diagrammasidagi Set/Reset gʻaltaklari va oʻzini ushlash zanjirining
++ Pnevmoyuritmaning energetik FIK ini oşiriş uçun qanday konstruktiv va
+  boşqaruv çoralari köriladi?
++ Narvon diagrammasidagi Set/Reset ğaltaklari va özini uşlaş zanjirining
   vazifasi nimadan iborat?

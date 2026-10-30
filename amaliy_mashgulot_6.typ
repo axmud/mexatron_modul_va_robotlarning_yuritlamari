@@ -7,7 +7,7 @@
 
 #let headingblue = rgb(20, 50, 120)
 
-#set document(title: "Robot elektr yuritmasining yuklama momenti va kuchini hisoblash")
+#set document(title: "Robot elektr yuritmasining yuklama momenti va kuçini hisoblaş")
 #set page(
   paper: "a4",
   margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 2cm),
@@ -27,7 +27,7 @@
   line(length: 100%, stroke: 0.4pt + luma(170))
 })
 // ===================
-#set text(size: 12pt, lang: "uz")
+#set text(size: 12pt, lang: "uz", font: info.font)
 #set par(justify: true, leading: 0.65em)
 #set heading(numbering: "1.1")
 #set math.equation(numbering: "(1)", supplement: none)
@@ -40,96 +40,96 @@
 
 // ---------------- Sarlavha ----------------
 #align(center)[
-  #text(size: 20pt, weight: "bold", fill: headingblue)[AMALIYOT MASHGʻULOTI №6]
+  #text(size: 20pt, weight: "bold", fill: headingblue)[AMALIYOT MAŞĞULOTI №6]
   #v(0.4cm)
-  #text(size: 14pt, weight: "bold")[Mavzu: Robot elektr yuritmasining yuklama momenti va kuchini hisoblash]
+  #text(size: 14pt, weight: "bold")[Mavzu: Robot elektr yuritmasining yuklama momenti va kuçini hisoblaş]
   #v(0.2cm)
-  #text(size: 10pt)[(Sanoat robotlari hamda mexatronik tizimlar yuritmalarini loyihalash)]
+  #text(size: 10pt)[(Sanoat robotlari hamda mexatronik tizimlar yuritmalarini loyihalaş)]
   #v(0.6cm)
   #line(length: 100%, stroke: 1pt)
 ]
 #v(0.3cm)
 
-= Ishning maqsadi va tizimli yondashuv
+= Işning maqsadi va tizimli yondaşuv
 
-Sanoat robotlari va mexatronik modullarning samarali, ishonchli hamda yuqori aniqlikda ishlashini taʼminlashda elektr yuritmaning yuklama koʻrsatkichlarini toʻgʻri hisoblash hal qiluvchi ahamiyatga ega. Richard Crowder oʻzining _Electric Drives and Electromechanical Systems_ asarida taʼkidlaganidek, *tizimli yondashuv (Systems Approach)* tamoyiliga koʻra, har qanday murakkab raqamli boshqaruv algoritmi yoki sunʼiy intellekt dasturi notoʻgʻri tanlangan dvigatel hamda mexanik yuklama nomutanosibligini (_undersizing/oversizing_) qoplay olmaydi.
+Sanoat robotlari va mexatronik modullarning samarali, işonçli hamda yuqori aniqlikda işlaşini taʼminlaşda elektr yuritmaning yuklama körsatkiçlarini töğri hisoblaş hal qiluvçi ahamiyatga ega. Richard Crowder özining _Electric Drives and Electromechanical Systems_ asarida taʼkidlaganidek, *tizimli yondaşuv (Systems Approach)* tamoyiliga köra, har qanday murakkab raqamli boşqaruv algoritmi yoki sunʼiy intellekt dasturi notöğri tanlangan dvigatel hamda mexanik yuklama nomutanosibligini (_undersizing/oversizing_) qoplay olmaydi.
 
-Robot elektr yuritmasini loyihalashda asosiy maqsad --- robot manipulyatori boʻgʻinlariga harakat yoʻnalishida tushadigan statik va dinamik yuklama momentlarini ($tau_"yuk"$) va chiziqli kuchlarni ($F_"yuk"$) aniq hisoblash, ushbu yuklamalarni uzatma mexanizmi hamda reduktor uzatish nisbati ($n$) orqali dvigatel valiga keltirish hamda dvigatelning nominal ($T_"nom"$) va maksimal pik ($T_"peak"$) momentlariga mosligini tekshirishdan iborat.
+Robot elektr yuritmasini loyihalaşda asosiy maqsad --- robot manipulyatori böğinlariga harakat yönalişida tuşadigan statik va dinamik yuklama momentlarini ($tau_"yuk"$) va çiziqli kuçlarni ($F_"yuk"$) aniq hisoblaş, uşbu yuklamalarni uzatma mexanizmi hamda reduktor uzatiş nisbati ($n$) orqali dvigatel valiga keltiriş hamda dvigatelning nominal ($T_"nom"$) va maksimal pik ($T_"peak"$) momentlariga mosligini tekşirişdan iborat.
 
 = Robot manipulyatori dinamikasi va yuklama tenglamalari
 
-B. Siciliano va boshq. _Robotics: Modelling, Planning and Control_ darsligida koʻrsatganlaridek, robot manipulyatorining koʻp boʻgʻinli mexanik tizim sifatidagi dinamikasi *Eyler–Lagranj (Euler–Lagrange)* tenglamasi orqali ifodalanadi:
+B. Siciliano va boşq. _Robotics: Modelling, Planning and Control_ darsligida körsatganlaridek, robot manipulyatorining köp böğinli mexanik tizim sifatidagi dinamikasi *Eyler–Lagranj (Euler–Lagrange)* tenglamasi orqali ifodalanadi:
 
 $ M(q) dot.double(q) + C(q, dot(q)) dot(q) + F_v dot(q) + F_s "sgn"(dot(q)) + g(q) = tau $
 
 bunda:
 
-- $q, dot(q), dot.double(q)$ --- robot boʻgʻinlarining umumlashgan koordinatalari (burchak yoki koʻchish), tezliklari va tezlanishlari vektorlari;
+- $q, dot(q), dot.double(q)$ --- robot böğinlarining umumlaşgan koordinatalari (burçak yoki köçiş), tezliklari va tezlanişlari vektorlari;
 - $M(q)$ --- manipulyatorning simmetrik va musbat aniqlangan inersiya matritsasi;
-- $C(q, dot(q))$ --- Koriolis va markazdan qochma (_centrifugal_) kuchlar matritsasi;
-- $F_v, F_s$ --- viskoz va quruq (Kulon) ishqalanish koeffitsientlari;
-- $g(q)$ --- ogʻirlik (gravitatsiya) kuchi momentlari vektori;
-- $tau$ --- robot boʻgʻinlaridagi umumiy harakatlantiruvchi momentlar vektori.
+- $C(q, dot(q))$ --- Koriolis va markazdan qoçma (_centrifugal_) kuçlar matritsasi;
+- $F_v, F_s$ --- viskoz va quruq (Kulon) işqalaniş koeffitsientlari;
+- $g(q)$ --- oğirlik (gravitatsiya) kuçi momentlari vektori;
+- $tau$ --- robot böğinlaridagi umumiy harakatlantiruvçi momentlar vektori.
 
 == Gravitatsion yuklama momenti ($T_g$)
 
-Robot boʻgʻiniga va uning ushlagichida (gripper) joylashgan foydali yukka ogʻirlik kuchi taʼsir qiladi. Gorizontal tekislikka nisbatan $theta$ burchak ostida ogʻgan $i$-boʻgʻin uchun gravitatsion yuklama momenti:
+Robot böğiniga va uning uşlagiçida (gripper) joylaşgan foydali yukka oğirlik kuçi taʼsir qiladi. Gorizontal tekislikka nisbatan $theta$ burçak ostida oğgan $i$-böğin uçun gravitatsion yuklama momenti:
 
 $ T_g (theta) = (m_i dot g dot r_(c,i) + m_L dot g dot L_i) dot cos(theta) $
 
-bunda $m_i$ --- boʻgʻin massasi, $r_(c,i)$ --- boʻgʻin massa markazigacha boʻlgan masofa, $m_L$ --- ushlanayotgan yuk massasi, $L_i$ --- boʻgʻinning toʻliq uzunligi, $g = 9.81 "m/s"^2$.
+bunda $m_i$ --- böğin massasi, $r_(c,i)$ --- böğin massa markazigaça bölgan masofa, $m_L$ --- uşlanayotgan yuk massasi, $L_i$ --- böğinning töliq uzunligi, $g = 9.81 "m/s"^2$.
 
-Maksimal gravitatsion moment boʻgʻin toʻliq gorizontal holatda ($theta = 0 degree$) boʻlganda kuzatiladi:
+Maksimal gravitatsion moment böğin töliq gorizontal holatda ($theta = 0 degree$) bölganda kuzatiladi:
 
 $ T_(g,"max") = m_i g r_(c,i) + m_L g L_i $
 
 == Inersion yuklama momenti ($T_"in"$)
 
-Robot boʻgʻini $alpha = dot.double(theta)$ burchak tezlanishi bilan harakatlanganda inersiya qarshilik momenti yuzaga keladi. Boʻgʻin va yukning keltirilgan inersiya momenti $I_L$ boʻlganda:
+Robot böğini $alpha = dot.double(theta)$ burçak tezlanişi bilan harakatlanganda inersiya qarşilik momenti yuzaga keladi. Böğin va yukning keltirilgan inersiya momenti $I_L$ bölganda:
 
 $ T_"in" = I_L dot dot.double(theta) $
 
-bunda $I_L = I_"boʻgʻin" + m_L dot L_i^2$ --- boʻgʻinning aylanish oʻqiga nisbatan toʻliq inersiya momenti.
+bunda $I_L = I_"böğin" + m_L dot L_i^2$ --- böğinning aylaniş öqiga nisbatan töliq inersiya momenti.
 
-== Ishqalanish va qarshilik momentlari ($T_"frict"$)
+== Işqalaniş va qarşilik momentlari ($T_"frict"$)
 
-Reduktor va podshipniklardagi ishqalanish momenti viskoz hamda quruq ishqalanish tashkil etuvchilaridan iborat:
+Reduktor va podşipniklardagi işqalaniş momenti viskoz hamda quruq işqalaniş taşkil etuvçilaridan iborat:
 
 $ T_"frict" = b_L dot dot(theta) + T_f dot "sgn"(dot(theta)) $
 
-bunda $b_L$ --- viskoz ishqalanish koeffitsienti, $T_f$ --- quruq ishqalanish momenti.
+bunda $b_L$ --- viskoz işqalaniş koeffitsienti, $T_f$ --- quruq işqalaniş momenti.
 
-== Dvigatel valiga keltirilgan toʻliq yuklama momenti ($T_m$)
+== Dvigatel valiga keltirilgan töliq yuklama momenti ($T_m$)
 
-Robot boʻgʻinidagi toʻliq yuklama momenti $tau_"yuk" = T_g + T_"in" + T_"frict" + T_"tashqi"$ reduktor orqali dvigatel valiga keltiriladi. Reduktor uzatish nisbati $n = omega_m \/ omega_L$ va FIK $eta_"red"$ boʻlganda:
+Robot böğinidagi töliq yuklama momenti $tau_"yuk" = T_g + T_"in" + T_"frict" + T_"taşqi"$ reduktor orqali dvigatel valiga keltiriladi. Reduktor uzatiş nisbati $n = omega_m \/ omega_L$ va FIK $eta_"red"$ bölganda:
 
 $
-  T_m (t) = (T_g (theta) + T_"frict" + T_"tashqi") / (n dot eta_"red")
+  T_m (t) = (T_g (theta) + T_"frict" + T_"taşqi") / (n dot eta_"red")
   + (I_m + I_L / (n^2 dot eta_"red")) dot.double(theta)_m
 $
 
-bunda $I_m$ --- dvigatel rotorining oʻz inersiya momenti, $dot.double(theta)_m = n dot dot.double(theta)$ --- dvigatel rotorining burchak tezlanishi.
+bunda $I_m$ --- dvigatel rotorining öz inersiya momenti, $dot.double(theta)_m = n dot dot.double(theta)$ --- dvigatel rotorining burçak tezlanişi.
 
-= Chiziqli harakat tizimlarida kuch va moment hisobi
+= Çiziqli harakat tizimlarida kuç va moment hisobi
 
-C.W. de Silva oʻzining _Mechatronic Systems_ darsligida koʻrsatganidek, chiziqli harakatlanuvchi robot modullarida (masalan, dekart robotlari yoki chiziqli uzatgichlar) aylanma harakatni chiziqli harakatga aylantirish uchun *sharikli-vintli uzatmalar (Ball-Screw Drives)* qoʻllaniladi. Chiziqli aksial yuklama kuchi $F_"yuk"$ boʻlganda, vint valida talab etiladigan harakatlantiruvchi moment $T_"vint"$:
+C.W. de Silva özining _Mechatronic Systems_ darsligida körsatganidek, çiziqli harakatlanuvçi robot modullarida (masalan, dekart robotlari yoki çiziqli uzatgiçlar) aylanma harakatni çiziqli harakatga aylantiriş uçun *şarikli-vintli uzatmalar (Ball-Screw Drives)* qöllaniladi. Çiziqli aksial yuklama kuçi $F_"yuk"$ bölganda, vint valida talab etiladigan harakatlantiruvçi moment $T_"vint"$:
 
 $ T_"vint" = (F_"yuk" dot p) / (2 pi dot eta_"bs") + T_"pre" $
 
 bunda:
 
-- $F_"yuk" = m_"tot" (g dot sin phi + a_x) + F_"kesish"$ --- toʻliq chiziqli kuch;
-- $p$ --- sharikli vint qadami (_pitch_, masalan $p = 5 "mm/rev" = 0.005 "m"$);
-- $eta_"bs"$ --- sharikli-vintli uzatmaning FIKi (odatda $eta_"bs" = 0.90 dots 0.95$);
-- $T_"pre"$ --- vint gaykasining dastlabki tortilish (_preload_) momenti.
+- $F_"yuk" = m_"tot" (g dot sin phi + a_x) + F_"kesiş"$ --- töliq çiziqli kuç;
+- $p$ --- şarikli vint qadami (_pitch_, masalan $p = 5 "mm/rev" = 0.005 "m"$);
+- $eta_"bs"$ --- şarikli-vintli uzatmaning FIKi (odatda $eta_"bs" = 0.90 dots 0.95$);
+- $T_"pre"$ --- vint gaykasining dastlabki tortiliş (_preload_) momenti.
 
-Vint valining aylanish burchak tezligi $omega_v$ va chiziqli tezlik $v_x$ oʻrtasidagi bogʻliqlik:
+Vint valining aylaniş burçak tezligi $omega_v$ va çiziqli tezlik $v_x$ örtasidagi boğliqlik:
 
 $ omega_v = (2 pi dot v_x) / p $
 
-= Grafiklar va chizmalar
+= Grafiklar va çizmalar
 
-== Robot manipulyatori boʻgʻinining kinematik va yuklama modeli
+== Robot manipulyatori böğinining kinematik va yuklama modeli
 
 #figure(
   cetz.canvas(length: 1.2cm, {
@@ -167,7 +167,7 @@ $ omega_v = (2 pi dot v_x) / p $
 
     // Oʻlcham chizigʻi L_1
     line(rot(0, 0.45), rot(4.2, 0.45), stroke: 1pt + gray, mark: (start: "stealth", end: "stealth", fill: gray))
-    content(rot(2.1, 0.65), angle: 30deg, small[Boʻgʻin uzunligi $L_1$])
+    content(rot(2.1, 0.65), angle: 30deg, small[Böğin uzunligi $L_1$])
 
     // Massa markazi va ogʻirlik kuchi (vertikal!)
     let cm = rot(2.0, 0)
@@ -200,7 +200,7 @@ $ omega_v = (2 pi dot v_x) / p $
     )
     content((-0.7, 0.35), anchor: "east", text(size: 9pt, weight: "bold", fill: purple)[$tau_"yuk"$])
   }),
-  caption: [Robot manipulyatori boʻgʻiniga tushadigan yuklama va ogʻirlik kuchlari modeli],
+  caption: [Robot manipulyatori böğiniga tuşadigan yuklama va oğirlik kuçlari modeli],
 )
 
 == Dvigatel, reduktor va yuklama tizimining kinematik zanjiri
@@ -221,14 +221,14 @@ $ omega_v = (2 pi dot v_x) / p $
     rect((2.5, 0.8), (3.8, 1.2), fill: gray.lighten(40%), stroke: 1.6pt)
     boxed((3.8, -0.2), (5.8, 2.2), blue.lighten(80%))[Reduktor \ ($n, eta_"red"$)]
     rect((5.8, 0.7), (7.2, 1.3), fill: gray.lighten(40%), stroke: 1.6pt)
-    boxed((7.2, -0.5), (10.0, 2.5), green.lighten(80%))[Robot boʻgʻini \ va yuklama \ ($I_L, tau_"yuk", omega_L$)]
+    boxed((7.2, -0.5), (10.0, 2.5), green.lighten(80%))[Robot böğini \ va yuklama \ ($I_L, tau_"yuk", omega_L$)]
 
     line((3.15, 1.5), (3.15, 2.1), stroke: 2pt + red.darken(20%), mark: (end: "stealth", fill: red.darken(20%)))
     content((3.15, 2.2), anchor: "south", text(size: 8pt, weight: "bold")[$T_m$])
     line((6.5, 1.6), (6.5, 2.2), stroke: 2pt + blue.darken(20%), mark: (end: "stealth", fill: blue.darken(20%)))
     content((6.5, 2.3), anchor: "south", text(size: 8pt, weight: "bold")[$tau_"yuk"$])
   }),
-  caption: [Dvigatel, reduktor hamda robot boʻgʻini yuklamasining quvvat uzatish sxemasi],
+  caption: [Dvigatel, reduktor hamda robot böğini yuklamasining quvvat uzatiş sxemasi],
 )
 
 == Trapetsiyasimon tezlik profili va dinamik yuklama momenti
@@ -269,66 +269,66 @@ $ omega_v = (2 pi dot v_x) / p $
 
     // Qiymat belgilari
     content((-0.1, 3.0), anchor: "east", text(fill: red-c, small[$omega_"max"$]))
-    content((-0.1, 3.6), anchor: "east", text(fill: blue-c, small[$T_"acc"$ (tezlanish)]))
+    content((-0.1, 3.6), anchor: "east", text(fill: blue-c, small[$T_"acc"$ (tezlaniş)]))
     content((-0.1, 2.3), anchor: "east", text(fill: blue-c, small[$T_"const"$ (barqaror)]))
     content((-0.1, 1.05), anchor: "east", text(fill: blue-c, small[$T_"dec"$ (tormoz)]))
   }),
-  caption: [Trapetsiyasimon tezlik grafigi sharoitida dvigatel validagi dinamik yuklama momenti grafigi],
+  caption: [Trapetsiyasimon tezlik grafigi şaroitida dvigatel validagi dinamik yuklama momenti grafigi],
 )
 
-= Amaliy hisoblash misoli (sanoat roboti boʻgʻini hisobi)
+= Amaliy hisoblaş misoli (sanoat roboti böğini hisobi)
 
-== Boshlangʻich maʼlumotlar
+== Boşlanğiç maʼlumotlar
 
-Sanoat robotining 2-boʻgʻini (_Arm Joint_) uchun elektr yuritma va reduktor tanlash hamda yuklama momentini hisoblash talab etiladi:
+Sanoat robotining 2-böğini (_Arm Joint_) uçun elektr yuritma va reduktor tanlaş hamda yuklama momentini hisoblaş talab etiladi:
 
-- Robot boʻgʻini massasi: $m_1 = 8.0 "kg"$;
-- Boʻgʻin uzunligi: $L_1 = 0.6 "m"$;
-- Boʻgʻin massa markazi: $r_(c 1) = 0.3 "m"$;
-- Boʻgʻinning oʻz inersiya momenti: $I_"boʻgʻin" = 0.32 "kg" dot "m"^2$;
-- Ushlanayotgan foydali yuk massasi: $m_L = 5.0 "kg"$;
+- Robot böğini massasi: $m_1 = 8.0 "kg"$;
+- Böğin uzunligi: $L_1 = 0.6 "m"$;
+- Böğin massa markazi: $r_(c 1) = 0.3 "m"$;
+- Böğinning öz inersiya momenti: $I_"böğin" = 0.32 "kg" dot "m"^2$;
+- Uşlanayotgan foydali yuk massasi: $m_L = 5.0 "kg"$;
 - Harakat diapazoni: $theta = 0 degree -> 90 degree$ (gorizontal holatdan vertikal holatga);
-- Harakat vaqti: $t_"sikl" = 1.0 "s"$ (tezlanish vaqti $t_a = 0.2 "s"$, barqaror harakat $t_v = 0.6 "s"$, tormozlanish $t_d = 0.2 "s"$);
-- Reduktor uzatish nisbati: $n = 80$, FIK $eta_"red" = 0.85$.
+- Harakat vaqti: $t_"sikl" = 1.0 "s"$ (tezlaniş vaqti $t_a = 0.2 "s"$, barqaror harakat $t_v = 0.6 "s"$, tormozlaniş $t_d = 0.2 "s"$);
+- Reduktor uzatiş nisbati: $n = 80$, FIK $eta_"red" = 0.85$.
 
-== Hisoblash bosqichlari
+== Hisoblaş bosqiçlari
 
-#heading(level: 3, numbering: none)[a) Boʻgʻindagi toʻliq inersiya momentini hisoblash ($I_L$)]
+#heading(level: 3, numbering: none)[a) Böğindagi töliq inersiya momentini hisoblaş ($I_L$)]
 
-Yuk massasini hisobga olgan holda boʻgʻinning toʻliq inersiya momenti:
+Yuk massasini hisobga olgan holda böğinning töliq inersiya momenti:
 
-$ I_L = I_"boʻgʻin" + m_L dot L_1^2 = 0.32 + 5.0 dot (0.6)^2 = 0.32 + 1.80 = 2.12 "kg" dot "m"^2 $
+$ I_L = I_"böğin" + m_L dot L_1^2 = 0.32 + 5.0 dot (0.6)^2 = 0.32 + 1.80 = 2.12 "kg" dot "m"^2 $
 
 #heading(level: 3, numbering: none)[b) Maksimal gravitatsion yuklama momenti ($T_(g,"max")$)]
 
-Boʻgʻin gorizontal holatda ($theta = 0 degree$) boʻlganda ogʻirlik kuchi momenti maksimal boʻladi:
+Böğin gorizontal holatda ($theta = 0 degree$) bölganda oğirlik kuçi momenti maksimal böladi:
 
 $ T_(g,"max") = m_1 dot g dot r_(c 1) + m_L dot g dot L_1 = 8.0 dot 9.81 dot 0.3 + 5.0 dot 9.81 dot 0.6 $
 
 $ T_(g,"max") = 23.544 + 29.43 = 52.974 "Nm" $
 
-#heading(level: 3, numbering: none)[c) Boʻgʻin burchak tezligi va tezlanishi]
+#heading(level: 3, numbering: none)[c) Böğin burçak tezligi va tezlanişi]
 
-Boʻgʻinning toʻliq burilish burchagi $Delta theta = 90 degree = pi \/ 2 approx 1.5708 "rad"$. Trapetsiyasimon tezlik grafigi uchun maksimal burchak tezligi $omega_(L,"max")$:
+Böğinning töliq buriliş burçagi $Delta theta = 90 degree = pi \/ 2 approx 1.5708 "rad"$. Trapetsiyasimon tezlik grafigi uçun maksimal burçak tezligi $omega_(L,"max")$:
 
 $
   Delta theta = omega_(L,"max") dot (t_a + t_v) ==> 1.5708 = omega_(L,"max") dot (0.2 + 0.6)
   ==> omega_(L,"max") = 1.9635 "rad/s"
 $
 
-Boʻgʻinning burchak tezlanishi $alpha_L$:
+Böğinning burçak tezlanişi $alpha_L$:
 
 $ alpha_L = omega_(L,"max") / t_a = 1.9635 / 0.2 = 9.8175 "rad/s"^2 $
 
-Dvigatel rotorining maksimal burchak tezligi $omega_(m,"max")$ va tezlanishi $alpha_m$:
+Dvigatel rotorining maksimal burçak tezligi $omega_(m,"max")$ va tezlanişi $alpha_m$:
 
 $ omega_(m,"max") = n dot omega_(L,"max") = 80 dot 1.9635 = 157.08 "rad/s" quad (n_m approx 1500 "rpm") $
 
 $ alpha_m = n dot alpha_L = 80 dot 9.8175 = 785.4 "rad/s"^2 $
 
-#heading(level: 3, numbering: none)[d) Dvigatel valiga keltirilgan momentlarni hisoblash]
+#heading(level: 3, numbering: none)[d) Dvigatel valiga keltirilgan momentlarni hisoblaş]
 
-Tanlangan dvigatel rotorining inersiya momenti $I_m = 0.00015 "kg" dot "m"^2$ ($1.5 "kg" dot "cm"^2$) boʻlsin. Dvigatel valiga keltirilgan statik gravitatsion moment:
+Tanlangan dvigatel rotorining inersiya momenti $I_m = 0.00015 "kg" dot "m"^2$ ($1.5 "kg" dot "cm"^2$) bölsin. Dvigatel valiga keltirilgan statik gravitatsion moment:
 
 $ T_(m,g) = T_(g,"max") / (n dot eta_"red") = 52.974 / (80 dot 0.85) = 52.974 / 68 = 0.779 "Nm" $
 
@@ -341,18 +341,18 @@ $
 
 $ T_(m,"in") = (0.00015 + 0.0003897) dot 785.4 = 0.0005397 dot 785.4 = 0.424 "Nm" $
 
-Harakat bosqichlari boʻyicha dvigatel validagi toʻliq momentlar:
+Harakat bosqiçlari böyiça dvigatel validagi töliq momentlar:
 
-- *Tezlanish bosqichida ($t_a = 0.2 "s"$):*
+- *Tezlaniş bosqiçida ($t_a = 0.2 "s"$):*
   $ T_"acc" = T_(m,g) + T_(m,"in") = 0.779 + 0.424 = 1.203 "Nm" $
-- *Barqaror harakat bosqichida ($t_v = 0.6 "s"$):*
+- *Barqaror harakat bosqiçida ($t_v = 0.6 "s"$):*
   $ T_"const" = T_(m,g) = 0.779 "Nm" $
-- *Tormozlanish bosqichida ($t_d = 0.2 "s"$):*
+- *Tormozlaniş bosqiçida ($t_d = 0.2 "s"$):*
   $ T_"dec" = T_(m,g) - T_(m,"in") = 0.779 - 0.424 = 0.355 "Nm" $
 
-#heading(level: 3, numbering: none)[e) Oʻrtacha kvadratik moment ($T_"rms"$) hisobi]
+#heading(level: 3, numbering: none)[e) Örtaça kvadratik moment ($T_"rms"$) hisobi]
 
-Dvigatelning issiqlik rejimiga chidamliligini baholash uchun oʻrtacha kvadratik moment $T_"rms"$ hisoblanadi:
+Dvigatelning issiqlik rejimiga çidamliligini baholaş uçun örtaça kvadratik moment $T_"rms"$ hisoblanadi:
 
 $ T_"rms" = sqrt((T_"acc"^2 dot t_a + T_"const"^2 dot t_v + T_"dec"^2 dot t_d) / t_"sikl") $
 
@@ -360,9 +360,9 @@ $ T_"rms" = sqrt(((1.203)^2 dot 0.2 + (0.779)^2 dot 0.6 + (0.355)^2 dot 0.2) / 1
 
 $ T_"rms" = sqrt(0.2894 + 0.3641 + 0.0252) = sqrt(0.6787) = 0.824 "Nm" $
 
-= Natijalar va dvigatel tanlash solishtirma jadvali
+= Natijalar va dvigatel tanlaş soliştirma jadvali
 
-Oʻtkazilgan hisob-kitoblar natijasida robot boʻgʻini elektr yuritmasi uchun talab etiladigan nominal moment $T_"nom" >= 0.824 "Nm"$, maksimal pik moment $T_"peak" >= 1.203 "Nm"$ hamda nominal tezlik $n_m >= 1500 "rpm"$ ekanligi aniqlandi.
+Ötkazilgan hisob-kitoblar natijasida robot böğini elektr yuritmasi uçun talab etiladigan nominal moment $T_"nom" >= 0.824 "Nm"$, maksimal pik moment $T_"peak" >= 1.203 "Nm"$ hamda nominal tezlik $n_m >= 1500 "rpm"$ ekanligi aniqlandi.
 
 #figure(
   {
@@ -378,27 +378,27 @@ Oʻtkazilgan hisob-kitoblar natijasida robot boʻgʻini elektr yuritmasi uchun t
       table.hline(stroke: 0.5pt),
       [Nominal moment ($T_"nom"$)], [$0.824 "Nm"$], [$1.10 "Nm"$], [$1.33$],
       [Maksimal pik moment ($T_"peak"$)], [$1.203 "Nm"$], [$3.30 "Nm"$], [$2.74$],
-      [Nominal aylanish tezligi ($n_m$)], [$1500 "rpm"$], [$3000 "rpm"$], [$2.00$],
+      [Nominal aylaniş tezligi ($n_m$)], [$1500 "rpm"$], [$3000 "rpm"$], [$2.00$],
       [Rotor inersiya momenti ($I_m$)], [$1.50 "kg" dot "cm"^2$], [$1.80 "kg" dot "cm"^2$], [---],
       [Dvigatel nominal quvvati ($P_"nom"$)], [$129.4 "W"$], [$345 "W"$], [$2.66$],
       table.hline(stroke: 1pt),
     )
   },
-  caption: [Robot boʻgʻini elektr yuritmasining hisoblangan va katalogdan tanlangan koʻrsatkichlari],
+  caption: [Robot böğini elektr yuritmasining hisoblangan va katalogdan tanlangan körsatkiçlari],
 )
 
 = Hisobot mazmuni va nazorat savollari
 
 == Hisobot mazmuni
 
-+ Robot manipulyatorining berilgan kinematik sxemasi boʻyicha gravitatsion va inersion yuklama momentlarini hisoblash.
-+ Dvigatel valiga keltirilgan dinamik moment grafigini chizish va $T_"rms"$ ni aniqlash.
-+ Katalogdan mos keluvchi BLDC servodvigatel hamda planetar reduktorni tanlash.
++ Robot manipulyatorining berilgan kinematik sxemasi böyiça gravitatsion va inersion yuklama momentlarini hisoblaş.
++ Dvigatel valiga keltirilgan dinamik moment grafigini çiziş va $T_"rms"$ ni aniqlaş.
++ Katalogdan mos keluvçi BLDC servodvigatel hamda planetar reduktorni tanlaş.
 
 == Nazorat savollari
 
-+ Robot manipulyatori boʻgʻinlariga tushadigan gravitatsion yuklama momenti $theta$ burchakka bogʻliq holda qanday oʻzgaradi?
-+ Inersiya moslashuvi (_Inertia Matching_) nima va nima uchun $n^* = sqrt(I_L \/ I_m)$ sharti muhim hisoblanadi?
-+ Oʻrtacha kvadratik moment ($T_"rms"$) va maksimal pik moment ($T_"peak"$) dvigatel tanlashda qanday rol oʻynaydi?
-+ Sharikli-vintli uzatmalarda chiziqli kuch $F_"yuk"$ harakatlantiruvchi momentga qanday qayta hisoblanadi?
-+ Reduktorning FIKi ($eta_"red"$) va ortga uzatish qobiliyati (_back-drivability_) yuritma dinamikasiga qanday taʼsir qiladi?
++ Robot manipulyatori böğinlariga tuşadigan gravitatsion yuklama momenti $theta$ burçakka boğliq holda qanday özgaradi?
++ Inersiya moslaşuvi (_Inertia Matching_) nima va nima uçun $n^* = sqrt(I_L \/ I_m)$ şarti muhim hisoblanadi?
++ Örtaça kvadratik moment ($T_"rms"$) va maksimal pik moment ($T_"peak"$) dvigatel tanlaşda qanday rol öynaydi?
++ Şarikli-vintli uzatmalarda çiziqli kuç $F_"yuk"$ harakatlantiruvçi momentga qanday qayta hisoblanadi?
++ Reduktorning FIKi ($eta_"red"$) va ortga uzatiş qobiliyati (_back-drivability_) yuritma dinamikasiga qanday taʼsir qiladi?

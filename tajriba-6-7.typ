@@ -117,7 +117,7 @@
 // ============ Hujjat sozlamalari ============
 #let headingblue = rgb(20, 50, 120)
 
-#set document(title: "6-7-Tajribalar: Sanoat robotlarining gidroyuritmalari qurilmalari va ishlash prinsiplari")
+#set document(title: "6-7-Tajribalar: Sanoat robotlarining gidroyuritmalari qurilmalari va işlaş prinsiplari")
 
 #set page(
   paper: "a4",
@@ -138,7 +138,7 @@
   line(length: 100%, stroke: 0.4pt + luma(170))
 })
 // ===================
-#set text(size: 12pt, lang: "uz")
+#set text(size: 12pt, lang: "uz", font: info.font)
 #set par(justify: true, leading: 0.75em)
 #set heading(numbering: "1.1.")
 #show heading: it => block(above: 1.2em, below: 0.7em)[
@@ -155,16 +155,16 @@
 
 // ============ Sarlavha ============
 #align(center)[
-  #text(size: 18pt, weight: "bold", fill: headingblue)[TAJRIBA MASHGʻULOTLARI №6 va №7]
+  #text(size: 18pt, weight: "bold", fill: headingblue)[TAJRIBA MAŞĞULOTLARI №6 va №7]
 
   #v(0.2cm)
   #text(size: 13pt, weight: "bold")[
-    Mavzu: Sanoat robotlarining gidroyuritmalari qurilmalari va ishlash
-    prinsiplari bilan tanishish
+    Mavzu: Sanoat robotlarining gidroyuritmalari qurilmalari va işlaş
+    prinsiplari bilan tanişiş
   ]
 
   #v(0.1cm)
-  #text(size: 10pt)[(Kengaytirilgan 2 bosqichli tajriba mashgʻuloti koʻrsatmasi)]
+  #text(size: 10pt)[(Kengaytirilgan 2 bosqiçli tajriba maşğuloti körsatmasi)]
 
   #v(0.3cm)
   #line(length: 100%, stroke: 1pt)
@@ -172,113 +172,113 @@
 
 #v(0.3cm)
 
-= Ishning maqsadi
+= Işning maqsadi
 
-- *1-bosqich (6-tajriba):* Sanoat robotlari hamda ogʻir yuk koʻtaruvchi
-  mexatron modullarda qoʻllaniladigan gidravlik kuch stansiyasi (Power Pack),
-  gidronasoslar, bosim saqlash klapanlari (pressure relief valves) va
-  gidrotaqsimlagichlar tuzilishi hamda ishlash prinsiplarini oʻrganish.
+- *1-bosqiç (6-tajriba):* Sanoat robotlari hamda oğir yuk kötaruvçi
+  mexatron modullarda qöllaniladigan gidravlik kuç stansiyasi (Power Pack),
+  gidronasoslar, bosim saqlaş klapanlari (pressure relief valves) va
+  gidrotaqsimlagiçlar tuzilişi hamda işlaş prinsiplarini örganiş.
 
-- *2-bosqich (7-tajriba):* Elektrogidravlik servoyuritmalar
+- *2-bosqiç (7-tajriba):* Elektrogidravlik servoyuritmalar
   (Electrohydraulic Servo Actuators --- EHA), servoklapanlar (servovalves)
-  hamda yopiq zanjirli pozitsiya va kuch boshqaruv tizimlarining statik va
-  dinamik xarakteristikalarini tadqiq etish.
+  hamda yopiq zanjirli pozitsiya va kuç boşqaruv tizimlarining statik va
+  dinamik xarakteristikalarini tadqiq etiş.
 
 - Suyuqlik siqilmasligi (incompressibility) hisobiga gidroyuritmada yuqori
-  qattiqlik (stiffness) va aniq pozitsiyalash koʻnikmalarini shakllantirish
-  hamda oʻlchov datchiklari orqali gidravlik parametrlarni ($P, Q, F, x$)
-  qayd etish.
+  qattiqlik (stiffness) va aniq pozitsiyalaş könikmalarini şakllantiriş
+  hamda ölçov datçiklari orqali gidravlik parametrlarni ($P, Q, F, x$)
+  qayd etiş.
 
-= Qisqacha nazariy maʼlumotlar
+= Qisqaça nazariy maʼlumotlar
 
-Sanoat robotlarida katta yuk koʻtarish qobiliyati (payload capacity) va yuqori
+Sanoat robotlarida katta yuk kötariş qobiliyati (payload capacity) va yuqori
 quvvat/massa nisbati talab etilganda gidroyuritmalar asosiy ijro organi
-hisoblanadi. Pnevmoyuritmaga qaraganda gidroyuritmalarning bosh afzalligi ---
-*ishchi suyuqlikning (gidravlik moyning) amalda siqilmasligidir* (suyuqlik
-siqiluvchanlik koeffitsienti $gamma$ juda kichik). Bu gidroyuritmaga juda
-yuqori dinamik qattiqlik (high stiffness) va pozitsiyalash aniqligini beradi.
+hisoblanadi. Pnevmoyuritmaga qaraganda gidroyuritmalarning boş afzalligi ---
+*işçi suyuqlikning (gidravlik moyning) amalda siqilmasligidir* (suyuqlik
+siqiluvçanlik koeffitsienti $gamma$ juda kiçik). Bu gidroyuritmaga juda
+yuqori dinamik qattiqlik (high stiffness) va pozitsiyalaş aniqligini beradi.
 
 == Gidravlik Tizimning Asosiy Tarkibiy Qismlari
 
-Gidravlik yuritma kompleksi quyidagi asosiy bloklardan tashkil topadi:
+Gidravlik yuritma kompleksi quyidagi asosiy bloklardan taşkil topadi:
 
 + *Gidravlik Quvvat Stansiyasi (Hydraulic Power Unit / Tank Block):*
-  - *Gidrobak (Reservoir):* Ishchi suyuqlikni saqlash, sovutish va havo
-    pufakchalarini ajratish uchun xizmat qiladi.
+  - *Gidrobak (Reservoir):* Işçi suyuqlikni saqlaş, sovutiş va havo
+    pufakçalarini ajratiş uçun xizmat qiladi.
   - *Gidronasos (Hydraulic Pump):* Elektromotor orqali harakatga keltirilib,
     mexanik energiyani suyuqlikning gidravlik energiyasiga (bosim va sarfga)
-    aylantiradi. Sanoat robotlarida hajmiy nasoslar (tishli/gear,
-    plastinkali/vane, porshenli/piston pumps) qoʻllaniladi.
-  - *Bosim saqlash klapani (Pressure Relief Valve):* Tizimda maksimal ruxsat
-    etilgan bosimni ($P_"max"$) cheklaydi va ortiqcha suyuqlikni bakka
-    yoʻnaltirib, avariyaning oldini oladi.
-  - *Gidroakkumulyator (Accumulator):* Tizimda bosim tebranishlarini
+    aylantiradi. Sanoat robotlarida hajmiy nasoslar (tişli/gear,
+    plastinkali/vane, porşenli/piston pumps) qöllaniladi.
+  - *Bosim saqlaş klapani (Pressure Relief Valve):* Tizimda maksimal ruxsat
+    etilgan bosimni ($P_"max"$) çeklaydi va ortiqça suyuqlikni bakka
+    yönaltirib, avariyaning oldini oladi.
+  - *Gidroakkumulyator (Accumulator):* Tizimda bosim tebranişlarini
     silliqlaydi va biror momentda piko-sarf talab etilganda gidravlik
     energiyani zaxiradan beradi.
-  - *Filtrlar:* Suyuqlikdagi 10--20 mikrondan katta boʻlgan zarralarni tutib
-    qolib, klapan va manjetlar eyilishining oldini oladi.
+  - *Filtrlar:* Suyuqlikdagi 10--20 mikrondan katta bölgan zarralarni tutib
+    qolib, klapan va manjetlar eyilişining oldini oladi.
 
-+ *Boshqaruv va Rostlash Apparaturasi:*
-  - *Gidrotaqsimlagichlar (Directional Valves):* Suyuqlik oqim yoʻnalishini
-    oʻzgartirib, gidrosilindr shtoki harakat yoʻnalishini (oldinga/ortga)
-    boshqaradi.
++ *Boşqaruv va Rostlaş Apparaturasi:*
+  - *Gidrotaqsimlagiçlar (Directional Valves):* Suyuqlik oqim yönalişini
+    özgartirib, gidrosilindr ştoki harakat yönalişini (oldinga/ortga)
+    boşqaradi.
   - *Elektrogidravlik Servoklapanlar (Servo / Proportional Valves):*
-    Boshqaruv solenoidi yoki tork-motor (torque motor) orqali suyuqlik sarfi
-    $Q$ va bosimini uzluksiz hamda yuqori aniqlikda (millisekundlar ichida)
-    boshqaradi.
+    Boşqaruv solenoidi yoki tork-motor (torque motor) orqali suyuqlik sarfi
+    $Q$ va bosimini uzluksiz hamda yuqori aniqlikda (millisekundlar içida)
+    boşqaradi.
 
-+ *Ijro Organlari (Actuators):* Gidrosilindrlar (chiziqli harakat) hamda
-  gidromotorlar (cheksiz aylanish).
++ *Ijro Organlari (Actuators):* Gidrosilindrlar (çiziqli harakat) hamda
+  gidromotorlar (çeksiz aylaniş).
 
 == Gidroyuritma Matematik va Dinamik Tenglamalari
 
-Paskal qonuniga koʻra, gidravlik tizimda hosil boʻlgan bosim ($P$) barcha
-yoʻnalishlarda bir xil uzatiladi. Gidrosilindr rivojlantiradigan kuch $F$:
+Paskal qonuniga köra, gidravlik tizimda hosil bölgan bosim ($P$) barça
+yönalişlarda bir xil uzatiladi. Gidrosilindr rivojlantiradigan kuç $F$:
 
-$ F_"gidro" = P_1 A_1 - P_2 A_2 - f_"ishq" $
+$ F_"gidro" = P_1 A_1 - P_2 A_2 - f_"işq" $
 
 bunda $P_1, P_2$ --- silindr kameralaridagi bosimlar, $A_1, A_2$ ---
-effektiv yuzalar, $f_"ishq"$ --- gidravlik zichlagichlardagi ishqalanish
-kuchi.
+effektiv yuzalar, $f_"işq"$ --- gidravlik ziçlagiçlardagi işqalaniş
+kuçi.
 
 Nasos beradigan nazariy suyuqlik sarfi $Q_"nasos"$:
 
 $ Q_"nasos" = V_q dot n dot eta_v $
 
-bunda $V_q$ --- nasosning ishchi hajmi ($"cm"^3\/"rev"$), $n$ --- val
-aylanishlar soni (rpm), $eta_v$ --- hajmiy FİK.
+bunda $V_q$ --- nasosning işçi hajmi ($"cm"^3\/"rev"$), $n$ --- val
+aylanişlar soni (rpm), $eta_v$ --- hajmiy FİK.
 
-Elektrogidravlik servoyuritmaning oʻtish jarayonidagi dinamik sarf-bosim
+Elektrogidravlik servoyuritmaning ötiş jarayonidagi dinamik sarf-bosim
 tenglamasi (Servovalve Flow Equation):
 
 $ Q_L = K_q x_v - K_c P_L $
 
-bunda $Q_L$ --- yuklama sarfi, $x_v$ --- servoklapan zolotnigi siljishi,
-$K_q$ --- sarf uzatish koeffitsienti, $K_c$ --- bosim-sarf drossellash
+bunda $Q_L$ --- yuklama sarfi, $x_v$ --- servoklapan zolotnigi siljişi,
+$K_q$ --- sarf uzatiş koeffitsienti, $K_c$ --- bosim-sarf drossellaş
 koeffitsienti, $P_L = P_1 - P_2$ --- yuklama bosimlar farqi.
 
-Gidrosilindr porshenining koʻchish dinamikasi ($x(t)$):
+Gidrosilindr porşenining köçiş dinamikasi ($x(t)$):
 
 $ M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk" = A_1 P_L $
 
 = Kerakli jihozlar va stend elementlari
 
-+ *Gidravlik laboratoriya stendi:* Gidrobak (50 litr), uch fazali
-  elektromotor va hajmiy porshenli/tishli nasos
++ *Gidravlik laboratoriya stendi:* Gidrobak (50 litr), uç fazali
+  elektromotor va hajmiy porşenli/tişli nasos
   ($P_"max" = 100 "bar"$, $Q = 10$ l/min).
-+ *Gidravlik ijro organlari:* Sanoat roboti boʻgʻinining gidrosilindri
++ *Gidravlik ijro organlari:* Sanoat roboti böğinining gidrosilindri
   ($D = 40 "mm"$, $S = 300 "mm"$) va gidromotor.
-+ *Boshqaruv apparatlari:* Direct-operated 4/3-yoʻlli gidrotaqsimlagich,
++ *Boşqaruv apparatlari:* Direct-operated 4/3-yölli gidrotaqsimlagiç,
   proporsional klapan hamda flapper-nozzle tipidagi elektrogidravlik
   servoklapan.
-+ *Himoya va rostlash moslamalari:* Sozlanuvchi bosim saqlash klapani (relief
++ *Himoya va rostlaş moslamalari:* Sozlanuvçi bosim saqlaş klapani (relief
   valve), qaytarma klapanlar, drossellar.
-+ *Oʻlchov va qayd etish kompleksi:*
-  - Manometrlar va yuqori bosim datchiklari
++ *Ölçov va qayd etiş kompleksi:*
+  - Manometrlar va yuqori bosim datçiklari
     (0--160 bar, $P_1, P_2, P_"nasos"$);
-  - Gidravlik sarf oʻlchagich (Turbine flow meter $Q$);
-  - Kuch datchigi (S-type load cell $F_"yuk"$);
-  - LVDT pozitsiya datchigi ($x(t)$) hamda AChP (DAQ) maʼlumotlar yigʻish
+  - Gidravlik sarf ölçagiç (Turbine flow meter $Q$);
+  - Kuç datçigi (S-type load cell $F_"yuk"$);
+  - LVDT pozitsiya datçigi ($x(t)$) hamda AÇP (DAQ) maʼlumotlar yiğiş
     platasi.
 
 = Gidravlik va Servoyuritma Sxemalari
@@ -297,7 +297,7 @@ $ M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk" = A_1 P_L $
     (d.R)((0, 4.0), (4.0, 5.2), fl: gray.lighten(80%), st: 1.5pt + black)
     (d.R)((1.2, 4.05), (1.6, 5.15), fl: blue.lighten(60%)) // porshen
     (d.R)((1.6, 4.45), (5.2, 4.75), fl: gray.lighten(40%), st: 1.5pt + black)
-    (d.T)((2.0, 5.3), sb(9pt)[Robot Boʻgʻini Gidrosilindri ($D = 40$ mm)], at: center + bottom)
+    (d.T)((2.0, 5.3), sb(9pt)[Robot Böğini Gidrosilindri ($D = 40$ mm)], at: center + bottom)
 
     // --- Bosim datchiklari ---
     (d.L)((0.6, 4.0), (0.6, 3.6))
@@ -329,7 +329,7 @@ $ M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk" = A_1 P_L $
 
     // --- Bosim saqlash klapani ---
     (d.L)((1.33, -0.2), (-0.5, -0.2), (-0.5, -1.2))
-    BX((-1.7, -1.8), (-0.3, -1.2), align(center, sb(6.5pt)[Saqlash \ Klapani]), fl: red.lighten(80%))
+    BX((-1.7, -1.8), (-0.3, -1.2), align(center, sb(6.5pt)[Saqlaş \ Klapani]), fl: red.lighten(80%))
     (d.L)((-1.0, -1.8), (-1.0, -2.42))
     (d.A)((-1.0, -2.5), "down")
     (d.T)((-1.0, -2.6), sb(7pt)[Bakka (T)], at: center + top)
@@ -348,10 +348,10 @@ $ M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk" = A_1 P_L $
     (d.L)((1.33, -1.7), (1.33, -2.3))
     (d.T)((1.95, -2.5), sb(7pt)[Gidrobak (Moy)])
   }),
-  caption: [Robot boʻgʻini elektrogidravlik yuritmasining prinsipial gidravlik sxemasi],
+  caption: [Robot böğini elektrogidravlik yuritmasining prinsipial gidravlik sxemasi],
 )
 
-== Yopiq Zanjirli Pozitsiyalash Servoyuritma Boshqaruv Sxemasi (7-Tajriba)
+== Yopiq Zanjirli Pozitsiyalaş Servoyuritma Boşqaruv Sxemasi (7-Tajriba)
 
 #figure(
   sxema(xmin: -0.2, xmax: 15.9, ymin: 0.2, ymax: 4.0, d => {
@@ -370,10 +370,10 @@ $ M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk" = A_1 P_L $
     }
 
     // --- Bloklar ---
-    BX((0.0, 2.55), (2.3, 3.45), sb(7.5pt)[Topshiriq $x_"ref"$], fl: blue.lighten(90%))
+    BX((0.0, 2.55), (2.3, 3.45), sb(7.5pt)[Topşiriq $x_"ref"$], fl: blue.lighten(90%))
     (d.C)((3.1, 3.0), 0.28, fl: white)
     (d.T)((3.1, 3.0), sb(9pt)[$Sigma$])
-    BX((4.3, 2.5), (6.1, 3.5), align(center, sb(7.5pt)[PI/PID \ Boshqarich]), fl: yellow.lighten(80%))
+    BX((4.3, 2.5), (6.1, 3.5), align(center, sb(7.5pt)[PI/PID \ Boşqariç]), fl: yellow.lighten(80%))
     BX((6.9, 2.5), (9.1, 3.5), align(center, sb(7.5pt)[Servodrayver \ (Servoadapter)]), fl: orange.lighten(80%))
     BX((9.9, 2.5), (12.2, 3.5), align(center, sb(7.5pt)[Servoklapan + \ Gidrosilindr]), fl: green.lighten(80%))
 
@@ -383,10 +383,10 @@ $ M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk" = A_1 P_L $
     AR(6.1, 6.9, 3.0, lbl: [$u(t)$])
     AR(9.1, 9.9, 3.0, lbl: [$i_v$])
     AR(12.2, 13.3, 3.0)
-    (d.T)((13.4, 3.0), sb(7.5pt)[Koʻchish $x(t)$], at: left + horizon)
+    (d.T)((13.4, 3.0), sb(7.5pt)[Köçiş $x(t)$], at: left + horizon)
 
     // --- Qayta aloqa (LVDT) ---
-    BX((6.2, 0.5), (10.9, 1.4), sb(7.5pt)[Pozitsiya Datchigi (LVDT / Enkoder)], fl: gray.lighten(80%))
+    BX((6.2, 0.5), (10.9, 1.4), sb(7.5pt)[Pozitsiya Datçigi (LVDT / Enkoder)], fl: gray.lighten(80%))
     (d.L)((12.7, 3.0), (12.7, 0.95), (11.0, 0.95))
     (d.A)((10.9, 0.95), "left")
     (d.L)((6.2, 0.95), (3.1, 0.95), (3.1, 2.64))
@@ -394,25 +394,25 @@ $ M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk" = A_1 P_L $
     (d.T)((2.98, 2.35), sb(9pt)[$-$], at: right + horizon)
   }),
   caption: [
-    Elektrogidravlik servoyuritmaning yopiq zanjirli pozitsiya boshqaruv
+    Elektrogidravlik servoyuritmaning yopiq zanjirli pozitsiya boşqaruv
     blok-sxemasi
   ],
 )
 
-= Tajribani bajarish va ishni oʻtkazish ketma-ketligi
+= Tajribani bajariş va işni ötkaziş ketma-ketligi
 
 #heading(
   level: 2,
   numbering: none,
   outlined: false,
-)[1-bosqich (6-tajriba): Gidravlik quvvat stansiyasi va nasos xarakteristikasini olish]
+)[1-bosqiç (6-tajriba): Gidravlik quvvat stansiyasi va nasos xarakteristikasini oliş]
 
-+ Elektromotorni yoqib, gidronasosni ishga tushiring. Tizimdagi bosimni
-  saqlash klapani (relief valve) orqali
-  $P_"tam" = 20, 40, 60, 80, 100 "bar"$ qiymatlarga bosqichma-bosqich
++ Elektromotorni yoqib, gidronasosni işga tuşiring. Tizimdagi bosimni
+  saqlaş klapani (relief valve) orqali
+  $P_"tam" = 20, 40, 60, 80, 100 "bar"$ qiymatlarga bosqiçma-bosqiç
   sozlang.
-+ Har bir bosim qiymatida sarf oʻlchagich orqali nasos uzatayotgan suyuqlik
-  sarfi $Q$ ni hamda elektromotor isteʼmol qilayotgan quvvatni oʻlchang.
++ Har bir bosim qiymatida sarf ölçagiç orqali nasos uzatayotgan suyuqlik
+  sarfi $Q$ ni hamda elektromotor isteʼmol qilayotgan quvvatni ölçang.
 + Nasosning hajmiy FİK ($eta_v = Q_"real" \/ Q_"naz"$) va umumiy energetik
   FİK qiymatlarini hisoblang.
 
@@ -420,18 +420,18 @@ $ M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk" = A_1 P_L $
   level: 2,
   numbering: none,
   outlined: false,
-)[2-bosqich (7-tajriba): Servoklapan va gidrosilindr pozitsiya xarakteristikasini tadqiq etish]
+)[2-bosqiç (7-tajriba): Servoklapan va gidrosilindr pozitsiya xarakteristikasini tadqiq etiş]
 
-+ Servodrayverga 0--10 V yoki 4--20 mA analog boshqaruv signalini uzating.
-+ Yopiq zanjirli boshqaruv rejimida $x_"ref"$ topshiriq signalini
-  pogʻonasimon (step input) oʻzgartirib, LVDT datchigi va osillograf orqali
-  porshenning oʻtish jarayoni grafiklarini ($x(t)$) qayd eting.
-+ Har xil tashqi yuklamalarda ($F_"yuk" = 0 dots 5000 "N"$) pozitsiyalash
-  aniqligi (position error $Delta x$) va kechikish vaqtini oʻlchang.
++ Servodrayverga 0--10 V yoki 4--20 mA analog boşqaruv signalini uzating.
++ Yopiq zanjirli boşqaruv rejimida $x_"ref"$ topşiriq signalini
+  poğonasimon (step input) özgartirib, LVDT datçigi va osillograf orqali
+  porşenning ötiş jarayoni grafiklarini ($x(t)$) qayd eting.
++ Har xil taşqi yuklamalarda ($F_"yuk" = 0 dots 5000 "N"$) pozitsiyalaş
+  aniqligi (position error $Delta x$) va keçikiş vaqtini ölçang.
 
-= Tajriba natijalari va hisoblashlar jadvallari
+= Tajriba natijalari va hisoblaşlar jadvallari
 
-#heading(level: 2, numbering: none, outlined: false)[1-Jadval: Nasos va Saqlash Klapani Xarakteristikalari (6-Tajriba)]
+#heading(level: 2, numbering: none, outlined: false)[1-Jadval: Nasos va Saqlaş Klapani Xarakteristikalari (6-Tajriba)]
 
 #figure(
   table(
@@ -461,7 +461,7 @@ $ M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk" = A_1 P_L $
   level: 2,
   numbering: none,
   outlined: false,
-)[2-Jadval: Elektrogidravlik Servoyuritma Pozitsiyalash Natijalari (7-Tajriba)]
+)[2-Jadval: Elektrogidravlik Servoyuritma Pozitsiyalaş Natijalari (7-Tajriba)]
 
 #figure(
   table(
@@ -480,7 +480,7 @@ $ M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk" = A_1 P_L $
     table.hline(stroke: 1pt),
   ),
   caption: [
-    Elektrogidravlik servoyuritma pozitsiyalash va dinamika natijalari
+    Elektrogidravlik servoyuritma pozitsiyalaş va dinamika natijalari
     ($P_"tam" = 80 "bar"$)
   ],
 )
@@ -488,20 +488,20 @@ $ M (dif^2 x) / (dif t^2) + b (dif x) / (dif t) + F_"yuk" = A_1 P_L $
 = Hisobot mazmuni va grafik tahlil
 
 + Nasosning volumetrik xarakteristikasi $Q = f(P)$ va FİK
-  $eta_v = f(P)$ *grafiklarini qurish*.
-+ Elektrogidravlik servoyuritmaning oʻtish jarayoni $x(t)$ osillogrammasini
-  tahlil qilish, qayta tartiblash (overshoot) va sozlanish vaqti
-  ($t_"soz"$) ni aniqlash.
-+ Gidroyuritmalarning pnevmoyuritmalar bilan solishtirganda yuqori qattiqligi
-  va yuklama ostida pozitsiyalash ustunliklarini xulosalash.
+  $eta_v = f(P)$ *grafiklarini quriş*.
++ Elektrogidravlik servoyuritmaning ötiş jarayoni $x(t)$ osillogrammasini
+  tahlil qiliş, qayta tartiblaş (overshoot) va sozlaniş vaqti
+  ($t_"soz"$) ni aniqlaş.
++ Gidroyuritmalarning pnevmoyuritmalar bilan soliştirganda yuqori qattiqligi
+  va yuklama ostida pozitsiyalaş ustunliklarini xulosalaş.
 
 = Nazorat savollari
 
 + Gidroyuritmalarning pnevmoyuritmaga nisbatan qanday asosiy afzalliklari va
-  kamchiliklari mavjud?
+  kamçiliklari mavjud?
 + Suyuqlik siqilmasligi (incompressibility) gidroyuritmaning qattiqligi va
-  pozitsiyalash aniqligiga qanday taʼsir koʻrsatadi?
-+ Gidravlik bosim saqlash klapani (pressure relief valve) va servoklapan
-  (servovalve) ning ishlash prinsiplarini tushuntiring.
+  pozitsiyalaş aniqligiga qanday taʼsir körsatadi?
++ Gidravlik bosim saqlaş klapani (pressure relief valve) va servoklapan
+  (servovalve) ning işlaş prinsiplarini tuşuntiring.
 + Elektrogidravlik servoyuritmada yopiq zanjirli qayta aloqa (feedback)
-  qanday amalga oshiriladi?
+  qanday amalga oşiriladi?

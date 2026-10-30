@@ -116,7 +116,7 @@
 // ============ Hujjat sozlamalari ============
 #let headingblue = rgb(20, 50, 120)
 
-#set document(title: "3-Tajriba Mashguloti: Pnevmoyuritma yuklama xarakteristikasini aniqlash")
+#set document(title: "3-Tajriba Maşguloti: Pnevmoyuritma yuklama xarakteristikasini aniqlaş")
 
 #set page(
   paper: "a4",
@@ -137,7 +137,7 @@
   line(length: 100%, stroke: 0.4pt + luma(170))
 })
 // ===================
-#set text(size: 12pt, lang: "uz")
+#set text(size: 12pt, lang: "uz", font: info.font)
 #set par(justify: true, leading: 0.75em)
 #set heading(numbering: "1.1.")
 #show heading: it => block(above: 1.2em, below: 0.7em)[
@@ -154,15 +154,12 @@
 
 // ============ Sarlavha ============
 #align(center)[
-  #text(size: 18pt, weight: "bold", fill: headingblue)[TAJRIBA MASHGʻULOTI №3]
+  #text(size: 18pt, weight: "bold", fill: headingblue)[TAJRIBA MAŞĞULOTI №3]
 
   #v(0.2cm)
   #text(size: 13pt, weight: "bold")[
-    Mavzu: Pnevmoyuritma yuklama xarakteristikasini aniqlash
+    Mavzu: Pnevmoyuritma yuklama xarakteristikasini aniqlaş
   ]
-
-  #v(0.1cm)
-  #text(size: 10pt)[(Mexatron modul va robotlarning pnevmoyuritmalarida)]
 
   #v(0.3cm)
   #line(length: 100%, stroke: 1pt)
@@ -170,85 +167,85 @@
 
 #v(0.3cm)
 
-= Ishning maqsadi
+= Işning maqsadi
 
 - Mexatronik tizimlar va sanoat robotlarining pnevmoyuritmalarida mexanik
-  yuklama ($F_"yuk"$) va qarshilik kuchlarining yuritma xarakteristikalariga
-  taʼsirini tajriba yoʻli bilan tadqiq etish.
+  yuklama ($F_"yuk"$) va qarşilik kuçlarining yuritma xarakteristikalariga
+  taʼsirini tajriba yöli bilan tadqiq etiş.
 
-- Yuklama ortishi bilan pnevmosilindr harakat tezligi ($V = f(F_"yuk")$),
-  ishchi kameralardagi bosimlar ($P_1, P_2$) va foydali ish koeffitsienti
-  ($eta$) oʻzgarishini aniqlash.
+- Yuklama ortişi bilan pnevmosilindr harakat tezligi ($V = f(F_"yuk")$),
+  işçi kameralardagi bosimlar ($P_1, P_2$) va foydali iş koeffitsienti
+  ($eta$) özgarişini aniqlaş.
 
-- Pnevmoyuritmaning maksimal yuklama koʻtarish qobiliyati (toʻxtash/stall
-  holati) hamda "Meter-out" drossellash usulida yuklama ostida harakat
-  barqarorligini baholash.
+- Pnevmoyuritmaning maksimal yuklama kötariş qobiliyati (töxtaş/stall
+  holati) hamda "Meter-out" drossellaş usulida yuklama ostida harakat
+  barqarorligini baholaş.
 
-= Qisqacha nazariy maʼlumotlar
+= Qisqaça nazariy maʼlumotlar
 
-Sanoat robotlarining manipulatsiyalash va ushlash (gripper) mexanizmlarida
-pnevmoyuritmalar doimiy oʻzgaruvchan tashqi yuklama ostida ishlaydi.
-Pnevmoyuritmaning *yuklama xarakteristikasi* deb, oʻzgarmas taʼminot bosimi
-($P_"tam"$) va drossel ochilishida porshen harakat tezligi ($V$) hamda
-rivojlantiriladigan foydali kuch ($F_"foydali"$) oʻrtasidagi bogʻliqlikka
+Sanoat robotlarining manipulatsiyalaş va uşlaş (gripper) mexanizmlarida
+pnevmoyuritmalar doimiy özgaruvçan taşqi yuklama ostida işlaydi.
+Pnevmoyuritmaning *yuklama xarakteristikasi* deb, özgarmas taʼminot bosimi
+($P_"tam"$) va drossel oçilişida porşen harakat tezligi ($V$) hamda
+rivojlantiriladigan foydali kuç ($F_"foydali"$) örtasidagi boğliqlikka
 aytiladi.
 
 == Yuklama Muvozanati va Dinamik Tenglama
 
-Pnevmosilindr porsheniga taʼsir etuvchi kuchlar muvozanati Nyutonning ikkinchi
-qonuniga koʻra quyidagicha ifodalanadi:
+Pnevmosilindr porşeniga taʼsir etuvçi kuçlar muvozanati Nyutonning ikkinçi
+qonuniga köra quyidagiça ifodalanadi:
 
 $ F_a = P_1 A_1 - P_2 A_2 - F_"yuk" - f = M dot a $
 
 bunda:
 
-- $P_1$ va $A_1$ --- porshen kamerasidagi bosim va yuza;
-- $P_2$ va $A_2$ --- shtok kamerasidagi aks bosim (back pressure) va effektiv
-  yuza ($A_2 = A_1 - a_"shtok"$);
-- $F_"yuk"$ --- pnevmoyuritmaga tushayotgan tashqi mexanik yuklama kuchi;
-- $f$ --- manjet va yoʻnaltiruvchilardagi ishqalanish kuchi;
+- $P_1$ va $A_1$ --- porşen kamerasidagi bosim va yuza;
+- $P_2$ va $A_2$ --- ştok kamerasidagi aks bosim (back pressure) va effektiv
+  yuza ($A_2 = A_1 - a_"ştok"$);
+- $F_"yuk"$ --- pnevmoyuritmaga tuşayotgan taşqi mexanik yuklama kuçi;
+- $f$ --- manjet va yönaltiruvçilardagi işqalaniş kuçi;
 - $M$ --- keltirilgan yuklama massasi;
-- $a$ --- porshen tezlanishi.
+- $a$ --- porşen tezlanişi.
 
 Barqaror harakat rejimida ($a = 0$), pnevmosilindr kamerasida talab etiladigan
-ishchi bosim $P_1$:
+işçi bosim $P_1$:
 
 $ P_1 = (F_"yuk" + f + P_2 A_2) / A_1 $
 
-== Toʻxtash (Stall Condition) va FIK
+== Töxtaş (Stall Condition) va FIK
 
-Tashqi yuklama kuchi $F_"yuk"$ oshib borib, pnevmoyuritma rivojlantira
-oladigan maksimal kuchga tenglashganda ($F_"yuk" = P_"tam" A_1 - f$), porshen
-harakati toʻxtaydi ($V = 0$). Bu holat *toʻxtash rejimi (stall condition)* deb
+Taşqi yuklama kuçi $F_"yuk"$ oşib borib, pnevmoyuritma rivojlantira
+oladigan maksimal kuçga tenglaşganda ($F_"yuk" = P_"tam" A_1 - f$), porşen
+harakati töxtaydi ($V = 0$). Bu holat *töxtaş rejimi (stall condition)* deb
 ataladi.
 
-Pnevmoyuritmaning yuklama ostidagi foydali ish koeffitsienti (FİK) amaldagi
-yuklama kuchi ($F_"yuk"$) va nazariy maksimal kuch ($F_"naz" = P_"tam" A_1$)
+Pnevmoyuritmaning yuklama ostidagi foydali iş koeffitsienti (FİK) amaldagi
+yuklama kuçi ($F_"yuk"$) va nazariy maksimal kuç ($F_"naz" = P_"tam" A_1$)
 nisbati bilan aniqlanadi:
 
 $ eta = F_"yuk" / (P_"tam" A_1) dot 100% $
 
-Havoning siqiluvchanligi sababli, yuklama keskin ortganda pnevmatizimdagi havo
-hajmi siqilib, yuritma qattiqligi (stiffness) kamayadi. Buni bartaraf etish
-uchun chiqish liniyasida aks bosim ($P_2$) hosil qiluvchi "Meter-out"
-drossellash qoʻllaniladi.
+Havoning siqiluvçanligi sababli, yuklama keskin ortganda pnevmatizimdagi havo
+hajmi siqilib, yuritma qattiqligi (stiffness) kamayadi. Buni bartaraf etiş
+uçun çiqiş liniyasida aks bosim ($P_2$) hosil qiluvçi "Meter-out"
+drossellaş qöllaniladi.
 
 = Kerakli jihozlar va stend elementlari
 
 + *Pnevmatik stend:* Kompressor, havo resiveri va FRL (filtr, reduktor,
-  moylagich) bloki.
-+ *Ijro organi:* Ikki taraflama taʼsir etuvchi pnevmosilindr
+  moylagiç) bloki.
++ *Ijro organi:* Ikki taraflama taʼsir etuvçi pnevmosilindr
   ($D = 25 "mm"$, $S = 200 "mm"$).
-+ *Yuklama mexanizmi:* Sozlanuvchi yuk massalari ($M = 2 dots 20 "kg"$) yoki
-  yuklama hosil qiluvchi tormozlovchi pnevmotsilindr / dinamometr.
-+ *Boshqaruv va rostlash apparaturasi:* 5/2-yoʻlli elektropnevmotaqsimlagich,
++ *Yuklama mexanizmi:* Sozlanuvçi yuk massalari ($M = 2 dots 20 "kg"$) yoki
+  yuklama hosil qiluvçi tormozlovçi pnevmotsilindr / dinamometr.
++ *Boşqaruv va rostlaş apparaturasi:* 5/2-yölli elektropnevmotaqsimlagiç,
   teskari klapanli drossellar.
-+ *Oʻlchov tizimi:* Raqamli bosim datchiklari ($P_1, P_2$), kuch datchigi
-  (S-type load cell), koʻchish hamda tezlik datchigi (LVDT / optik enkoder).
++ *Ölçov tizimi:* Raqamli bosim datçiklari ($P_1, P_2$), kuç datçigi
+  (S-type load cell), köçiş hamda tezlik datçigi (LVDT / optik enkoder).
 
 = Pnevmatik va Yuklama Sxemalari
 
-== Yuklama Xarakteristikasini Aniqlash Stendi Sxemasi
+== Yuklama Xarakteristikasini Aniqlaş Stendi Sxemasi
 
 #figure(
   sxema(xmin: -2.4, xmax: 7.8, ymin: -0.9, ymax: 5.5, d => {
@@ -265,7 +262,7 @@ drossellash qoʻllaniladi.
     (d.T)((1.5, 4.6), sb(9pt)[Pnevmosilindr ($D = 25$ mm)], at: center + bottom)
 
     // --- Kuch datchigi (load cell) ---
-    BX((3.95, 3.55), (5.15, 4.45), align(center, sb(7pt)[Kuch \ Datchigi]), fl: orange.lighten(70%))
+    BX((3.95, 3.55), (5.15, 4.45), align(center, sb(7pt)[Kuç \ Datçigi]), fl: orange.lighten(70%))
 
     // --- Blok-rolik va yuk ---
     (d.L)((5.15, 4.0), (5.8, 4.0))
@@ -295,14 +292,14 @@ drossellash qoʻllaniladi.
     (d.L)((1.5, 0.2), (1.5, 1.4), st: (paint: black, thickness: 1pt, dash: "dashed"))
     (d.T)((0.65, 0.8), align(center, sb(7pt)[Pozitsiya 1 \ P$->$A, B$->$R]))
     (d.T)((2.35, 0.8), align(center, sb(7pt)[Pozitsiya 2 \ P$->$B, A$->$S]))
-    (d.T)((1.5, 1.48), box(fill: white, inset: 1pt, sb(9pt)[5/2 Elektropnevmotaqsimlagich]), at: center + bottom)
+    (d.T)((1.5, 1.48), box(fill: white, inset: 1pt, sb(9pt)[5/2 Elektropnevmotaqsimlagiç]), at: center + bottom)
 
     // --- Taʼminot liniyasi ---
     (d.L)((1.5, -0.6), (1.5, 0.12))
     (d.A)((1.5, 0.2), "up")
     (d.T)((1.6, -0.2), sb(9pt)[P ($P_"tam" = 6$ bar)], at: left + horizon)
   }),
-  caption: [Pnevmoyuritma yuklama xarakteristikasini aniqlash tajriba stendi],
+  caption: [Pnevmoyuritma yuklama xarakteristikasini aniqlaş tajriba stendi],
 )
 
 == Yuklama Xarakteristikasi Grafiklari ($V = f(F_"yuk")$ va $P = f(F_"yuk")$)
@@ -317,7 +314,7 @@ drossellash qoʻllaniladi.
     // --- Koordinata oʻqlari ---
     (d.L)((0, 0), (5.4, 0), st: 1pt + black)
     (d.A)((5.5, 0), "right")
-    (d.T)((5.65, 0), sb(9pt)[Yuklama kuchi $F_"yuk"$ (N)], at: left + horizon)
+    (d.T)((5.65, 0), sb(9pt)[Yuklama kuçi $F_"yuk"$ (N)], at: left + horizon)
     (d.L)((0, 0), (0, 4.4), st: 1pt + black)
     (d.A)((0, 4.5), "up")
     (d.T)((0.05, 4.6), sb(9pt)[Tezlik $V$ (m/s) / Bosim $P_1$ (bar)], at: left + bottom)
@@ -332,44 +329,44 @@ drossellash qoʻllaniladi.
 
     // --- Xarakterli nuqtalar ---
     (d.P)((0, 3.8), 2pt)
-    (d.T)((-0.1, 3.8), sb(7pt)[$V_"max"$ (Salt ishlash)], at: right + horizon)
+    (d.T)((-0.1, 3.8), sb(7pt)[$V_"max"$ (Salt işlaş)], at: right + horizon)
     (d.P)((4.8, 0), 2pt)
-    (d.T)((4.8, -0.3), sb(7pt)[$F_"stall"$ (Toʻxtash kuchi)], at: center + top)
+    (d.T)((4.8, -0.3), sb(7pt)[$F_"stall"$ (Töxtaş kuçi)], at: center + top)
 
     // --- Izohlar ---
     (d.L)((4.8, 0), (4.8, 3.8), st: (paint: gray, thickness: 1pt, dash: "dashed"))
-    (d.T)((2.5, 0.4), box(fill: white, inset: 2pt, sb(7pt)[Ishchi zona]))
+    (d.T)((2.5, 0.4), box(fill: white, inset: 2pt, sb(7pt)[Işçi zona]))
     (d.T)((4.5, 1.2), box(fill: white, inset: 2pt, align(center, sb(7pt)[Kritik yuklama \ (Stall zone)])))
   }),
   caption: [Pnevmoyuritmaning tezlik va bosim yuklama xarakteristikalari],
 )
 
-= Tajribani bajarish va ishni oʻtkazish ketma-ketligi
+= Tajribani bajariş va işni ötkaziş ketma-ketligi
 
-#heading(level: 2, numbering: none, outlined: false)[1-bosqich: Oʻzgarmas bosimda yuklama xarakteristikasini olish]
+#heading(level: 2, numbering: none, outlined: false)[1-bosqiç: Özgarmas bosimda yuklama xarakteristikasini oliş]
 
-+ Havo tayyorlash bloki (FRL) orqali taʼminot bosimini $P_"tam" = 6 "bar"$ ga
++ Havo tayyorlaş bloki (FRL) orqali taʼminot bosimini $P_"tam" = 6 "bar"$ ga
   sozlang.
-+ Pnevmosilindr shtokiga yuklamasiz ($F_"yuk" = 0$) holatda taqsimlagichni
-  yoqing va salt ishlash tezligi $V_0$ hamda kameralardagi $P_1, P_2$
-  bosimlarni oʻlchang.
-+ Shtokga ketma-ket $M = 2, 5, 10, 15, 20 "kg"$ yuk massalarini ulagan holda
-  porshen harakat vaqti ($t$), oʻrtacha tezlik ($V = S \/ t$), ishchi bosim
++ Pnevmosilindr ştokiga yuklamasiz ($F_"yuk" = 0$) holatda taqsimlagiçni
+  yoqing va salt işlaş tezligi $V_0$ hamda kameralardagi $P_1, P_2$
+  bosimlarni ölçang.
++ Ştokga ketma-ket $M = 2, 5, 10, 15, 20 "kg"$ yuk massalarini ulagan holda
+  porşen harakat vaqti ($t$), örtaça tezlik ($V = S \/ t$), işçi bosim
   $P_1$ va aks bosim $P_2$ ni qayd eting.
 
 #heading(
   level: 2,
   numbering: none,
   outlined: false,
-)[2-bosqich: Har xil bosimlarda maksimal yuk koʻtarish qobiliyatini aniqlash]
+)[2-bosqiç: Har xil bosimlarda maksimal yuk kötariş qobiliyatini aniqlaş]
 
 + Taʼminot bosimini $P_"tam" = 4 "bar"$, $6 "bar"$ va $8 "bar"$ qiymatlarga
-  oʻzgartiring.
-+ Har bir bosim qiymatida pnevmoyuritmani toʻxtatuvchi kritik yuklama
-  ($F_"stall"$) qiymatini kuch datchigi orqali aniqlang.
-+ FİK qiymatlarini formula (3) boʻyicha hisoblang.
+  özgartiring.
++ Har bir bosim qiymatida pnevmoyuritmani töxtatuvçi kritik yuklama
+  ($F_"stall"$) qiymatini kuç datçigi orqali aniqlang.
++ FİK qiymatlarini formula (3) böyiça hisoblang.
 
-= Tajriba natijalari va hisoblashlar jadvali
+= Tajriba natijalari va hisoblaşlar jadvali
 
 #figure(
   table(
@@ -399,20 +396,20 @@ drossellash qoʻllaniladi.
 = Hisobot mazmuni va grafik tahlil
 
 + Jadval natijalari asosida $V = f(F_"yuk")$, $P_1 = f(F_"yuk")$ hamda
-  $eta = f(F_"yuk")$ *grafiklarini qurish*.
-+ Yuklama ortishi bilan yuritma tezligining pasayish sabablarini havoning
-  siqiluvchanligi va drosseldagi havo sarfi cheklanishi nuqtai nazaridan
-  tushuntirish.
-+ Sanoat robotlari tutqichlarida pnevmoyuritmaga yuklama tanlashda zaxira
-  koeffitsientini baholash.
+  $eta = f(F_"yuk")$ *grafiklarini quriş*.
++ Yuklama ortişi bilan yuritma tezligining pasayiş sabablarini havoning
+  siqiluvçanligi va drosseldagi havo sarfi çeklanişi nuqtai nazaridan
+  tuşuntiriş.
++ Sanoat robotlari tutqiçlarida pnevmoyuritmaga yuklama tanlaşda zaxira
+  koeffitsientini baholaş.
 
 = Nazorat savollari
 
 + Pnevmoyuritmaning yuklama xarakteristikasi deb nimaga aytiladi va u qanday
-  grafik koʻrinishga ega?
-+ Yuklama kuchi oshganda pnevmosilindr ishchi kamerasidagi bosim $P_1$ va
-  harakat tezligi $V$ qanday oʻzgaradi?
-+ Pnevmoyuritmaning toʻxtash rejimi (stall condition) nima va u qaysi shartda
+  grafik körinişga ega?
++ Yuklama kuçi oşganda pnevmosilindr işçi kamerasidagi bosim $P_1$ va
+  harakat tezligi $V$ qanday özgaradi?
++ Pnevmoyuritmaning töxtaş rejimi (stall condition) nima va u qaysi şartda
   yuzaga keladi?
-+ Pnevmoyuritma va gidroyuritmalarning yuklama ostida ishlash barqarorligi va
-  qattiqligi (stiffness) oʻrtasidagi asosiy farqlar nimada?
++ Pnevmoyuritma va gidroyuritmalarning yuklama ostida işlaş barqarorligi va
+  qattiqligi (stiffness) örtasidagi asosiy farqlar nimada?

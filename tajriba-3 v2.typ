@@ -6,7 +6,7 @@
 
 #let headingblue = rgb("#1F4E79")
 
-#set document(title: "Pnevmoyuritma yuklama xarakteristikasini aniqlash")
+#set document(title: "Pnevmoyuritma yuklama xarakteristikasini aniqlaş")
 #set page(paper: "a4", margin: (top: 2.5cm, bottom: 2.5cm, left: 3cm, right: 2cm))
 // ===== HOSHIYA =====
 #let info = json("fan.json")
@@ -23,7 +23,7 @@
   line(length: 100%, stroke: 0.4pt + luma(170))
 })
 // ===================
-#set text(size: 12pt, lang: "uz")
+#set text(size: 12pt, lang: "uz", font: info.font)
 #set par(justify: true, leading: 0.65em)
 #set heading(numbering: "1.1.")
 #show heading: set text(fill: headingblue)
@@ -187,117 +187,117 @@
 // =====================================================================
 
 #align(center)[
-  #text(size: 14pt, weight: "bold", fill: headingblue)[TAJRIBA MASHGʻULOTI №3]
+  #text(size: 14pt, weight: "bold", fill: headingblue)[TAJRIBA MAŞĞULOTI №3]
   #v(0.4em)
-  #text(size: 13pt, weight: "bold")[Mavzu: Pnevmoyuritma yuklama xarakteristikasini aniqlash]
+  #text(size: 13pt, weight: "bold")[Mavzu: Pnevmoyuritma yuklama xarakteristikasini aniqlaş]
 ]
 #v(1em)
 
-= Ishning maqsadi
+= Işning maqsadi
 
-Pnevmatik yuritma (pnevmosilindr) porshenining harakat tezligi bilan unga taʼsir
-etuvchi tashqi yuklama orasidagi bogʻliqlikni --- yuklama xarakteristikasini
-$v = f(F_"yuk")$ tajriba yoʻli bilan aniqlash. Mashgʻulot davomida talaba:
+Pnevmatik yuritma (pnevmosilindr) porşenining harakat tezligi bilan unga taʼsir
+etuvçi taşqi yuklama orasidagi boğliqlikni --- yuklama xarakteristikasini
+$v = f(F_"yuk")$ tajriba yöli bilan aniqlaş. Maşğulot davomida talaba:
 
-- pnevmosilindrning statik (maksimal) kuchini, ishqalanish kuchini va mexanik
-  FIK ini oʻlchaydi;
-- chiqishni drossellash ("meter-out") sxemasida ikki xil taʼminot bosimi uchun
-  $v = f(F_"yuk")$ va $p_2 = f(F_"yuk")$ bogʻliqliklarini quradi;
-- tajriba natijalaridan drossel oʻtkazuvchanligini aniqlab, ISO 6358 modeli
-  asosidagi nazariy xarakteristika bilan solishtiradi;
-- foydali quvvat $N = f(F_"yuk")$ boʻyicha yuritmaning optimal yuklanish
-  oraligʻini baholaydi.
+- pnevmosilindrning statik (maksimal) kuçini, işqalaniş kuçini va mexanik
+  FIK ini ölçaydi;
+- çiqişni drossellaş ("meter-out") sxemasida ikki xil taʼminot bosimi uçun
+  $v = f(F_"yuk")$ va $p_2 = f(F_"yuk")$ boğliqliklarini quradi;
+- tajriba natijalaridan drossel ötkazuvçanligini aniqlab, ISO 6358 modeli
+  asosidagi nazariy xarakteristika bilan soliştiradi;
+- foydali quvvat $N = f(F_"yuk")$ böyiça yuritmaning optimal yuklaniş
+  oraliğini baholaydi.
 
 = Nazariy maʼlumot
 
-== Yuklama xarakteristikasi tushunchasi
+== Yuklama xarakteristikasi tuşunçasi
 
 Pnevmoyuritmaning *yuklama xarakteristikasi* deb taʼminot bosimi $p_s$ va
-drossel sozlanishi oʻzgarmas boʻlganda porshenning barqaror harakat tezligi $v$
-ning tashqi yuklama kuchi $F_"yuk"$ ga bogʻliqligiga aytiladi. Elektr
-yuritmalardagi mexanik xarakteristikaga oʻxshab, u yuritma qanday yuklamada
-qanday tezlik berishini va qaysi yuklamada toʻxtab qolishini koʻrsatadi.
-Robotlarning ushlagich va koʻtarish mexanizmlarini loyihalashda aynan shu
-xarakteristika boʻyicha silindr oʻlchami va drossel sozlanishi tanlanadi.
+drossel sozlanişi özgarmas bölganda porşenning barqaror harakat tezligi $v$
+ning taşqi yuklama kuçi $F_"yuk"$ ga boğliqligiga aytiladi. Elektr
+yuritmalardagi mexanik xarakteristikaga öxşab, u yuritma qanday yuklamada
+qanday tezlik berişini va qaysi yuklamada töxtab qolişini körsatadi.
+Robotlarning uşlagiç va kötariş mexanizmlarini loyihalaşda aynan şu
+xarakteristika böyiça silindr ölçami va drossel sozlanişi tanlanadi.
 
-== Porshenning kuchlar muvozanati
+== Porşenning kuçlar muvozanati
 
-Ikki tomonlama pnevmosilindrning porshen tomoni yuzasi $A_1$ va shtok tomonidagi
+Ikki tomonlama pnevmosilindrning porşen tomoni yuzasi $A_1$ va ştok tomonidagi
 halqasimon yuzasi $A_2$:
 
 #eq($ A_1 = (pi D^2) / 4, quad A_2 = (pi (D^2 - d^2)) / 4 $) <eq-area>
 
-bunda $D$ --- porshen diametri, $d$ --- shtok diametri. Porshen barqaror
-(tezlanishsiz) harakatlanganda unga taʼsir etuvchi kuchlar muvozanati
-manometrik bosimlarda quyidagicha yoziladi:
+bunda $D$ --- porşen diametri, $d$ --- ştok diametri. Porşen barqaror
+(tezlanişsiz) harakatlanganda unga taʼsir etuvçi kuçlar muvozanati
+manometrik bosimlarda quyidagiça yoziladi:
 
-#eq($ p_1 A_1 - p_2 A_2 = F_"yuk" + F_"ishq" $) <eq-balance>
+#eq($ p_1 A_1 - p_2 A_2 = F_"yuk" + F_"işq" $) <eq-balance>
 
-bunda $p_1$ --- ishchi (porshen tomonidagi) kameradagi bosim, $p_2$ --- chiqish
-(shtok tomonidagi) kameradagi bosim, $F_"ishq"$ --- zichlagichlar va
-yoʻnaltiruvchilardagi ishqalanish kuchi.
+bunda $p_1$ --- işçi (porşen tomonidagi) kameradagi bosim, $p_2$ --- çiqiş
+(ştok tomonidagi) kameradagi bosim, $F_"işq"$ --- ziçlagiçlar va
+yönaltiruvçilardagi işqalaniş kuçi.
 
-== Statik kuch va mexanik FIK
+== Statik kuç va mexanik FIK
 
-Shtok qoʻzgʻalmas toʻsiqqa tiralganda chiqish kamerasidagi havo toʻliq
-chiqib ketadi ($p_2 = 0$), ishchi kamerada esa taʼminot bosimi $p_s$
-oʻrnatiladi. Bunda silindr oʻzining *maksimal (statik) kuchini* beradi:
+Ştok qözğalmas tösiqqa tiralganda çiqiş kamerasidagi havo töliq
+çiqib ketadi ($p_2 = 0$), işçi kamerada esa taʼminot bosimi $p_s$
+örnatiladi. Bunda silindr özining *maksimal (statik) kuçini* beradi:
 
-#eq($ F_"st" = p_s A_1 - F_"ishq" $) <eq-fst>
+#eq($ F_"st" = p_s A_1 - F_"işq" $) <eq-fst>
 
-Nazariy kuch $F_"naz" = p_s A_1$ ga nisbatan mexanik FIK:
+Nazariy kuç $F_"naz" = p_s A_1$ ga nisbatan mexanik FIK:
 
 #eq($ eta_m = F_"st" / F_"naz" = F_"st" / (p_s A_1) $) <eq-etam>
 
-Yuklama xarakteristikasida $F_"st"$ tezlik nolga teng boʻladigan nuqtaga mos
-keladi, shu sababli uni $F_"max"$ deb ham belgilaymiz.
+Yuklama xarakteristikasida $F_"st"$ tezlik nolga teng böladigan nuqtaga mos
+keladi, şu sababli uni $F_"max"$ deb ham belgilaymiz.
 
-== Chiqishni drossellashda porshen tezligi
+== Çiqişni drossellaşda porşen tezligi
 
-Chiqishni drossellash ("meter-out") sxemasida porshen tezligini shtok
-tomonidagi kameradan atmosferaga chiqayotgan havo oqimi belgilaydi. ISO 6358
-standarti boʻyicha drossel orqali oʻtuvchi massaviy sarf:
+Çiqişni drossellaş ("meter-out") sxemasida porşen tezligini ştok
+tomonidagi kameradan atmosferaga çiqayotgan havo oqimi belgilaydi. ISO 6358
+standarti böyiça drossel orqali ötuvçi massaviy sarf:
 
 #eq($ q_m = C p_2^"abs" rho_0 sqrt(T_0 / T) dot phi $) <eq-iso>
 
-bunda $C$ --- drosselning tovush oʻtkazuvchanligi, m³/(s·Pa); $p_2^"abs" =
+bunda $C$ --- drosselning tovuş ötkazuvçanligi, m³/(s·Pa); $p_2^"abs" =
 p_2 + p_a$ --- drosseldan oldingi absolyut bosim; $rho_0$, $T_0$ --- normal
-sharoitdagi zichlik va harorat ($P_0 = 100$ kPa, $T_0 = 293$ K); $phi$ ---
+şaroitdagi ziçlik va harorat ($P_0 = 100$ kPa, $T_0 = 293$ K); $phi$ ---
 oqim rejimi koeffitsiyenti:
 
 #eq(
   $
     phi = cases(
       1\, & "agar" p_a / p_2^"abs" <= b quad "(kritik rejim)",
-      sqrt(1 - ((p_a \/ p_2^"abs" - b) / (1 - b))^2)\, & "agar" p_a / p_2^"abs" > b quad "(kritik boʻlmagan rejim)"
+      sqrt(1 - ((p_a \/ p_2^"abs" - b) / (1 - b))^2)\, & "agar" p_a / p_2^"abs" > b quad "(kritik bölmagan rejim)"
     )
   $,
 ) <eq-phi>
 
 bunda $b$ --- kritik bosim nisbati (drossel pasportida beriladi, odatda
-$b = #d("0,2") dots #d("0,5")$). Izotermik jarayon deb faraz qilsak, kameradan chiqayotgan
-hajmiy sarf $Q_2 = q_m \/ rho_2 = C P_0 phi$ boʻladi va porshen tezligi:
+$b = #d("0,2") dots #d("0,5")$). Izotermik jarayon deb faraz qilsak, kameradan çiqayotgan
+hajmiy sarf $Q_2 = q_m \/ rho_2 = C P_0 phi$ böladi va porşen tezligi:
 
 #eq($ v = Q_2 / A_2 = (C P_0 phi) / A_2 $) <eq-v>
 
-== Yuklama xarakteristikasining shakli
+== Yuklama xarakteristikasining şakli
 
-@eq-balance, @eq-phi va @eq-v dan quyidagi muhim xulosalar kelib chiqadi:
+@eq-balance, @eq-phi va @eq-v dan quyidagi muhim xulosalar kelib çiqadi:
 
 + *Kritik rejimda* ($phi = 1$) tezlik yuklamaga ham, taʼminot bosimiga ham
-  bogʻliq emas: $v_"max" = C P_0 \/ A_2$. Bu A. Parr kitobidagi "bosim tezlikka
-  emas, faqat tezlanishga taʼsir qiladi" degan qoidaning miqdoriy ifodasidir.
-+ Yuklama ortishi bilan $p_2$ kamayadi. $p_a \/ p_2^"abs" = b$ boʻlgan
-  nuqtadan boshlab oqim kritik boʻlmagan rejimga oʻtadi va tezlik keskin
-  pasaya boshlaydi. Bu nuqtaga mos *kritik yuklama*:
-  #eq($ F_"kr" = p_s A_1 - (p_a / b - p_a) A_2 - F_"ishq" $) <eq-fkr>
-+ $F_"yuk" -> F_"max"$ da $p_2 -> 0$ va $v -> 0$: yuritma toʻxtaydi.
-+ Kichik yuklamalarda $p_2$ taʼminot bosimidan *katta* boʻlishi mumkin, chunki
-  $A_2 < A_1$: @eq-balance da $F_"yuk" approx 0$ boʻlsa, $p_2 approx p_1 A_1 \/ A_2$.
+  boğliq emas: $v_"max" = C P_0 \/ A_2$. Bu A. Parr kitobidagi "bosim tezlikka
+  emas, faqat tezlanişga taʼsir qiladi" degan qoidaning miqdoriy ifodasidir.
++ Yuklama ortişi bilan $p_2$ kamayadi. $p_a \/ p_2^"abs" = b$ bölgan
+  nuqtadan boşlab oqim kritik bölmagan rejimga ötadi va tezlik keskin
+  pasaya boşlaydi. Bu nuqtaga mos *kritik yuklama*:
+  #eq($ F_"kr" = p_s A_1 - (p_a / b - p_a) A_2 - F_"işq" $) <eq-fkr>
++ $F_"yuk" -> F_"max"$ da $p_2 -> 0$ va $v -> 0$: yuritma töxtaydi.
++ Kiçik yuklamalarda $p_2$ taʼminot bosimidan *katta* bölişi mumkin, çunki
+  $A_2 < A_1$: @eq-balance da $F_"yuk" approx 0$ bölsa, $p_2 approx p_1 A_1 \/ A_2$.
 
-@fig-theory da @eq-v boʻyicha qurilgan nazariy xarakteristikalar keltirilgan.
+@fig-theory da @eq-v böyiça qurilgan nazariy xarakteristikalar keltirilgan.
 Ikkala bosimda ham tekis qism ("plato") bir xil tezlikka ega, lekin yuqori
-bosimda u kattaroq yuklamagacha saqlanadi.
+bosimda u kattaroq yuklamagaça saqlanadi.
 
 #figure(
   plot(
@@ -317,36 +317,36 @@ bosimda u kattaroq yuklamagacha saqlanadi.
       (st: (paint: rgb("#C0504D"), thickness: 1.4pt, dash: "dashed"), label: [$p_s = 4$ bar]),
     ),
   ),
-  caption: [Chiqishni drossellashda pnevmoyuritmaning nazariy yuklama
+  caption: [Çiqişni drossellaşda pnevmoyuritmaning nazariy yuklama
     xarakteristikalari ($D = 25$ mm, $d = 10$ mm, $b = #d("0,3")$)],
 ) <fig-theory>
 
 == Foydali quvvat va yuklama koeffitsiyenti
 
-Yuritmaning foydali mexanik quvvati va nisbiy yuklanishi:
+Yuritmaning foydali mexanik quvvati va nisbiy yuklanişi:
 
 #eq($ N = F_"yuk" dot v, quad chi = F_"yuk" / F_"max" $) <eq-power>
 
-Kichik yuklamada tezlik katta, lekin kuch kichik; $F_"max"$ ga yaqinda esa
-aksincha. Shu sababli $N$ maʼlum $chi$ da maksimumga erishadi. Amaliyotda
-pnevmosilindrlar dinamik yuklamada $chi = #d("0,5") dots #d("0,8")$ oraligʻida
-ishlatiladi: bunda tezlik barqaror va quvvat yuqori boʻladi.
+Kiçik yuklamada tezlik katta, lekin kuç kiçik; $F_"max"$ ga yaqinda esa
+aksinça. Şu sababli $N$ maʼlum $chi$ da maksimumga erişadi. Amaliyotda
+pnevmosilindrlar dinamik yuklamada $chi = #d("0,5") dots #d("0,8")$ oraliğida
+işlatiladi: bunda tezlik barqaror va quvvat yuqori böladi.
 
 = Kerakli jihozlar
 
 + *Pnevmatik laboratoriya stendi* --- ikki tomonlama pnevmosilindr
-  ($D = 25$ mm, $d = 10$ mm, $S = 200$ mm), vertikal oʻrnatilgan, shtok
-  uchida yuk platformasi (harakatlanuvchi qismlar massasi $m_0 = #d("1,5")$ kg).
+  ($D = 25$ mm, $d = 10$ mm, $S = 200$ mm), vertikal örnatilgan, ştok
+  uçida yuk platformasi (harakatlanuvçi qismlar massasi $m_0 = #d("1,5")$ kg).
 + *FRL bloki* (filtr, bosim regulyatori, manometr 0--10 bar).
-+ *5/2-yoʻlli monostabil elektropnevmotaqsimlagich* (Y1 gʻaltagi).
-+ *Bir tomonlama drossel* (drossel + teskari klapan) --- shtok tomonidagi
-  liniyada, chiqishni drossellash uchun.
-+ *Ikkita bosim datchigi* P1, P2 (0--10 bar).
-+ *Ikkita magnit-kontakt (gerkon) datchigi* B1, B2 --- yurishning oʻrta
-  qismida, oraligʻi $L_0 = 150$ mm.
-+ *Elektron taymer yoki PLC* (vaqt oʻlchash aniqligi 1 ms).
-+ *Yuklar toʻplami* (2,5 kg li yuklar, jami 27,5 kg gacha).
-+ *Dinamometr (kuch datchigi)* 0--500 N --- statik kuchni oʻlchash uchun.
++ *5/2-yölli monostabil elektropnevmotaqsimlagiç* (Y1 ğaltagi).
++ *Bir tomonlama drossel* (drossel + teskari klapan) --- ştok tomonidagi
+  liniyada, çiqişni drossellaş uçun.
++ *Ikkita bosim datçigi* P1, P2 (0--10 bar).
++ *Ikkita magnit-kontakt (gerkon) datçigi* B1, B2 --- yurişning örta
+  qismida, oraliği $L_0 = 150$ mm.
++ *Elektron taymer yoki PLC* (vaqt ölçaş aniqligi 1 ms).
++ *Yuklar töplami* (2,5 kg li yuklar, jami 27,5 kg gaça).
++ *Dinamometr (kuç datçigi)* 0--500 N --- statik kuçni ölçaş uçun.
 + *Dasturiy muhit:* Python 3 (`numpy`, `matplotlib` kutubxonalari).
 
 = Tajriba stendining sxemasi
@@ -365,7 +365,7 @@ ishlatiladi: bunda tezlik barqaror va quvvat yuqori boʻladi.
     T(4.6, 2.25, [$p_s$], a: "l"),
     // taqsimlagich
     R(5.9, 0.6, 2.6, 1.2, fill: luma(240)),
-    T(7.2, 1.2, [5/2 taqsimlagich\ (Y1)]),
+    T(7.2, 1.2, [5/2 taqsimlagiç\ (Y1)]),
     Ar(5.2, 1.2, 5.9, 1.2),
     // A1 liniyasi (porshen tomoni)
     L((7.9, 1.8), (7.9, 3.0), (10.0, 3.0), st: 1.2pt + headingblue),
@@ -407,63 +407,63 @@ ishlatiladi: bunda tezlik barqaror va quvvat yuqori boʻladi.
     L((11.82, 3.55), (11.82, 2.3), (13.5, 2.3), (13.5, 1.9), st: (paint: black, thickness: 0.6pt, dash: "dashed")),
     L((11.82, 6.2), (11.82, 7.4), (15.1, 7.4), (15.1, 1.9), st: (paint: black, thickness: 0.6pt, dash: "dashed")),
   )),
-  caption: [Tajriba stendining soddalashtirilgan sxemasi: koʻk liniya ---
-    ishchi kamera (P1), qizil liniya --- chiqish kamerasi va drossel (P2)],
+  caption: [Tajriba stendining soddalaştirilgan sxemasi: kök liniya ---
+    işçi kamera (P1), qizil liniya --- çiqiş kamerasi va drossel (P2)],
 ) <fig-stand>
 
-Taqsimlagich Y1 gʻaltagiga kuchlanish berilganda havo porshen tomoniga keladi,
-shtok tomonidagi havo esa drossel DT orqali atmosferaga chiqadi. Porshen
-yuqoriga harakatlanib, yukni koʻtaradi. Tezlik B1 va B2 datchiklari orasidagi
-$L_0$ masofani bosib oʻtish vaqti boʻyicha aniqlanadi: bu oraliq yurishning
-oʻrta qismida joylashgani uchun tezlanish va dempferlash hududlari oʻlchovga
+Taqsimlagiç Y1 ğaltagiga kuçlaniş berilganda havo porşen tomoniga keladi,
+ştok tomonidagi havo esa drossel DT orqali atmosferaga çiqadi. Porşen
+yuqoriga harakatlanib, yukni kötaradi. Tezlik B1 va B2 datçiklari orasidagi
+$L_0$ masofani bosib ötiş vaqti böyiça aniqlanadi: bu oraliq yurişning
+örta qismida joylaşgani uçun tezlaniş va dempferlaş hududlari ölçovga
 taʼsir qilmaydi.
 
 = Xavfsizlik talablari
 
-- Sxemani faqat bosim olib tashlangan holda (regulyator nolda, liniya
-  boʻshatilgan) yigʻish va oʻzgartirish mumkin.
-- Yuklarni platformaga faqat porshen pastki holatda va taqsimlagich oʻchiq
-  boʻlganda qoʻyish kerak; harakat vaqtida qoʻlni platforma ostiga tiqmang.
-- Taʼminot bosimi 6 bar dan oshirilmaydi.
+- Sxemani faqat bosim olib taşlangan holda (regulyator nolda, liniya
+  böşatilgan) yiğiş va özgartiriş mumkin.
+- Yuklarni platformaga faqat porşen pastki holatda va taqsimlagiç öçiq
+  bölganda qöyiş kerak; harakat vaqtida qölni platforma ostiga tiqmang.
+- Taʼminot bosimi 6 bar dan oşirilmaydi.
 
-= Ishni bajarish tartibi
+= Işni bajariş tartibi
 
-== 1-topshiriq. Statik kuch va ishqalanishni aniqlash
+== 1-topşiriq. Statik kuç va işqalanişni aniqlaş
 
-+ Silindrni gorizontal tayanchga mahkamlab, shtok uchini dinamometrga tiring.
-+ Regulyator bilan $p_s = 4$ bar oʻrnating, Y1 ni yoqing va dinamometr
-  koʻrsatkichi barqarorlashgach $F_"st"$ ni yozib oling.
-+ Oʻlchovni $p_s = 5$ va $6$ bar uchun takrorlang. Natijalarni 1-jadvalga
++ Silindrni gorizontal tayançga mahkamlab, ştok uçini dinamometrga tiring.
++ Regulyator bilan $p_s = 4$ bar örnating, Y1 ni yoqing va dinamometr
+  körsatkiçi barqarorlaşgaç $F_"st"$ ni yozib oling.
++ Ölçovni $p_s = 5$ va $6$ bar uçun takrorlang. Natijalarni 1-jadvalga
   kiriting.
-+ @eq-fst va @eq-etam boʻyicha $F_"ishq"$ va $eta_m$ ni hisoblang.
++ @eq-fst va @eq-etam böyiça $F_"işq"$ va $eta_m$ ni hisoblang.
 
-== 2-topshiriq. $p_s = 6$ bar da yuklama xarakteristikasi
+== 2-topşiriq. $p_s = 6$ bar da yuklama xarakteristikasi
 
-+ Silindrni vertikal holatga qaytaring, $p_s = 6$ bar oʻrnating.
-+ Yuksiz platformada ($m = 0$) drossel DT ni porshen tezligi taxminan
-  $#d("0,3")$ m/s boʻladigan qilib sozlang va drossel vintini *keyingi barcha
-  oʻlchovlar davomida oʻzgartirmang*.
-+ Y1 ni yoqib, porshenni koʻtaring; taymerdan B1→B2 vaqti $t$ ni, harakat
-  davomida P1 va P2 koʻrsatkichlarini yozib oling. Har bir yuklamada
-  oʻlchovni 3 marta takrorlab, oʻrtachasini oling.
-+ Platformaga ketma-ket yuk qoʻshib (2-jadvaldagi $m$ qiymatlari), 3-bandni
-  takrorlang. Yuklama $F_"max"$ ga yaqinlashganda yukni kichikroq qadam bilan
-  oshiring.
++ Silindrni vertikal holatga qaytaring, $p_s = 6$ bar örnating.
++ Yuksiz platformada ($m = 0$) drossel DT ni porşen tezligi taxminan
+  $#d("0,3")$ m/s böladigan qilib sozlang va drossel vintini *keyingi barça
+  ölçovlar davomida özgartirmang*.
++ Y1 ni yoqib, porşenni kötaring; taymerdan B1→B2 vaqti $t$ ni, harakat
+  davomida P1 va P2 körsatkiçlarini yozib oling. Har bir yuklamada
+  ölçovni 3 marta takrorlab, örtaçasini oling.
++ Platformaga ketma-ket yuk qöşib (2-jadvaldagi $m$ qiymatlari), 3-bandni
+  takrorlang. Yuklama $F_"max"$ ga yaqinlaşganda yukni kiçikroq qadam bilan
+  oşiring.
 
-== 3-topshiriq. $p_s = 4$ bar da yuklama xarakteristikasi
+== 3-topşiriq. $p_s = 4$ bar da yuklama xarakteristikasi
 
-+ Drossel sozlanishini oʻzgartirmasdan regulyatorda $p_s = 4$ bar oʻrnating.
-+ 2-topshiriqdagi oʻlchovlarni 3-jadvaldagi yuklamalar uchun takrorlang.
++ Drossel sozlanişini özgartirmasdan regulyatorda $p_s = 4$ bar örnating.
++ 2-topşiriqdagi ölçovlarni 3-jadvaldagi yuklamalar uçun takrorlang.
 
-= Oʻlchov natijalari
+= Ölçov natijalari
 
-Quyidagi jadvallarda namunaviy oʻlchov natijalari keltirilgan. Talaba oʻz
-oʻlchovlarini xuddi shu shakldagi jadvallarga kiritadi.
+Quyidagi jadvallarda namunaviy ölçov natijalari keltirilgan. Talaba öz
+ölçovlarini xuddi şu şakldagi jadvallarga kiritadi.
 
 #figure(
   btable(
     columns: 5,
-    header: ([$p_s$, \ bar], [$F_"naz" = p_s A_1$, \ N], [$F_"st"$, \ N], [$F_"ishq"$, \ N], [$eta_m$]),
+    header: ([$p_s$, \ bar], [$F_"naz" = p_s A_1$, \ N], [$F_"st"$, \ N], [$F_"işq"$, \ N], [$eta_m$]),
     [4],
     [196,3],
     [181,4],
@@ -480,7 +480,7 @@ oʻlchovlarini xuddi shu shakldagi jadvallarga kiritadi.
     [15,4],
     [0,948],
   ),
-  caption: [Statik kuch va ishqalanishni aniqlash natijalari],
+  caption: [Statik kuç va işqalanişni aniqlaş natijalari],
 ) <tab-static>
 
 #let rowsdata(data) = data.map(r => r.map(x => [#x])).flatten()
@@ -539,54 +539,54 @@ oʻlchovlarini xuddi shu shakldagi jadvallarga kiritadi.
   caption: [Yuklama xarakteristikasi, $p_s = 4$ bar ($L_0 = 150$ mm, $m_0 = #d("1,5")$ kg)],
 ) <tab-p4>
 
-= Natijalarni qayta ishlash (namunaviy hisob)
+= Natijalarni qayta işlaş (namunaviy hisob)
 
-*1. Porshen yuzalari* --- @eq-area boʻyicha:
+*1. Porşen yuzalari* --- @eq-area böyiça:
 $
   A_1 = (pi dot #d("0,025")^2) / 4 = #d("4,909") dot 10^(-4) "m"^2, quad
   A_2 = (pi (#d("0,025")^2 - #d("0,010")^2)) / 4 = #d("4,123") dot 10^(-4) "m"^2
 $
 
-*2. Ishqalanish va mexanik FIK* --- @eq-fst va @eq-etam boʻyicha, $p_s = 6$ bar:
+*2. Işqalaniş va mexanik FIK* --- @eq-fst va @eq-etam böyiça, $p_s = 6$ bar:
 $
-   F_"naz" & = 6 dot 10^5 dot #d("4,909") dot 10^(-4) = #d("294,5") "N", \
-  F_"ishq" & = #d("294,5") - #d("279,1") = #d("15,4") "N", quad
-             eta_m = #d("279,1") / #d("294,5") = #d("0,948")
+  F_"naz" & = 6 dot 10^5 dot #d("4,909") dot 10^(-4) = #d("294,5") "N", \
+  F_"işq" & = #d("294,5") - #d("279,1") = #d("15,4") "N", quad
+            eta_m = #d("279,1") / #d("294,5") = #d("0,948")
 $
-Uchta bosim boʻyicha oʻrtacha ishqalanish kuchi
-$F_"ishq" = (#d("15,0") + #d("14,6") + #d("15,4")) \/ 3 = #d("15,0")$ N; demak, $p_s = 6$ bar da
+Uçta bosim böyiça örtaça işqalaniş kuçi
+$F_"işq" = (#d("15,0") + #d("14,6") + #d("15,4")) \/ 3 = #d("15,0")$ N; demak, $p_s = 6$ bar da
 $F_"max" = #d("294,5") - #d("15,0") = #d("279,5")$ N.
 
-*3. Yuklama kuchi va tezlik* (2-jadval, $m = 20$ kg):
+*3. Yuklama kuçi va tezlik* (2-jadval, $m = 20$ kg):
 $
   F_"yuk" = (m + m_0) g = (20 + #d("1,5")) dot #d("9,81") = #d("210,9") "N", quad
   v = L_0 / t = #d("0,150") / #d("0,503") = #d("0,298") "m/s"
 $
 
-*4. Kuchlar muvozanatini tekshirish* --- @eq-balance boʻyicha, $m = 20$ kg:
+*4. Kuçlar muvozanatini tekşiriş* --- @eq-balance böyiça, $m = 20$ kg:
 $
-  p_2 = (p_1 A_1 - F_"yuk" - F_"ishq") / A_2
+  p_2 = (p_1 A_1 - F_"yuk" - F_"işq") / A_2
   = (#d("5,80") dot 10^5 dot #d("4,909") dot 10^(-4) - #d("210,9") - #d("15,0")) / (#d("4,123") dot 10^(-4))
   = #d("1,43") dot 10^5 "Pa"
 $
-Hisoblangan qiymat P2 datchigi koʻrsatkichi (1,43 bar) bilan mos keladi.
+Hisoblangan qiymat P2 datçigi körsatkiçi (1,43 bar) bilan mos keladi.
 
-*5. Drossel oʻtkazuvchanligini aniqlash.* 2-jadvalning dastlabki toʻrt nuqtasi
-kritik rejimga ($phi = 1$) tegishli, ularning oʻrtacha tezligi
+*5. Drossel ötkazuvçanligini aniqlaş.* 2-jadvalning dastlabki tört nuqtasi
+kritik rejimga ($phi = 1$) tegişli, ularning örtaça tezligi
 $v_"max" = (#d("0,300") + #d("0,298") + #d("0,302") + #d("0,294")) \/ 4 = #d("0,2985")$ m/s. @eq-v dan:
 $
   C = (v_"max" A_2) / P_0 = (#d("0,2985") dot #d("4,123") dot 10^(-4)) / 10^5
   = #d("1,231") dot 10^(-9) "m"^3 \/ ("s" dot "Pa")
 $
 
-*6. Kritik yuklama* --- @eq-fkr boʻyicha, $b = #d("0,3")$, $p_s = 6$ bar:
+*6. Kritik yuklama* --- @eq-fkr böyiça, $b = #d("0,3")$, $p_s = 6$ bar:
 $
   F_"kr" = #d("294,5") - (#d("1,013") / #d("0,3") - #d("1,013")) dot 10^5 dot #d("4,123") dot 10^(-4) - #d("15,0")
   = #d("182,0") "N"
 $
-$p_s = 4$ bar da xuddi shunday $F_"kr" = #d("83,9")$ N, $F_"max" = #d("181,4")$ N.
+$p_s = 4$ bar da xuddi şunday $F_"kr" = #d("83,9")$ N, $F_"max" = #d("181,4")$ N.
 
-*7. Foydali quvvat* --- @eq-power boʻyicha, $m = #d("22,5")$ kg:
+*7. Foydali quvvat* --- @eq-power böyiça, $m = #d("22,5")$ kg:
 $N = #d("235,4") dot #d("0,282") = #d("66,5")$ W, $chi = #d("235,4") \/ #d("279,5") = #d("0,84")$. Bu
 $p_s = 6$ bar dagi eng katta quvvat; $p_s = 4$ bar da maksimal quvvat
 $#d("38,2")$ W ($chi = #d("0,76")$).
@@ -617,16 +617,16 @@ $#d("38,2")$ W ($chi = #d("0,76")$).
       ),
     ),
   ),
-  caption: [Yuklama xarakteristikalari: chiziqlar --- @eq-v boʻyicha model,
+  caption: [Yuklama xarakteristikalari: çiziqlar --- @eq-v böyiça model,
     nuqtalar --- 2- va 3-jadvallardagi tajriba natijalari],
 ) <fig-result>
 
-@fig-result dan koʻrinadiki, tekis qismda model va tajriba deyarli toʻliq mos
-keladi. Toʻxtash nuqtasi yaqinida tajriba tezligi modeldan biroz past: masalan,
-$m = 25$ kg da model $v = #d("0,25")$ m/s beradi, oʻlchangani esa $#d("0,221")$ m/s. Buning
-asosiy sababi --- harakat vaqtida taʼminot liniyasidagi bosim yoʻqotishi
-($p_1 = #d("5,86")$ bar $< p_s = 6$ bar): $F_"max"$ yaqinida $p_2$ juda kichik
-boʻlgani uchun $p_1$ ning ozgina pasayishi ham tezlikka sezilarli taʼsir
+@fig-result dan körinadiki, tekis qismda model va tajriba deyarli töliq mos
+keladi. Töxtaş nuqtasi yaqinida tajriba tezligi modeldan biroz past: masalan,
+$m = 25$ kg da model $v = #d("0,25")$ m/s beradi, ölçangani esa $#d("0,221")$ m/s. Buning
+asosiy sababi --- harakat vaqtida taʼminot liniyasidagi bosim yöqotişi
+($p_1 = #d("5,86")$ bar $< p_s = 6$ bar): $F_"max"$ yaqinida $p_2$ juda kiçik
+bölgani uçun $p_1$ ning ozgina pasayişi ham tezlikka sezilarli taʼsir
 qiladi.
 
 #figure(
@@ -653,14 +653,14 @@ qiladi.
       (st: (paint: rgb("#C0504D"), thickness: 1.2pt, dash: "dashed"), fill: rgb("#C0504D"), label: [$p_s = 4$ bar]),
     ),
   ),
-  caption: [Foydali quvvatning yuklamaga bogʻliqligi $N = f(F_"yuk")$],
+  caption: [Foydali quvvatning yuklamaga boğliqligi $N = f(F_"yuk")$],
 ) <fig-power>
 
-= Natijalarni Python yordamida qayta ishlash
+= Natijalarni Python yordamida qayta işlaş
 
-Quyidagi dastur 2- va 3-jadval natijalari asosida drossel oʻtkazuvchanligini
+Quyidagi dastur 2- va 3-jadval natijalari asosida drossel ötkazuvçanligini
 aniqlaydi va tajriba nuqtalarini @eq-v modeli bilan bitta grafikda
-solishtiradi. Talaba oʻz oʻlchov natijalarini massivlarga kiritadi.
+soliştiradi. Talaba öz ölçov natijalarini massivlarga kiritadi.
 
 ```python
 import numpy as np
@@ -712,36 +712,36 @@ plt.tight_layout(); plt.savefig("yuklama_xarakteristikasi.png", dpi=200)
 
 = Hisobot mazmuni va grafik tahlil
 
-+ 1-jadval asosida $F_"st" = f(p_s)$ grafigini qurish, uning nazariy
-  $F_"naz" = p_s A_1$ toʻgʻri chizigʻi bilan farqini va $eta_m$ ning bosimga
-  bogʻliqligini tushuntirish.
-+ Ikkala bosim uchun $v = f(F_"yuk")$ yuklama xarakteristikalarini bitta
-  koordinata tizimida qurish, tekis qism va keskin pasayish hududlarini
-  ajratish, $F_"kr"$ va $F_"max"$ ning tajribaviy qiymatlarini @eq-fkr va
-  @eq-fst bilan solishtirish.
-+ $p_2 = f(F_"yuk")$ grafigini qurish va kichik yuklamalarda $p_2 > p_1$
-  boʻlish sababini tushuntirish.
-+ Drossel oʻtkazuvchanligi $C$ ni aniqlab, @eq-v modeli bilan tajriba
-  orasidagi farqning sabablarini (liniyadagi bosim yoʻqotishi, ishqalanishning
-  tezlikka bogʻliqligi, issiqlik almashinuvi) tahlil qilish.
-+ $N = f(F_"yuk")$ grafigi asosida yuritmaning optimal yuklanish oraligʻini
-  aniqlash va robot ushlagichi yoki koʻtarish oʻqi uchun ish rejimi (bosim,
-  yuklama, drossel sozlanishi) boʻyicha xulosa yozish.
++ 1-jadval asosida $F_"st" = f(p_s)$ grafigini quriş, uning nazariy
+  $F_"naz" = p_s A_1$ töğri çiziği bilan farqini va $eta_m$ ning bosimga
+  boğliqligini tuşuntiriş.
++ Ikkala bosim uçun $v = f(F_"yuk")$ yuklama xarakteristikalarini bitta
+  koordinata tizimida quriş, tekis qism va keskin pasayiş hududlarini
+  ajratiş, $F_"kr"$ va $F_"max"$ ning tajribaviy qiymatlarini @eq-fkr va
+  @eq-fst bilan soliştiriş.
++ $p_2 = f(F_"yuk")$ grafigini quriş va kiçik yuklamalarda $p_2 > p_1$
+  böliş sababini tuşuntiriş.
++ Drossel ötkazuvçanligi $C$ ni aniqlab, @eq-v modeli bilan tajriba
+  orasidagi farqning sabablarini (liniyadagi bosim yöqotişi, işqalanişning
+  tezlikka boğliqligi, issiqlik almaşinuvi) tahlil qiliş.
++ $N = f(F_"yuk")$ grafigi asosida yuritmaning optimal yuklaniş oraliğini
+  aniqlaş va robot uşlagiçi yoki kötariş öqi uçun iş rejimi (bosim,
+  yuklama, drossel sozlanişi) böyiça xulosa yoziş.
 
 = Nazorat savollari
 
 + Pnevmoyuritmaning yuklama xarakteristikasi deb nimaga aytiladi va u elektr
   yuritmaning mexanik xarakteristikasidan nimasi bilan farq qiladi?
-+ Nima uchun chiqishni drossellashda kritik rejimda porshen tezligi yuklamaga
-  ham, taʼminot bosimiga ham bogʻliq emas?
++ Nima uçun çiqişni drossellaşda kritik rejimda porşen tezligi yuklamaga
+  ham, taʼminot bosimiga ham boğliq emas?
 + Kritik yuklama $F_"kr"$ qanday aniqlanadi va u taʼminot bosimiga qanday
-  bogʻliq?
-+ Kichik yuklamalarda chiqish kamerasidagi bosim taʼminot bosimidan yuqori
-  boʻlishini qanday tushuntirasiz?
-+ Statik kuch tajribasida mexanik FIK nima uchun bosim ortishi bilan biroz
-  oshadi?
-+ Foydali quvvat nima uchun $F_"max"$ dan kichik yuklamada maksimumga
-  erishadi? Pnevmosilindrni qanday yuklanish koeffitsiyentida ishlatish
+  boğliq?
++ Kiçik yuklamalarda çiqiş kamerasidagi bosim taʼminot bosimidan yuqori
+  bölişini qanday tuşuntirasiz?
++ Statik kuç tajribasida mexanik FIK nima uçun bosim ortişi bilan biroz
+  oşadi?
++ Foydali quvvat nima uçun $F_"max"$ dan kiçik yuklamada maksimumga
+  erişadi? Pnevmosilindrni qanday yuklaniş koeffitsiyentida işlatiş
   tavsiya etiladi?
-+ Tezlik nima uchun B1--B2 datchiklari orasida, yurishning oʻrta qismida
-  oʻlchanadi?
++ Tezlik nima uçun B1--B2 datçiklari orasida, yurişning örta qismida
+  ölçanadi?
